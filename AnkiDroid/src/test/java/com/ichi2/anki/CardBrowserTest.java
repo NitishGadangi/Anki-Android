@@ -88,6 +88,7 @@ public class CardBrowserTest extends RobolectricTest {
     }
 
     @Test
+    @RunInBackground
     public void selectAllIsNotVisibleOnceCalled() {
         CardBrowser browser = getBrowserWithMultipleNotes();
         selectMenuItem(browser, R.id.action_select_all);
@@ -96,6 +97,7 @@ public class CardBrowserTest extends RobolectricTest {
     }
 
     @Test
+    @RunInBackground
     public void selectNoneIsVisibleOnceSelectAllCalled() {
         CardBrowser browser = getBrowserWithMultipleNotes();
         selectMenuItem(browser, R.id.action_select_all);
@@ -104,6 +106,7 @@ public class CardBrowserTest extends RobolectricTest {
     }
 
     @Test
+    @RunInBackground
     public void selectNoneIsVisibleWhenSelectingOne() {
         CardBrowser browser = getBrowserWithMultipleNotes();
         advanceRobolectricLooperWithSleep();
@@ -595,7 +598,7 @@ public class CardBrowserTest extends RobolectricTest {
         advanceRobolectricLooperWithSleep();
 
         // Make sure card has default value in sortType field
-        assertThat("Initially Card Browser has order = noteFld", getCol().getConf().get("sortType"), is("noteFld"));
+        assertThat("Initially Card Browser has order = noteFld", getCol().get_config_string("sortType"), is("noteFld"));
 
         // Store the current (before changing the database) Mod Time
         long initialMod = getCol().getMod();
@@ -613,7 +616,7 @@ public class CardBrowserTest extends RobolectricTest {
         // Find the current (after database has been changed) Mod time
         long finalMod = getCol().getMod();
 
-        assertThat("Card Browser has the new sortType field", getCol().getConf().get("sortType"), is("cardEase"));
+        assertThat("Card Browser has the new sortType field", getCol().get_config_string("sortType"), is("cardEase"));
         Assert.assertNotEquals("Modification time must change", initialMod, finalMod);
     }
 

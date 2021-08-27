@@ -90,9 +90,11 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.drakeet.drawer.FullDraggableContainer;
 import com.google.android.material.snackbar.Snackbar;
 import com.ichi2.anim.ViewAnimation;
+import com.ichi2.anki.cardviewer.Gesture;
 import com.ichi2.anki.cardviewer.GestureProcessor;
 import com.ichi2.anki.cardviewer.MissingImageHandler;
 import com.ichi2.anki.cardviewer.OnRenderProcessGoneDelegate;
+import com.ichi2.anki.cardviewer.ViewerCommand;
 import com.ichi2.anki.dialogs.tags.TagsDialog;
 import com.ichi2.anki.dialogs.tags.TagsDialogFactory;
 import com.ichi2.anki.dialogs.tags.TagsDialogListener;
@@ -101,6 +103,7 @@ import com.ichi2.anki.cardviewer.CardAppearance;
 import com.ichi2.anki.receiver.SdCardReceiver;
 import com.ichi2.anki.reviewer.CardMarker;
 import com.ichi2.anki.cardviewer.CardTemplate;
+import com.ichi2.anki.reviewer.FullScreenMode;
 import com.ichi2.anki.reviewer.ReviewerCustomFonts;
 import com.ichi2.anki.reviewer.ReviewerUi;
 import com.ichi2.anki.cardviewer.TypedAnswer;
@@ -127,7 +130,7 @@ import com.ichi2.utils.AdaptionUtil;
 import com.ichi2.utils.AndroidUiUtils;
 import com.ichi2.utils.AssetHelper;
 import com.ichi2.utils.ClipboardUtil;
-import com.ichi2.utils.BooleanGetter;
+import com.ichi2.utils.Computation;
 import com.ichi2.utils.DiffEngine;
 import com.ichi2.utils.FunctionalInterfaces.Consumer;
 import com.ichi2.utils.FunctionalInterfaces.Function;
@@ -168,7 +171,7 @@ import com.github.zafarkhaja.semver.Version;
 import static com.ichi2.anim.ActivityTransitionAnimation.Direction.*;
 
 @SuppressWarnings({"PMD.AvoidThrowingRawExceptionTypes","PMD.FieldDeclarationsShouldBeAtStartOfClass"})
-public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity implements ReviewerUi, CommandProcessor, TagsDialogListener {
+public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity implements ReviewerUi, CommandProcessor, TagsDialogListener, WhiteboardMultiTouchMethods {
 
     /**
      * Result codes that are returned when this activity finishes.
@@ -187,10 +190,6 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
     public static final int EASE_2 = 2;
     public static final int EASE_3 = 3;
     public static final int EASE_4 = 4;
-
-    /** Maximum time in milliseconds to wait before accepting answer button presses. */
-    @VisibleForTesting
-    protected static final int DOUBLE_TAP_IGNORE_THRESHOLD = 200;
 
     /** Time to wait in milliseconds before resuming fullscreen mode **/
     protected static final int INITIAL_HIDE_DELAY = 200;
@@ -237,12 +236,13 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
     private boolean mPrefShowTopbar;
     private boolean mShowTimer;
     protected boolean mPrefWhiteboard;
-    private int mPrefFullscreenReview;
+    private FullScreenMode mPrefFullscreenReview = FullScreenMode.getDEFAULT();
     private int mRelativeButtonSize;
     private boolean mDoubleScrolling;
     private boolean mScrollingButtons;
     private boolean mGesturesEnabled;
     private boolean mLargeAnswerButtons;
+    private int mDoubleTapTimeInterval = DEFAULT_DOUBLE_TAP_TIME_INTERVAL;
     // Android WebView
     protected boolean mSpeakText;
     protected boolean mDisableClipboard = false;
@@ -264,6 +264,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
 
     // Default short animation duration, provided by Android framework
     protected int mShortAnimDuration;
+    private boolean mBackButtonPressedToReturn = false;
 
     // Preferences from the collection
     private boolean mShowNextReviewTime;
@@ -323,6 +324,9 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
 
     private static final int sShowChosenAnswerLength = 2000;
 
+    public static final String DOUBLE_TAP_TIME_INTERVAL = "doubleTapTimeInterval";
+    public static final int DEFAULT_DOUBLE_TAP_TIME_INTERVAL = 200;
+
     /**
      * A record of the last time the "show answer" or ease buttons were pressed. We keep track
      * of this time to ignore accidental button presses.
@@ -343,9 +347,11 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
     /**
      * Gesture Allocation
      */
-    private int mGestureVolumeUp;
-    private int mGestureVolumeDown;
-    private final GestureProcessor mGestureProcessor = new GestureProcessor(this);
+    @NonNull
+    private ViewerCommand mGestureVolumeUp = COMMAND_NOTHING;
+    @NonNull
+    private ViewerCommand mGestureVolumeDown = COMMAND_NOTHING;
+    protected final GestureProcessor mGestureProcessor = new GestureProcessor(this);
 
     private String mCardContent;
     private String mBaseUrl;
@@ -383,12 +389,16 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
     /** Preference: Whether the user wants to focus "type in answer" */
     private boolean mFocusTypeAnswer;
 
+    /** Preference: Whether the user wants press back twice to return to the main screen" */
+    private boolean mExitViaDoubleTapBack;
+
     private final OnRenderProcessGoneDelegate mOnRenderProcessGoneDelegate = new OnRenderProcessGoneDelegate(this);
 
     // ----------------------------------------------------------------------------
     // LISTENERS
     // ----------------------------------------------------------------------------
 
+    @SuppressWarnings("deprecation") //  #7111: new Handler()
     private final Handler mLongClickHandler = new Handler();
     private final Runnable mLongClickTestRunnable = new Runnable() {
         @Override
@@ -417,7 +427,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         public void onClick(View view) {
             Timber.i("AbstractFlashcardViewer:: Show answer button pressed");
             // Ignore what is most likely an accidental double-tap.
-            if (getElapsedRealTime() - mLastClickTime < DOUBLE_TAP_IGNORE_THRESHOLD) {
+            if (getElapsedRealTime() - mLastClickTime < mDoubleTapTimeInterval) {
                 return;
             }
             mLastClickTime = getElapsedRealTime();
@@ -468,7 +478,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
             // or if the button was not touched,
             if (mPrevCard == mCurrentCard || !mHasBeenTouched)  {
                 // Only perform if the click was not an accidental double-tap
-                if (getElapsedRealTime() - mLastClickTime >= DOUBLE_TAP_IGNORE_THRESHOLD) {
+                if (getElapsedRealTime() - mLastClickTime >= mDoubleTapTimeInterval) {
                     // For whatever reason, performClick does not return a visual feedback anymore
                     if (!mHasBeenTouched) {
                         view.setPressed(true);
@@ -570,7 +580,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
     }
 
 
-    private final TaskListener<Card, BooleanGetter> mUpdateCardHandler = new TaskListener<Card, BooleanGetter>() {
+    private final TaskListener<Card, Computation<?>> mUpdateCardHandler = new TaskListener<Card, Computation<?>>() {
         private boolean mNoMoreCards;
 
 
@@ -619,8 +629,8 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
 
 
         @Override
-        public void onPostExecute(BooleanGetter result) {
-            if (!result.getBoolean()) {
+        public void onPostExecute(Computation<?> result) {
+            if (!result.succeeded()) {
                 // RuntimeException occurred on update cards
                 closeReviewer(DeckPicker.RESULT_DB_ERROR, false);
                 return;
@@ -631,7 +641,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         }
     };
 
-    class NextCardHandler<Result extends BooleanGetter> extends TaskListener<Card, Result> {
+    class NextCardHandler<Result extends Computation<?>> extends TaskListener<Card, Result> {
         private boolean mNoMoreCards;
 
 
@@ -687,7 +697,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
 
         @Override
         public void onPostExecute(Result result) {
-            boolean displaySuccess = result.getBoolean();
+            boolean displaySuccess = result.succeeded();
             if (!displaySuccess) {
                 // RuntimeException occurred on answering cards
                 closeReviewer(DeckPicker.RESULT_DB_ERROR, false);
@@ -718,7 +728,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         }
     }
 
-    protected class AnswerCardHandler extends NextCardHandler<BooleanGetter> {
+    protected class AnswerCardHandler extends NextCardHandler<Computation<?>> {
 
         private final boolean mQuick;
 
@@ -902,6 +912,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         }
     }
 
+    @SuppressWarnings("deprecation") //  #7111: new Handler()
     private final Handler mTimerHandler = new Handler();
 
     private final Runnable mRemoveChosenAnswerText = new Runnable() {
@@ -944,7 +955,12 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         mShortAnimDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
     }
 
-    protected int getContentViewAttr(int fullscreenMode) {
+    @NonNull
+    protected FullScreenMode getFullscreenMode() {
+        return mPrefFullscreenReview;
+    }
+
+    protected int getContentViewAttr(FullScreenMode fullscreenMode) {
         return R.layout.reviewer;
     }
 
@@ -1090,7 +1106,12 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
             super.onBackPressed();
         } else {
             Timber.i("Back key pressed");
-            closeReviewer(RESULT_DEFAULT, false);
+            if (!mExitViaDoubleTapBack || mBackButtonPressedToReturn) {
+                closeReviewer(RESULT_DEFAULT, false);
+            } else {
+                UIUtils.showThemedToast(this, getString(R.string.back_pressed_once_reviewer), true);
+            }
+            mBackButtonPressedToReturn = true;
         }
     }
 
@@ -1515,7 +1536,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
     public boolean dispatchKeyEvent(KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             // assign correct gesture code
-            int gesture = COMMAND_NOTHING;
+            ViewerCommand gesture = COMMAND_NOTHING;
 
             switch (event.getKeyCode()) {
                 case KeyEvent.KEYCODE_VOLUME_UP:
@@ -1539,7 +1560,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
 
     // Set the content view to the one provided and initialize accessors.
     protected void initLayout() {
-        FrameLayout mCardContainer = findViewById(R.id.flashcard_frame);
+        FrameLayout cardContainer = findViewById(R.id.flashcard_frame);
 
         mTopBarLayout = findViewById(R.id.top_bar);
 
@@ -1594,12 +1615,12 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
             mNext4.setVisibility(View.GONE);
         }
 
-        Button mFlipCard = findViewById(R.id.flip_card);
+        Button flipCard = findViewById(R.id.flip_card);
         mFlipCardLayout = findViewById(R.id.flashcard_layout_flip);
         mFlipCardLayout.setOnClickListener(mFlipCardListener);
 
         if (animationEnabled()) {
-            mFlipCard.setBackgroundResource(Themes.getResFromAttr(this, R.attr.hardButtonRippleRef));
+            flipCard.setBackgroundResource(Themes.getResFromAttr(this, R.attr.hardButtonRippleRef));
         }
 
         if (!mButtonHeightSet && mRelativeButtonSize != 100) {
@@ -1650,7 +1671,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         );
         LinearLayout answerArea = findViewById(R.id.bottom_area_layout);
         RelativeLayout.LayoutParams answerAreaParams = (RelativeLayout.LayoutParams) answerArea.getLayoutParams();
-        RelativeLayout.LayoutParams cardContainerParams = (RelativeLayout.LayoutParams) mCardContainer.getLayoutParams();
+        RelativeLayout.LayoutParams cardContainerParams = (RelativeLayout.LayoutParams) cardContainer.getLayoutParams();
 
         switch (answerButtonsPosition) {
             case "top":
@@ -1669,7 +1690,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
                 break;
         }
         answerArea.setLayoutParams(answerAreaParams);
-        mCardContainer.setLayoutParams(cardContainerParams);
+        cardContainer.setLayoutParams(cardContainerParams);
     }
 
 
@@ -1684,6 +1705,12 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebChromeClient(new AnkiDroidWebChromeClient());
+
+        // This setting toggles file system access within WebView
+        // The default configuration is already true in apps targeting API <= 29
+        // Hence, this setting is only useful for apps targeting API >= 30
+        webView.getSettings().setAllowFileAccess(true);
+
         // Problems with focus and input tags is the reason we keep the old type answer mechanism for old Androids.
         webView.setFocusableInTouchMode(mUseInputTag);
         webView.setScrollbarFadingEnabled(true);
@@ -1902,7 +1929,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         // On newer Androids, ignore this setting, which should be hidden in the prefs anyway.
         mDisableClipboard = "0".equals(preferences.getString("dictionary", "0"));
         // mDeckFilename = preferences.getString("deckFilename", "");
-        mPrefFullscreenReview = Integer.parseInt(preferences.getString("fullscreenMode", "0"));
+        mPrefFullscreenReview = FullScreenMode.fromPreference(preferences);
         mRelativeButtonSize = preferences.getInt("answerButtonSize", 100);
         mSpeakText = preferences.getBoolean("tts", false);
         mPrefUseTimer = preferences.getBoolean("timeoutAnswer", false);
@@ -1913,13 +1940,15 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         mPrefShowTopbar = preferences.getBoolean("showTopbar", true);
         mFocusTypeAnswer = preferences.getBoolean("autoFocusTypeInAnswer", false);
         mLargeAnswerButtons = preferences.getBoolean("showLargeAnswerButtons", false);
+        mDoubleTapTimeInterval = preferences.getInt(DOUBLE_TAP_TIME_INTERVAL, DEFAULT_DOUBLE_TAP_TIME_INTERVAL);
+        mExitViaDoubleTapBack = preferences.getBoolean("exitViaDoubleTapBack", false);
 
         mGesturesEnabled = preferences.getBoolean("gestures", false);
         mLinkOverridesTouchGesture = preferences.getBoolean("linkOverridesTouchGesture", false);
         if (mGesturesEnabled) {
             mGestureProcessor.init(preferences);
-            mGestureVolumeUp = Integer.parseInt(preferences.getString("gestureVolumeUp", "0"));
-            mGestureVolumeDown = Integer.parseInt(preferences.getString("gestureVolumeDown", "0"));
+            mGestureVolumeUp = Gesture.VOLUME_UP.fromPreference(preferences);
+            mGestureVolumeDown = Gesture.VOLUME_DOWN.fromPreference(preferences);
         }
 
         if (preferences.getBoolean("keepScreenOn", false)) {
@@ -1934,7 +1963,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
 
         // These are preferences we pull out of the collection instead of SharedPreferences
         try {
-            mShowNextReviewTime = getCol().getConf().getBoolean("estTimes");
+            mShowNextReviewTime = getCol().get_config_boolean("estTimes");
 
             // Dynamic don't have review options; attempt to get deck-specific auto-advance options
             // but be prepared to go with all default if it's a dynamic deck
@@ -2018,6 +2047,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
      * Handler for the delay in auto showing question and/or answer One toggle for both question and answer, could set
      * longer delay for auto next question
      */
+    @SuppressWarnings("deprecation") //  #7111: new Handler()
     protected final Handler mTimeoutHandler = new Handler();
 
     protected final Runnable mShowQuestionTask = new Runnable() {
@@ -2111,6 +2141,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
     protected void displayCardQuestion(boolean reload) {
         Timber.d("displayCardQuestion()");
         sDisplayAnswer = false;
+        mBackButtonPressedToReturn = false;
 
         setInterface();
 
@@ -2186,6 +2217,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         actualHideEaseButtons();
         Timber.d("displayCardAnswer()");
         mMissingImageHandler.onCardSideChange();
+        mBackButtonPressedToReturn = false;
 
         // prevent answering (by e.g. gestures) before card is loaded
         if (mCurrentCard == null) {
@@ -2236,10 +2268,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
     }
 
 
-    /** Scroll the currently shown flashcard vertically
-     *
-     * @param dy amount to be scrolled
-     */
+    @Override
     public void scrollCurrentCardBy(int dy) {
         processCardAction(cardWebView -> {
             if (dy != 0 && cardWebView.canScrollVertically(dy)) {
@@ -2249,11 +2278,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
     }
 
 
-    /** Tap onto the currently shown flashcard at position x and y
-     *
-     * @param x horizontal position of the event
-     * @param y vertical position of the event
-     */
+    @Override
     public void tapOnCurrentCard(int x, int y) {
         // assemble suitable ACTION_DOWN and ACTION_UP events and forward them to the card's handler
         MotionEvent eDown = MotionEvent.obtain(SystemClock.uptimeMillis(),
@@ -2690,7 +2715,12 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
         return dismiss(new CollectionTask.BuryNote(mCurrentCard));
     }
 
-    public boolean executeCommand(@ViewerCommandDef int which) {
+    public boolean executeCommand(@NonNull ViewerCommand which) {
+        //noinspection ConstantConditions - remove this once we move to kotlin
+        if (which == null) {
+            Timber.w("command should not be null");
+            which = COMMAND_NOTHING;
+        }
         if (isControlBlocked() && which != COMMAND_EXIT) {
             return false;
         }
@@ -2770,6 +2800,15 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
                 return true;
             case COMMAND_TOGGLE_FLAG_BLUE:
                 toggleFlag(FLAG_BLUE);
+                return true;
+            case COMMAND_TOGGLE_FLAG_PINK:
+                toggleFlag(FLAG_PINK);
+                return true;
+            case COMMAND_TOGGLE_FLAG_TURQUOISE:
+                toggleFlag(FLAG_TURQUOISE);
+                return true;
+            case COMMAND_TOGGLE_FLAG_PURPLE:
+                toggleFlag(FLAG_PURPLE);
                 return true;
             case COMMAND_UNSET_FLAG:
                 onFlag(mCurrentCard, FLAG_NONE);
@@ -3048,6 +3087,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
             return null;
         }
 
+        @SuppressWarnings("deprecation") //  #7111: new Handler()
         private final Handler mScrollHandler = new Handler();
         private final Runnable mScrollXRunnable = () -> mIsXScrolling = false;
         private final Runnable mScrollYRunnable = () -> mIsYScrolling = false;
@@ -3619,8 +3659,8 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
                     return true;
                 }
 
-                String mFlag = url.replaceFirst("signal:flag_","");
-                switch (mFlag) {
+                String flag = url.replaceFirst("signal:flag_","");
+                switch (flag) {
                     case "none": executeCommand(COMMAND_UNSET_FLAG);
                         return true;
                     case "red": executeCommand(COMMAND_TOGGLE_FLAG_RED);
@@ -3868,20 +3908,20 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity i
                 return false;
             }
 
-            Version mVersionCurrent = Version.valueOf(sCurrentJsApiVersion);
-            Version mVersionSupplied = Version.valueOf(apiVer);
+            Version versionCurrent = Version.valueOf(sCurrentJsApiVersion);
+            Version versionSupplied = Version.valueOf(apiVer);
 
             /*
             * if api major version equals to supplied major version then return true and also check for minor version and patch version
             * show toast for update and contact developer if need updates
             * otherwise return false
             */
-            if (mVersionSupplied.equals(mVersionCurrent)) {
+            if (versionSupplied.equals(versionCurrent)) {
                 return true;
-            } else if (mVersionSupplied.lessThan(mVersionCurrent)) {
+            } else if (versionSupplied.lessThan(versionCurrent)) {
                 UIUtils.showThemedToast(AbstractFlashcardViewer.this, getString(R.string.update_js_api_version, mCardSuppliedDeveloperContact), false);
 
-                return mVersionSupplied.greaterThanOrEqualTo(Version.valueOf(sMinimumJsApiVersion));
+                return versionSupplied.greaterThanOrEqualTo(Version.valueOf(sMinimumJsApiVersion));
             } else {
                 UIUtils.showThemedToast(AbstractFlashcardViewer.this, getString(R.string.valid_js_api_version, mCardSuppliedDeveloperContact), false);
                 return false;
@@ -3967,6 +4007,8 @@ see card.js for available functions
     }
 
     public class JavaScriptFunction {
+        // Text to speech
+        private JavaScriptTTS mTalker = new JavaScriptTTS();
 
         // if supplied api version match then enable api
         private void enableJsApi() {
@@ -4150,6 +4192,42 @@ see card.js for available functions
         }
 
         @JavascriptInterface
+        public boolean ankiBuryCard() {
+            return buryCard();
+        }
+
+        @JavascriptInterface
+        public boolean ankiBuryNote() {
+            return buryNote();
+        }
+
+        @JavascriptInterface
+        public boolean ankiSuspendCard() {
+            return suspendCard();
+        }
+
+        @JavascriptInterface
+        public boolean ankiSuspendNote() {
+            return suspendNote();
+        }
+
+        @JavascriptInterface
+        public void ankiAddTagToCard() {
+            runOnUiThread(() -> showTagsDialog());
+        }
+
+        @JavascriptInterface
+        public void ankiSearchCard(String query) {
+            Intent intent = new Intent(AbstractFlashcardViewer.this, CardBrowser.class);
+            Long currentCardId = getCurrentCardId();
+            if (currentCardId != null) {
+                intent.putExtra("currentCard", currentCardId);
+            }
+            intent.putExtra("search_query", query);
+            startActivityForResultWithAnimation(intent, REQUEST_BROWSE_CARDS, START);
+        }
+
+        @JavascriptInterface
         public boolean ankiIsActiveNetworkMetered() {
             try {
                 ConnectivityManager cm = (ConnectivityManager) AnkiDroidApp.getInstance().getApplicationContext()
@@ -4164,5 +4242,51 @@ see card.js for available functions
                 return true;
             }
         }
+
+        @JavascriptInterface
+        public int ankiTtsSpeak(String text, int queueMode) {
+          return mTalker.speak(text, queueMode);
+        }
+
+        @JavascriptInterface
+        public int ankiTtsSpeak(String text) {
+          return mTalker.speak(text);
+        }
+
+        @JavascriptInterface
+        public int ankiTtsSetLanguage(String loc) {
+          return mTalker.setLanguage(loc);
+        }
+
+        @JavascriptInterface
+        public int ankiTtsSetPitch(float pitch) {
+          return mTalker.setPitch(pitch);
+        }
+
+        @JavascriptInterface
+        public int ankiTtsSetPitch(double pitch) {
+          return mTalker.setPitch((float)pitch);
+        }
+
+        @JavascriptInterface
+        public int ankiTtsSetSpeechRate(float speechRate) {
+          return mTalker.setSpeechRate(speechRate);
+        }        
+
+        @JavascriptInterface
+        public int ankiTtsSetSpeechRate(double speechRate) {
+          return mTalker.setSpeechRate((float)speechRate);
+        }
+
+        @JavascriptInterface
+        public boolean ankiTtsIsSpeaking() {
+          return mTalker.isSpeaking();
+        }
+
+        @JavascriptInterface
+        public int ankiTtsStop() {
+          return mTalker.stop();
+        }
+
     }
 }

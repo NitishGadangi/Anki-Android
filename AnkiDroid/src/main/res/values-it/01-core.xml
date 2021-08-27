@@ -45,6 +45,7 @@
     <string name="statistics">Statistiche</string>
     <string name="settings">Impostazioni</string>
     <string name="help">Guida</string>
+    <string name="drawing">Drawing</string>
     <string name="send_feedback">Invia commenti</string>
     <string name="studyoptions_due_today">Scadono oggi:</string>
     <string name="studyoptions_new_total">Totale carte nuove:</string>
@@ -95,6 +96,7 @@
     <string name="unbury">Disseppellisci</string>
     <string name="rename_deck">Rinomina mazzo</string>
     <string name="create_shortcut">Crea scorciatoia</string>
+    <string name="browse_cards">Sfoglia le carte</string>
     <string name="menu_add" comment="A generic add button - Main Deck Picker and card templates. Please inform us if you need more specific strings">Aggiungi</string>
     <string name="menu_add_note">Aggiungi nota</string>
     <string name="menu_my_account" comment="Label of the window in which the user should enter their account. This text can\'t be found in AnkiDroid directly.">Sincronizza account</string>
@@ -113,10 +115,13 @@
     <string name="menu_flag_card_two">Contrassegno arancione</string>
     <string name="menu_flag_card_three">Contrassegno verde</string>
     <string name="menu_flag_card_four">Contrassegno blu</string>
+    <string name="menu_flag_card_five">Pink flag</string>
+    <string name="menu_flag_card_six">Turquoise flag</string>
+    <string name="menu_flag_card_seven">Purple flag</string>
     <string name="menu_edit_tags">Modifica etichette</string>
     <string name="delete_note_message">Vuoi veramente eliminare questa nota e tutte le sue carte?\n%s</string>
     <string name="menu_select">Seleziona testo</string>
-    <string name="menu_lookup">Lookup text</string>
+    <string name="menu_lookup">Cerca testo</string>
     <string name="menu_search">Ricerca in %1$s</string>
     <string name="menu_mark_note">Contrassegna nota</string>
     <string name="menu_unmark_note">Rimuovi contrassegno nota</string>
@@ -154,7 +159,7 @@
     <string name="custom_study_deck_name">Sessione di Studio Personalizzato</string>
     <string name="custom_study_deck_exists">Rinomina dapprima il mazzo di Studio Personalizzato esistente.</string>
     <string name="empty_deck">Questo mazzo è vuoto</string>
-    <string name="search_deck">Deck Search</string>
+    <string name="search_deck">Ricerca mazzo</string>
     <string name="empty_deck_add_note">Aggiungi carta</string>
     <string name="invalid_deck_name">Nome mazzo non valido</string>
     <string name="studyoptions_empty">Questo mazzo è vuoto. Premi il pulsante + per aggiungere nuovi contenuti.</string>
@@ -183,7 +188,13 @@
     <string name="card_template_editor_styling">Stile</string>
     <string name="card_template_editor_menu_card_browser_appearance">Aspetto del browser delle carte</string>
     <string name="card_template_editor_deck_override">Sovrascrittura Mazzo</string>
+    <string name="card_template_editor_insert_field">Inserisci campo</string>
+    <string name="card_template_editor_select_field">Seleziona campo</string>
     <string name="card_template_editor_cant_delete">È necessario almeno un tipo di carta.</string>
+    <plurals name="card_template_editor_confirm_add">
+        <item quantity="one">This will create %1$d card. Proceed?</item>
+        <item quantity="other">This will create %1$d cards. Proceed?</item>
+    </plurals>
     <plurals name="card_template_editor_confirm_delete">
         <item quantity="one">Eliminare il tipo di carta «%2$s», e la sua carta %1$d?</item>
         <item quantity="other">Eliminare il tipo di carta «%2$s», e le sue carte %1$d?</item>
@@ -219,4 +230,9 @@
     <string name="sync_conflict_local_confirm_new">Vuoi sostituire la tua collezione AnkiWeb con quella presente su AnkiDroid?</string>
     <string name="sync_conflict_title_new">Scegli la collezione da mantenere</string>
     <string name="sync_conflict_replace_title">Sostituisci collezione</string>
+    <plurals name="deckpicker_title_zero_due">
+        <item quantity="one">%1$d carta (0 dovute)</item>
+        <item quantity="other">%1$d carta (0 dovute)</item>
+    </plurals>
+    <string name="copy_note_type_name" comment="The new name of a copied note type">%s copy</string>
 </resources>

@@ -1,3 +1,4 @@
+//noinspection MissingCopyrightHeader #8659
 // Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -116,7 +117,7 @@ public class CustomTabsHelper {
             List<ResolveInfo> handlers = pm.queryIntentActivities(
                     intent,
                     PackageManager.GET_RESOLVED_FILTER);
-            if (handlers == null || handlers.size() == 0) {
+            if (handlers == null || handlers.isEmpty()) {
                 return false;
             }
             for (ResolveInfo resolveInfo : handlers) {

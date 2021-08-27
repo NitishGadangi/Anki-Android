@@ -29,6 +29,10 @@
     <issue id="UnusedResources" severity="fatal">
         <!-- Ignore as they'll be used for #7526 -->
         <ignore regexp="content_picture\.png|device_access_mic\.png" />
+        <!-- Remove once #6772 is complete -->
+        <ignore regexp="edit_text_color_enabled_selector\.xml" />
+        <ignore regexp="multiline_spinner_item\.xml" />
+        <!-- end: Remove once #6772 is complete -->
         <ignore path="res/values/12-dont-translate.xml" />
         <!-- Ignore all translations except values - CrowdIn will handle deletions -->
         <!-- We only need to handle -af and all others are implicitly ignored -->
@@ -49,9 +53,19 @@
     <!-- RtlSymmetry is disabled because we already have RtlHardcoded rule enabled -->
     <issue id="RtlSymmetry" severity="ignore" />
 
+    <!-- Allows Timber issues defined for AnkiDroid without an api dependency on Timber -->
+    <issue id="UnknownIssueId" severity="ignore" />
     <!-- This come from Timber and we need to also ignore them  -->
+    <!-- Ignored due to https://github.com/JakeWharton/timber/issues/408 -->
     <issue id="BinaryOperationInTimber" severity="ignore" />
     <issue id="LogNotTimber" severity="ignore" />
+    <issue id="StringFormatInTimber" severity="ignore" />
+    <issue id="ThrowableNotAtBeginning" severity="ignore" />
+    <issue id="TimberArgCount" severity="ignore" />
+    <issue id="TimberArgTypes" severity="ignore" />
+    <issue id="TimberTagLength" severity="ignore" />
+    <issue id="TimberExceptionLogging" severity="ignore" />
+
     <issue id="UseCompatTextViewDrawableXml" severity="ignore" />
     <issue id="AcceptsUserCertificates" severity="ignore" />
     <issue id="RedundantNamespace" severity="ignore" />
@@ -350,4 +364,9 @@
     <issue id="SuspiciousImport" severity="ignore" />
     <issue id="WrongFolder" severity="ignore" />
     <issue id="WrongThreadInterprocedural" severity="ignore" />
+
+
+    <issue id="CustomX509TrustManager" severity="ignore" />
+    <!-- PERF: Could improve by not using notifyDataSetChanged() -->
+    <issue id="NotifyDataSetChanged" severity="ignore" />
 </lint>

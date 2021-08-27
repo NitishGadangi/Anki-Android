@@ -21,28 +21,35 @@ import android.view.ViewConfiguration;
 
 import com.ichi2.anki.AnkiDroidApp;
 import com.ichi2.anki.cardviewer.Gesture;
+import com.ichi2.anki.cardviewer.TapGestureMode;
 
+import androidx.annotation.NonNull;
 import timber.log.Timber;
 
 public class GestureMapper {
 
-    private boolean mUseCornerTouch = true;
+    @NonNull
+    private TapGestureMode mTapGestureMode = TapGestureMode.NINE_POINT;
     private int mSwipeMinDistance = -1;
     private int mSwipeThresholdVelocity = -1;
 
-    private static final int DEFAULT_SWIPE_MIN_DISTANCE;
-    private static final int DEFAULT_SWIPE_THRESHOLD_VELOCITY;
-
-    static {
-        // Set good default values for swipe detection
-        final ViewConfiguration vc = ViewConfiguration.get(AnkiDroidApp.getInstance());
-        DEFAULT_SWIPE_MIN_DISTANCE = vc.getScaledPagingTouchSlop();
-        DEFAULT_SWIPE_THRESHOLD_VELOCITY = vc.getScaledMinimumFlingVelocity();
-    }
+    private static ViewConfiguration VIEW_CONFIGURATION = null;
+    private static int DEFAULT_SWIPE_MIN_DISTANCE;
+    private static int DEFAULT_SWIPE_THRESHOLD_VELOCITY;
 
     public void init(SharedPreferences preferences) {
         int sensitivity = preferences.getInt("swipeSensitivity", 100);
-        boolean useCornerTouch = preferences.getBoolean("gestureCornerTouch", false);
+        mTapGestureMode =  TapGestureMode.fromPreference(preferences);
+
+        // ViewConfiguration can be used statically but it must be initialized during Android application lifecycle
+        // Else, when Robolectric executes in the CI it accesses AnkiDroidApp.getInstance before it exists #9173
+        if (VIEW_CONFIGURATION == null) {
+            // Set good default values for swipe detection
+            VIEW_CONFIGURATION = ViewConfiguration.get(AnkiDroidApp.getInstance());
+            DEFAULT_SWIPE_MIN_DISTANCE = VIEW_CONFIGURATION.getScaledPagingTouchSlop();
+            DEFAULT_SWIPE_THRESHOLD_VELOCITY = VIEW_CONFIGURATION.getScaledMinimumFlingVelocity();
+        }
+
         if (sensitivity != 100) {
             float sens = 100.0f/sensitivity;
             mSwipeMinDistance = (int) (DEFAULT_SWIPE_MIN_DISTANCE * sens + 0.5f);
@@ -51,9 +58,6 @@ public class GestureMapper {
             mSwipeMinDistance = DEFAULT_SWIPE_MIN_DISTANCE;
             mSwipeThresholdVelocity = DEFAULT_SWIPE_THRESHOLD_VELOCITY;
         }
-
-        mUseCornerTouch = useCornerTouch;
-
     }
 
     public Gesture gesture(float dx, float dy, float velocityX, float velocityY,
@@ -95,14 +99,11 @@ public class GestureMapper {
             return null;
         }
 
-        Gesture gesture;
-        if (mUseCornerTouch) {
-            gesture = fromTapCorners(height, width, posX, posY);
-        } else {
-            gesture = fromTap(height, width, posX, posY);
+        switch (mTapGestureMode) {
+            case FOUR_POINT: return fromTap(height, width, posX, posY);
+            case NINE_POINT: return fromTapCorners(height, width, posX, posY);
+            default: return null;
         }
-
-        return gesture;
     }
 
     private static Gesture fromTap(int height, int width, float posX, float posY) {
@@ -120,6 +121,11 @@ public class GestureMapper {
                 return Gesture.TAP_LEFT;
             }
         }
+    }
+
+    @NonNull
+    public TapGestureMode getTapGestureMode() {
+        return mTapGestureMode;
     }
 
     private static Gesture fromTapCorners(int height, int width, float posX, float posY) {

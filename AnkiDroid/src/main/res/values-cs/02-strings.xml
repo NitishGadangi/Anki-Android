@@ -42,8 +42,8 @@
     <string name="preference_summary_percentage">XXX%</string>
     <!-- #7570: We should use these strings again -->
     <!-- Navigation drawer strings -->
-    <string tools:ignore="UnusedResources" name="drawer_open">Otevřít zásuvku</string>
-    <string tools:ignore="UnusedResources" name="drawer_close">Zavřít zásuvku</string>
+    <string tools:ignore="UnusedResources" name="drawer_open">Otevřít menu</string>
+    <string tools:ignore="UnusedResources" name="drawer_close">Zavřít menu</string>
     <string name="CardEditorCardDeck">Balíček karet:</string>
     <string name="CardEditorNoteDeck">Balíček:</string>
     <string name="CardEditorModel">Typ poznámky:</string>
@@ -74,7 +74,7 @@
     <string name="webview_crash_nonfatal">Vykreslování WebView selhalo. Příčina: %s</string>
     <string name="webview_crash_fatal">Kritická chyba: Vykreslování WebView selhalo. Příčina: %s</string>
     <string name="webview_crash_loop_dialog_title">Selhání vykreslování systémového webView</string>
-    <string name="webview_crash_loop_dialog_content">Systémovému WebView se nepodařilo vykreslit kartu \'%1$s\'.\n %2$s</string>
+    <string name="webview_crash_loop_dialog_content">Systémovému WebView se nepodařilo vykreslit kartu „%1$s“.\n %2$s</string>
     <!-- Browser -->
     <string-array name="browser_column1_headings">
         <item>Otázka</item>
@@ -292,7 +292,7 @@
     <string name="restore_default">Obnovit výchozí</string>
     <string name="reviewer_tts_cloze_spoken_replacement">Prázdné</string>
     <!-- in options menu & Navigation Drawer -->
-    <string name="ankidroid_turn_on_fullscreen_nav_drawer">Prosím zapněte režim celé obrazovky, abyste mohli použít Zobrazit navigační zásuvku pomocí JavaScriptu.</string>
+    <string name="ankidroid_turn_on_fullscreen_nav_drawer">Prosím zapněte režim celé obrazovky, abyste mohli použít Zobrazit navigační menu pomocí JavaScriptu.</string>
     <string name="ankidroid_turn_on_fullscreen_options_menu">Prosím zapněte režim celé obrazovky, abyste mohli použít Zobrazit menu možnosti pomocí JavaScriptu.</string>
     <!-- Whiteboard save image message in Reviewer -->
     <string name="white_board_image_save_failed">Nepodařilo se uložit obrázek tabule. %s</string>
@@ -375,4 +375,23 @@
     <string name="email_id_empty">Je požadována e-mailová adresa</string>
     <string name="password_empty">Je požadováno heslo</string>
     <string name="back_pressed_once">Pro ukončení stiskněte znovu tlačítko zpět</string>
+    <string name="back_pressed_once_reviewer">Pro návrat stiskněte znovu tlačítko zpět</string>
+    <!-- %% is required to display % symbol. Reference: https://stackoverflow.com/a/16834358 -->
+    <string name="percentage">%s%%</string>
+    <string name="download_deck">Stáhnout balíček</string>
+    <string name="try_again">Zkusit znovu</string>
+    <string name="cancel_download">Zrušit stahování</string>
+    <string name="cancel_download_question_title">Zrušit stahování?</string>
+    <string name="downloading_file">Stahuje se %s</string>
+    <string name="import_deck">Importovat balíček</string>
+    <string name="something_wrong">Něco se pokazilo, zkuste to prosím znovu</string>
+    <string name="download_failed">Stahování se nezdařilo</string>
+    <string name="deck_download_progress_message">Během stahování můžete používat jiné aplikace</string>
+    <string name="check_network">Zkontrolujte prosím připojení k síti</string>
+    <string name="search_using_deck_name">Search using deck name</string>
+    <string name="home">Home</string>
+    <!-- Importing -->
+    <string name="import_mapped_to_field">Mapped to %s</string>
+    <string name="import_mapped_to_tags">Mapped to Tags</string>
+    <string name="import_mapped_to_nothing">Ignored</string>
 </resources>

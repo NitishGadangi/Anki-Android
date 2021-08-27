@@ -23,68 +23,56 @@ import com.ichi2.anki.reviewer.GestureMapper;
 import static com.ichi2.anki.cardviewer.ViewerCommand.COMMAND_NOTHING;
 
 public class GestureProcessor {
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureDoubleTap;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureLongclick;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureSwipeUp;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureSwipeDown;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureSwipeLeft;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureSwipeRight;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureTapLeft;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureTapRight;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureTapTop;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureTapBottom;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureTapTopLeft;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureTapTopRight;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureTapCenter;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureTapBottomLeft;
-    @ViewerCommand.ViewerCommandDef
-    private int mGestureTapBottomRight;
+    private ViewerCommand mGestureDoubleTap;
+    private ViewerCommand mGestureLongclick;
+    private ViewerCommand mGestureSwipeUp;
+    private ViewerCommand mGestureSwipeDown;
+    private ViewerCommand mGestureSwipeLeft;
+    private ViewerCommand mGestureSwipeRight;
+    private ViewerCommand mGestureTapLeft;
+    private ViewerCommand mGestureTapRight;
+    private ViewerCommand mGestureTapTop;
+    private ViewerCommand mGestureTapBottom;
+    private ViewerCommand mGestureTapTopLeft;
+    private ViewerCommand mGestureTapTopRight;
+    private ViewerCommand mGestureTapCenter;
+    private ViewerCommand mGestureTapBottomLeft;
+    private ViewerCommand mGestureTapBottomRight;
 
     private final GestureMapper mGestureMapper = new GestureMapper();
 
     private final ViewerCommand.CommandProcessor mProcessor;
+
+    private boolean mEnabled = false;
 
     public GestureProcessor(ViewerCommand.CommandProcessor processor) {
         mProcessor = processor;
     }
 
     public void init(SharedPreferences preferences) {
-        mGestureDoubleTap = Integer.parseInt(preferences.getString("gestureDoubleTap", "7"));
-        mGestureLongclick = Integer.parseInt(preferences.getString("gestureLongclick", "11"));
+        mEnabled = preferences.getBoolean("gestures", false);
+        mGestureDoubleTap = Gesture.DOUBLE_TAP.fromPreference(preferences);
+        mGestureLongclick = Gesture.LONG_TAP.fromPreference(preferences);
 
-        mGestureSwipeUp = Integer.parseInt(preferences.getString("gestureSwipeUp", "9"));
-        mGestureSwipeDown = Integer.parseInt(preferences.getString("gestureSwipeDown", "0"));
-        mGestureSwipeLeft = Integer.parseInt(preferences.getString("gestureSwipeLeft", "8"));
-        mGestureSwipeRight = Integer.parseInt(preferences.getString("gestureSwipeRight", "17"));
+        mGestureSwipeUp = Gesture.SWIPE_UP.fromPreference(preferences);
+        mGestureSwipeDown = Gesture.SWIPE_DOWN.fromPreference(preferences);
+        mGestureSwipeLeft = Gesture.SWIPE_LEFT.fromPreference(preferences);
+        mGestureSwipeRight = Gesture.SWIPE_RIGHT.fromPreference(preferences);
 
         mGestureMapper.init(preferences);
 
-        mGestureTapLeft = Integer.parseInt(preferences.getString("gestureTapLeft", "3"));
-        mGestureTapRight = Integer.parseInt(preferences.getString("gestureTapRight", "6"));
-        mGestureTapTop = Integer.parseInt(preferences.getString("gestureTapTop", "12"));
-        mGestureTapBottom = Integer.parseInt(preferences.getString("gestureTapBottom", "2"));
+        mGestureTapLeft = Gesture.TAP_LEFT.fromPreference(preferences);
+        mGestureTapRight = Gesture.TAP_RIGHT.fromPreference(preferences);
+        mGestureTapTop = Gesture.TAP_TOP.fromPreference(preferences);
+        mGestureTapBottom = Gesture.TAP_BOTTOM.fromPreference(preferences);
 
         boolean useCornerTouch = preferences.getBoolean("gestureCornerTouch", false);
         if (useCornerTouch) {
-            mGestureTapTopLeft = Integer.parseInt(preferences.getString("gestureTapTopLeft", "0"));
-            mGestureTapTopRight = Integer.parseInt(preferences.getString("gestureTapTopRight", "0"));
-            mGestureTapCenter = Integer.parseInt(preferences.getString("gestureTapCenter", "0"));
-            mGestureTapBottomLeft = Integer.parseInt(preferences.getString("gestureTapBottomLeft", "0"));
-            mGestureTapBottomRight = Integer.parseInt(preferences.getString("gestureTapBottomRight", "0"));
+            mGestureTapTopLeft = Gesture.TAP_TOP_LEFT.fromPreference(preferences);
+            mGestureTapTopRight = Gesture.TAP_TOP_RIGHT.fromPreference(preferences);
+            mGestureTapCenter = Gesture.TAP_CENTER.fromPreference(preferences);
+            mGestureTapBottomLeft = Gesture.TAP_BOTTOM_LEFT.fromPreference(preferences);
+            mGestureTapBottomRight = Gesture.TAP_BOTTOM_RIGHT.fromPreference(preferences);
         }
     }
 
@@ -115,12 +103,12 @@ public class GestureProcessor {
 
 
     protected boolean execute(Gesture gesture) {
-        int command = mapGestureToCommand(gesture);
+        ViewerCommand command = mapGestureToCommand(gesture);
         return mProcessor.executeCommand(command);
     }
 
 
-    private int mapGestureToCommand(Gesture gesture) {
+    private ViewerCommand mapGestureToCommand(Gesture gesture) {
         switch (gesture) {
             case SWIPE_UP: return mGestureSwipeUp;
             case SWIPE_DOWN: return mGestureSwipeDown;
@@ -139,5 +127,35 @@ public class GestureProcessor {
             case LONG_TAP: return mGestureLongclick;
             default: return COMMAND_NOTHING;
         }
+    }
+
+
+    /**
+     * Whether the class has been enabled.
+     * This requires the "gestures" preference is enabled,
+     * and {@link GestureProcessor#init(SharedPreferences)} has been called
+     */
+    public boolean isEnabled() {
+        return mEnabled;
+    }
+
+
+    /**
+     * Whether one of the provided gestures is bound
+     * @param gestures the gestures to check
+     * @return <code>false</code> if none of the gestures are bound. <code>true</code> otherwise
+     */
+    public boolean isBound(Gesture... gestures) {
+        if (!isEnabled()) {
+            return false;
+        }
+
+        for (Gesture gesture : gestures) {
+            if (mapGestureToCommand(gesture) != COMMAND_NOTHING) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

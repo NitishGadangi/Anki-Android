@@ -16,8 +16,6 @@
 
 package com.ichi2.async;
 
-import android.os.AsyncTask;
-
 import com.ichi2.utils.ThreadUtil;
 
 import java.util.ArrayList;
@@ -75,7 +73,7 @@ public class SingleTaskManager extends TaskManager {
      * @return the newly created task
      */
     @Override
-    public <Progress, Result> CollectionTask<Progress, Result> launchCollectionTaskConcrete(CollectionTask.Task<Progress, Result> task) {
+    public <Progress, Result> Cancellable launchCollectionTaskConcrete(TaskDelegate<Progress, Result> task) {
         return launchCollectionTask(task, null);
     }
 
@@ -92,8 +90,9 @@ public class SingleTaskManager extends TaskManager {
      * @param listener to the status and result of the task, may be null
      * @return the newly created task
      */
-    public <Progress, Result> CollectionTask<Progress, Result>
-    launchCollectionTaskConcrete(@NonNull CollectionTask.Task<Progress, Result> task,
+    @SuppressWarnings("deprecation") // #7108: AsyncTask
+    public <Progress, Result> Cancellable
+    launchCollectionTaskConcrete(@NonNull TaskDelegate<Progress, Result> task,
                          @Nullable TaskListener<? super Progress, ? super Result> listener) {
         // Start new task
         CollectionTask<Progress, Result> newTask = new CollectionTask<>(task, listener, mLatestInstance);
@@ -116,9 +115,10 @@ public class SingleTaskManager extends TaskManager {
      * @return whether or not the previous task was successful or not
      */
     @Override
+    @SuppressWarnings("deprecation") // #7108: AsyncTask
     public boolean waitToFinishConcrete(Integer timeoutSeconds) {
         try {
-            if ((mLatestInstance != null) && (mLatestInstance.getStatus() != AsyncTask.Status.FINISHED)) {
+            if ((mLatestInstance != null) && (mLatestInstance.getStatus() != android.os.AsyncTask.Status.FINISHED)) {
                 Timber.d("CollectionTask: waiting for task %s to finish...", mLatestInstance.getTask().getClass());
                 if (timeoutSeconds != null) {
                     mLatestInstance.get(timeoutSeconds, TimeUnit.SECONDS);

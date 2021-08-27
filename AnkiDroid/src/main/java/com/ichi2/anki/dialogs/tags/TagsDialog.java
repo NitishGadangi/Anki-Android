@@ -1,3 +1,4 @@
+//noinspection MissingCopyrightHeader #8659
 package com.ichi2.anki.dialogs.tags;
 
 import android.annotation.SuppressLint;
@@ -9,7 +10,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -18,10 +18,10 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.ichi2.anki.R;
 import com.ichi2.anki.UIUtils;
 import com.ichi2.anki.analytics.AnalyticsDialogFragment;
+import com.ichi2.utils.DisplayUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -117,7 +117,7 @@ public class TagsDialog extends AnalyticsDialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        DisplayUtils.resizeWhenSoftInputShown(requireActivity().getWindow());
 
         mType = DialogType.values()[requireArguments().getInt(DIALOG_TYPE_KEY)];
 
@@ -152,18 +152,18 @@ public class TagsDialog extends AnalyticsDialogFragment {
         if (mTags.isEmpty()) {
             mNoTagsTextView.setVisibility(View.VISIBLE);
         }
-        RadioGroup mOptionsGroup = tagsDialogView.findViewById(R.id.tags_dialog_options_radiogroup);
-        for (int i = 0; i < mOptionsGroup.getChildCount(); i++) {
-            mOptionsGroup.getChildAt(i).setId(i);
+        RadioGroup optionsGroup = tagsDialogView.findViewById(R.id.tags_dialog_options_radiogroup);
+        for (int i = 0; i < optionsGroup.getChildCount(); i++) {
+            optionsGroup.getChildAt(i).setId(i);
         }
-        mOptionsGroup.check(0);
+        optionsGroup.check(0);
 
-        mSelectedOption = mOptionsGroup.getCheckedRadioButtonId();
-        mOptionsGroup.setOnCheckedChangeListener((radioGroup, checkedId) -> mSelectedOption = checkedId);
+        mSelectedOption = optionsGroup.getCheckedRadioButtonId();
+        optionsGroup.setOnCheckedChangeListener((radioGroup, checkedId) -> mSelectedOption = checkedId);
 
         if (mType == DialogType.ADD_TAG) {
             mDialogTitle = getResources().getString(R.string.card_details_tags);
-            mOptionsGroup.setVisibility(View.GONE);
+            optionsGroup.setVisibility(View.GONE);
             mPositiveText = getString(R.string.dialog_ok);
         } else {
             mDialogTitle = getResources().getString(R.string.studyoptions_limit_select_tags);
@@ -179,15 +179,15 @@ public class TagsDialog extends AnalyticsDialogFragment {
                 .onPositive((dialog, which) -> getTagsDialogListener().onSelectedTags(mTags.copyOfCheckedTagList(), mSelectedOption));
         mDialog = builder.build();
 
-        mDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        DisplayUtils.resizeWhenSoftInputShown(mDialog.getWindow());
         return mDialog;
     }
 
     private void adjustToolbar(View tagsDialogView) {
-        Toolbar mToolbar = tagsDialogView.findViewById(R.id.tags_dialog_toolbar);
-        mToolbar.setTitle(mDialogTitle);
+        Toolbar toolbar = tagsDialogView.findViewById(R.id.tags_dialog_toolbar);
+        toolbar.setTitle(mDialogTitle);
 
-        mToolbar.inflateMenu(R.menu.tags_dialog_menu);
+        toolbar.inflateMenu(R.menu.tags_dialog_menu);
 
         // disallow inputting the 'space' character
         final InputFilter addTagFilter = (source, start, end, dest, dstart, dend) -> {
@@ -198,8 +198,8 @@ public class TagsDialog extends AnalyticsDialogFragment {
             }
             return null;
         };
-        MenuItem mToolbarAddItem = mToolbar.getMenu().findItem(R.id.tags_dialog_action_add);
-        mToolbarAddItem.setOnMenuItemClickListener(menuItem -> {
+        MenuItem toolbarAddItem = toolbar.getMenu().findItem(R.id.tags_dialog_action_add);
+        toolbarAddItem.setOnMenuItemClickListener(menuItem -> {
             String query = mToolbarSearchView.getQuery().toString();
             if (mToolbarSearchItem.isActionViewExpanded() && !TextUtils.isEmpty(query)) {
                 addTag(query);
@@ -219,7 +219,7 @@ public class TagsDialog extends AnalyticsDialogFragment {
             return true;
         });
 
-        mToolbarSearchItem = mToolbar.getMenu().findItem(R.id.tags_dialog_action_filter);
+        mToolbarSearchItem = toolbar.getMenu().findItem(R.id.tags_dialog_action_filter);
         mToolbarSearchView = (SearchView) mToolbarSearchItem.getActionView();
 
         EditText queryET = mToolbarSearchView.findViewById(R.id.search_src_text);
@@ -241,7 +241,7 @@ public class TagsDialog extends AnalyticsDialogFragment {
             }
         });
 
-        MenuItem checkAllItem = mToolbar.getMenu().findItem(R.id.tags_dialog_action_select_all);
+        MenuItem checkAllItem = toolbar.getMenu().findItem(R.id.tags_dialog_action_select_all);
         checkAllItem.setOnMenuItemClickListener(menuItem -> {
             final boolean didChange = mTags.toggleAllCheckedStatuses();
             if (didChange) {
@@ -253,7 +253,7 @@ public class TagsDialog extends AnalyticsDialogFragment {
         if (mType == DialogType.ADD_TAG) {
             mToolbarSearchView.setQueryHint(getString(R.string.add_new_filter_tags));
         } else {
-            mToolbarAddItem.setVisible(false);
+            toolbarAddItem.setVisible(false);
         }
     }
 
@@ -279,12 +279,12 @@ public class TagsDialog extends AnalyticsDialogFragment {
                     mNoTagsTextView.setVisibility(View.GONE);
                 }
                 mTags.add(tag);
-                mTagsArrayAdapter.sortData();
                 feedbackText = getString(R.string.tag_editor_add_feedback, tag, mPositiveText);
             } else {
                 feedbackText = getString(R.string.tag_editor_add_feedback_existing, tag);
             }
             mTags.check(tag);
+            mTagsArrayAdapter.sortData();
             mTagsArrayAdapter.notifyDataSetChanged();
             // Show a snackbar to let the user know the tag was added successfully
             UIUtils.showSnackbar(getActivity(), feedbackText, false, -1, null,

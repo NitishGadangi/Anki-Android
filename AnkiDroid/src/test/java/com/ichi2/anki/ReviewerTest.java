@@ -15,7 +15,7 @@ import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.Consts;
 import com.ichi2.libanki.Decks;
 import com.ichi2.libanki.Model;
-import com.ichi2.libanki.Models;
+import com.ichi2.libanki.ModelManager;
 import com.ichi2.libanki.Note;
 import com.ichi2.testutils.MockTime;
 import com.ichi2.testutils.PreferenceUtils;
@@ -83,6 +83,7 @@ public class ReviewerTest extends RobolectricTest {
     }
 
     @Test
+    @RunInBackground
     public void verifyNormalStartup() {
         try (ActivityScenario<Reviewer> scenario = ActivityScenario.launch(Reviewer.class)) {
             scenario.onActivity(reviewer -> assertNotNull("Collection should be non-null", reviewer.getCol()));
@@ -90,6 +91,7 @@ public class ReviewerTest extends RobolectricTest {
     }
 
     @Test
+    @RunInBackground
     public void exitCommandWorksAfterControlsAreBlocked() {
         ensureCollectionLoadIsSynchronous();
         try (ActivityScenario<Reviewer> scenario = ActivityScenario.launch(Reviewer.class)) {
@@ -232,7 +234,7 @@ public class ReviewerTest extends RobolectricTest {
     @Test
     public void baseDeckName() {
         Collection col = getCol();
-        Models models = col.getModels();
+        ModelManager models = col.getModels();
 
         Decks decks = col.getDecks();
         Long didAb = addDeck("A::B");
@@ -249,7 +251,7 @@ public class ReviewerTest extends RobolectricTest {
     @Test
     public void jsAnkiGetDeckName() {
         Collection col = getCol();
-        Models models = col.getModels();
+        ModelManager models = col.getModels();
         Decks decks = col.getDecks();
 
         Long didAb = addDeck("A::B");
@@ -337,7 +339,7 @@ public class ReviewerTest extends RobolectricTest {
 
 
     private void addNoteWithThreeCards() throws ConfirmModSchemaException {
-        Models models = getCol().getModels();
+        ModelManager models = getCol().getModels();
         Model m = models.copy(models.current());
         m.put("name", "Three");
         models.add(m);
@@ -354,7 +356,7 @@ public class ReviewerTest extends RobolectricTest {
     }
 
 
-    private void cloneTemplate(Models models, Model m) throws ConfirmModSchemaException {
+    private void cloneTemplate(ModelManager models, Model m) throws ConfirmModSchemaException {
         JSONArray tmpls = m.getJSONArray("tmpls");
         JSONObject defaultTemplate = tmpls.getJSONObject(0);
 
