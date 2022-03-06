@@ -137,6 +137,7 @@
     <string name="card_editor_reset_card">Nuligi progreson</string>
     <string name="card_editor_reschedule_card" comment="Action to reschedule a card">Replani</string>
     <string name="card_editor_preview_card" comment="Button offering to preview some card(s)">Antaŭrigardi</string>
+    <string name="preview_progress_bar_text" comment="What card we are on out of how many in card previewer progress bar">%1$d el %2$d</string>
     <string name="error_insufficient_memory">Ago ne eblas pro nesufiĉa memoro en via aparato</string>
     <string name="rename" comment="Confirm that the renaming action should be processed.">Alinomi</string>
     <string name="default_conf_delete_error">Ne povas forigi implicitan grupon de agordoj</string>
@@ -161,7 +162,7 @@
     <string name="import_log_failed_unzip">Fiaskis maldensigi la dosieron apkg: %s</string>
     <string name="import_log_failed_copy_to">Fiaskis kopii la dosieron apkg al %s</string>
     <string name="import_log_failed_validate">Fiaskis validigi la dosieron apkg</string>
-    <string name="import_log_insufficient_space">Mankas spaco por maldensigi la pakaĵon. Postulas: %1$d, disponeble: %2$d</string>
+    <string name="import_log_insufficient_space_error">Mankas spaco por enporti la pakaĵon.\nPostulata: %1$s\nDisponebla: %2$s\n\nProvu liberigi iom da spaco en via telefono. Samtempigado uzas malpli da spaco ol enportado. Vi povas enporti la pakaĵon ĉe aparato kun pli da spaco (ekzemple per Anki Desktop ĉe via komputilo) kaj sekve samtempigi ĝin kun tiu ĉi aparato.</string>
     <string name="import_log_file_cache_cleared">Eraro dum enporti dosieron, probable la kaŝmemoro forviŝiĝis dum pritraktado.\nReprovu</string>
     <string name="import_succeeded_but_check_database">Sukcese enportis datumojn, sed fiaskis ordigi la datumojn. Plenumu kontrolon de datumbazo poste. Ĉefa kialo: %s</string>
     <string name="import_error_unhandled_request">Fiaskis pritrakti peton pri enporto</string>
@@ -187,10 +188,13 @@
     <string name="export_save_apkg_unsuccessful">Savi la Anki-pakaĵon malsukcesis</string>
     <string name="export_successful">Elportis dosieron “%s”. Ĉu sendi ĝin per alia aplikaĵo?</string>
     <string name="export_email_subject">AnkiDroid elportis fulmokartojn: %s</string>
-    <string name="export_email_text_new"><![CDATA[Saluton!
-<br/><br/>
-Tio ĉi estas Anki-kartaro sendita per la aplikaĵo <a href="%1$s">AnkiDroid</a>.
-Malfermu ĝin per iu el la <a href="%2$s">Anki-programo</a> por ĝuu facilan kaj efikan lernadon!]]></string>
+    <string name="export_email_text"><![CDATA[        Hi!
+        <br/><br/>
+        This is an Anki flashcards deck sent from AnkiDroid[1].
+        Try to open it using one of the available Anki distributions[2] and enjoy easy and efficient learning!<br/><br/>
+        [1] %1$s<br/>
+        [2] %2$s
+        ]]></string>
     <string name="export_unsuccessful">Eraro dum elportado de apkg-dosiero</string>
     <string name="study_options" comment="Name for a preference category in Filtered deck (aka Cram deck, aka Custom study) options">Agordoj</string>
     <string name="menu__deck_options">Agordoj pri kartaro</string>
@@ -206,7 +210,6 @@ Malfermu ĝin per iu el la <a href="%2$s">Anki-programo</a> por ĝuu facilan kaj
     <string name="sched_has_buried">Kelkaj rilataj kaj kaŝitaj kartoj atendos ĝis morgaŭ</string>
     <string name="tag_editor_add_feedback">Frapetu “%2$s” por konfirmi aldoni “%1$s”</string>
     <string name="tag_editor_add_feedback_existing">Elektis ekzistan etikedon “%1$s”</string>
-    <string name="lookup_hint">Post kopii la tekston, frapetu ie sur la karto por montri la piktogramon de serĉo</string>
     <!-- Time spans -->
     <plurals name="time_span_seconds">
         <item quantity="one">%s sekundo</item>
@@ -266,6 +269,9 @@ Malfermu ĝin per iu el la <a href="%2$s">Anki-programo</a> por ĝuu facilan kaj
     <string name="choose_an_image">Elekti bildon</string>
     <!-- Card Template Browser Appearance -->
     <string name="restore_default">Restarigi implicitajn</string>
+    <string name="cloze_sample_text">Tio ĉi estas {{%1$s::ekzempla}} truteksto.</string>
+    <string name="basic_answer_sample_text_user" comment="has a typo, so that user sees a highlighted difference in basic answer model     ">egzemplo</string>
+    <string name="basic_answer_sample_text">ekzemplo</string>
     <string name="reviewer_tts_cloze_spoken_replacement">Malplena</string>
     <!-- in options menu & Navigation Drawer -->
     <string name="ankidroid_turn_on_fullscreen_nav_drawer">Aktivigu plenekranan reĝimon por uzi “montri navigan tirmenuon” per JavaScript.</string>
@@ -327,6 +333,7 @@ Malfermu ĝin per iu el la <a href="%2$s">Anki-programo</a> por ĝuu facilan kaj
     <string name="format_font_size">Ŝanĝi grandon de tiparo</string>
     <string name="insert_mathjax">Enmeti ekvacion MathJax</string>
     <string name="insert_cloze">Enmeti trutekstan malplenon</string>
+    <string name="note_editor_toolbar_icon">Button text</string>
     <string name="before_text">HTML antaŭ elektaĵo</string>
     <string name="after_text">HTML post elektaĵo</string>
     <string name="add_toolbar_item">Krei elementon de ilarstrio</string>
@@ -338,7 +345,7 @@ Malfermu ĝin per iu el la <a href="%2$s">Anki-programo</a> por ĝuu facilan kaj
     <string name="create_shortcut_failed" comment="home screen == launcher">Via hejma ekrano ne permesas al AnkiDroid krei simbolajn ligilojn</string>
     <string name="create_shortcut_error">Eraro dum krei simbolan ligilon: %s</string>
     <string name="note_editor_capitalize" comment="This is for a switch with a checkbox - on: enabled">Majuskligi frazojn</string>
-    <string name="menu_scroll_toolbar" comment="Checkbox stating whether note editor toolbar is scrollable or stacked. Checked: Scroll">Scroll toolbar</string>
+    <string name="menu_scroll_toolbar" comment="Checkbox stating whether note editor toolbar is scrollable or stacked. Checked: Scroll">Rulumi en ilarstrio</string>
     <!-- Symbols used as Button text in IncrementNumberRangePreference -->
     <string name="plus_sign" comment="Label for increment button in IncrementerNumberRangePreference">+</string>
     <string name="minus_sign" comment="Label for decrement button in IncrementerNumberRangePreference">-</string>
@@ -373,4 +380,18 @@ Malfermu ĝin per iu el la <a href="%2$s">Anki-programo</a> por ĝuu facilan kaj
     <string name="suspended_note">Kaŝis noton por daŭre</string>
     <!--  Note Editor Toggle Sticky  -->
     <string name="note_editor_toggle_sticky">Alpingli la kampon %s</string>
+    <!-- Scoped Storage Migration -->
+    <string name="scoped_storage_title">Movado de datumoj</string>
+    <string name="scoped_storage_initial_message">AnkiDroid devas movi siajn datumojn por kongrui kun la novaj privatecaj reguloj de Android.
+\n\nSe vi malinstalos AnkiDroid antaŭ la movado, viaj datumoj perdiĝos.
+\n\nPlenumu movadon de datumoj kiel eble plej frue.</string>
+    <string name="scoped_storage_terms_message">Movado de datumoj fariĝos fone. Samtempigo estas nedisponebla dum movado.\n\nProksimuma tempo: %s</string>
+    <string name="scoped_storage_term_1">Mi faris sekurkopion de miaj datumoj</string>
+    <string name="scoped_storage_term_1_ankiweb">Mi antaŭnelonge samtempigis datumojn kun la servo AnkiWeb</string>
+    <string name="scoped_storage_term_2">Mi ne malinstalos la aplikaĵon dum movado de datumoj</string>
+    <string name="scoped_storage_select_all_terms">Akceptu ĉiujn kondiĉojn por pluigi</string>
+    <string name="scoped_storage_learn_more">Pli da informoj</string>
+    <string name="scoped_storage_postpone">Ne nun</string>
+    <string name="scoped_storage_migrate">Movi datumojn</string>
+    <string name="search_card_js_api_no_results">Search returned no results</string>
 </resources>

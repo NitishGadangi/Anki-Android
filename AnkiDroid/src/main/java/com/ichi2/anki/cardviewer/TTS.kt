@@ -24,9 +24,9 @@ import com.ichi2.anki.R
 import com.ichi2.anki.ReadText
 import com.ichi2.libanki.Card
 import com.ichi2.libanki.Sound.SoundSide
+import com.ichi2.libanki.TTSTag
 import com.ichi2.libanki.Utils
 import com.ichi2.libanki.template.TemplateFilters
-import timber.log.Timber
 
 class TTS {
     @get:JvmName("isEnabled")
@@ -58,18 +58,8 @@ class TTS {
      * @param card     The card to play TTS for
      * @param cardSide The side of the current card to play TTS for
      */
-    fun readCardText(context: Context, card: Card, cardSide: SoundSide) {
-        val cardSideContent: String
-        cardSideContent = if (SoundSide.QUESTION == cardSide) {
-            card.q(true)
-        } else if (SoundSide.ANSWER == cardSide) {
-            card.pureAnswer
-        } else {
-            Timber.w("Unrecognised cardSide")
-            return
-        }
-        val clozeReplacement = context.getString(R.string.reviewer_tts_cloze_spoken_replacement)
-        ReadText.readCardSide(cardSide, cardSideContent, CardUtils.getDeckIdForCard(card), getOrdUsingCardType(card), clozeReplacement)
+    fun readCardText(ttsTags: List<TTSTag>, card: Card, cardSide: SoundSide) {
+        ReadText.readCardSide(ttsTags, cardSide, CardUtils.getDeckIdForCard(card), getOrdUsingCardType(card))
     }
 
     /**

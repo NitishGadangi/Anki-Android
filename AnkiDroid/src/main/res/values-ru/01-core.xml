@@ -44,7 +44,7 @@
     <string name="card_browser" comment="The usage of card browser inside the app (note the casing)">Список карточек</string>
     <string name="statistics">Статистика</string>
     <string name="settings">Настройки</string>
-    <string name="help">Помощь</string>
+    <string name="help">Справка</string>
     <string name="drawing">Рисование</string>
     <string name="send_feedback">Отправить отзыв</string>
     <string name="studyoptions_due_today">На сегодня:</string>
@@ -106,7 +106,7 @@
     <string name="unbury">Вернуть</string>
     <string name="rename_deck">Переименовать колоду</string>
     <string name="create_shortcut">Создать ярлык</string>
-    <string name="browse_cards">Список карточек</string>
+    <string name="browse_cards">Показать список</string>
     <string name="menu_add" comment="A generic add button - Main Deck Picker and card templates. Please inform us if you need more specific strings">Добавить</string>
     <string name="menu_add_note">Добавить запись</string>
     <string name="menu_my_account" comment="Label of the window in which the user should enter their account. This text can\'t be found in AnkiDroid directly.">Учётная запись синхронизации</string>
@@ -130,8 +130,6 @@
     <string name="menu_flag_card_seven">Фиолетовый флажок</string>
     <string name="menu_edit_tags">Редактировать метки</string>
     <string name="delete_note_message">Удалить эту запись и все связанные карточки?\n%s</string>
-    <string name="menu_select">Выделить текст</string>
-    <string name="menu_lookup">Посмотреть в словаре</string>
     <string name="menu_search">Посмотреть в %1$s</string>
     <string name="menu_mark_note">Отметить запись</string>
     <string name="menu_unmark_note">Снять отметку</string>
@@ -176,8 +174,8 @@
     <string name="studyoptions_limit_reached">На сегодня всё</string>
     <string name="studyoptions_empty_schedule">Нет запланированых карточек</string>
     <string name="studyoptions_congrats_finished">Ура! На сегодня всё.</string>
-    <string name="studyoptions_congrats_more_rev">Вы достигли дневного лимита, но ещё остались карточки для повторения. Вы можете увеличить лимит в настройках.</string>
-    <string name="studyoptions_congrats_more_new">Вы достигли дневного лимита, но ещё остались новые карточки. Вы можете увеличить лимит в настройках, и тогда увеличится объём повторения в ближайшие дни.</string>
+    <string name="studyoptions_congrats_more_rev">Вы достигли дневного лимита, но ещё остались карточки для повторения. Вы можете увеличить лимит в параметрах.</string>
+    <string name="studyoptions_congrats_more_new">Вы достигли дневного лимита, но ещё остались новые карточки. Вы можете увеличить лимит в параметрах, но тогда увеличится объём повторения в ближайшие дни.</string>
     <string name="studyoptions_congrats_custom">Для обучения вне плана нажмите кнопку \"Учить ещё\"</string>
     <string name="studyoptions_no_cards_due">Нет карточек на сегодня</string>
     <string name="sd_card_not_mounted">Карта памяти не установлена</string>
@@ -196,7 +194,7 @@
     <string name="card_template_editor_front">Шаблон лица</string>
     <string name="card_template_editor_back">Шаблон оборота</string>
     <string name="card_template_editor_styling">Стилизация</string>
-    <string name="card_template_editor_menu_card_browser_appearance">Внешний вид списка карточек</string>
+    <string name="card_template_editor_menu_card_browser_appearance">Вид списка карточек</string>
     <string name="card_template_editor_deck_override">Переопределение колоды</string>
     <string name="card_template_editor_insert_field">Вставить поле</string>
     <string name="card_template_editor_select_field">Выбрать поле</string>

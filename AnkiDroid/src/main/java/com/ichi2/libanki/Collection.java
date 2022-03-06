@@ -79,6 +79,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
 import androidx.annotation.CheckResult;
@@ -130,7 +131,7 @@ public class Collection implements CollectionGetter {
     // API 21: Use a ConcurrentLinkedDeque
     private LinkedBlockingDeque<UndoAction> mUndo;
 
-    private final String mPath;
+    private final @NonNull String mPath;
     protected final DroidBackend mDroidBackend;
     private boolean mDebugLog;
     private PrintWriter mLogHnd;
@@ -165,7 +166,7 @@ public class Collection implements CollectionGetter {
     private static final int UNDO_SIZE_MAX = 20;
 
     @VisibleForTesting
-    public Collection(Context context, DB db, String path, boolean server, boolean log, @NonNull Time time, @NonNull DroidBackend droidBackend) {
+    public Collection(Context context, DB db, @NonNull String path, boolean server, boolean log, @NonNull Time time, @NonNull DroidBackend droidBackend) {
         mContext = context;
         mDebugLog = log;
         mDb = db;
@@ -755,9 +756,9 @@ public class Collection implements CollectionGetter {
     /**
      * Generate cards for non-empty templates, return ids to remove.
      */
-	public ArrayList<Long> genCards(java.util.Collection<Long> nids, @NonNull Model model) {
-	    return genCards(Utils.collection2Array(nids), model);
-	}
+    public ArrayList<Long> genCards(java.util.Collection<Long> nids, @NonNull Model model) {
+        return genCards(Utils.collection2Array(nids), model);
+    }
 
     public <T extends ProgressSender<Integer> & CancelListener> ArrayList<Long> genCards(java.util.Collection<Long> nids, @NonNull Model model, @Nullable T task) {
        return genCards(Utils.collection2Array(nids), model, task);
@@ -1030,7 +1031,7 @@ public class Collection implements CollectionGetter {
         mDb.execute("DELETE FROM cards WHERE id IN " + sids);
         // then notes
         if (!notes) {
-        	return;
+            return;
         }
         nids = mDb.queryLongList("SELECT id FROM notes WHERE id IN " + Utils.ids2str(nids)
                         + " AND id NOT IN (SELECT nid FROM cards)");
@@ -1216,13 +1217,13 @@ public class Collection implements CollectionGetter {
         return data;
     }
 
-	public String _flagNameFromCardFlags(int flags){
-		int flag = flags & 0b111;
-		if (flag == 0) {
-			return "";
-		}
-		return "flag"+flag;
-	}
+    public String _flagNameFromCardFlags(int flags){
+        int flag = flags & 0b111;
+        if (flag == 0) {
+            return "";
+        }
+        return "flag"+flag;
+    }
 
     /*
       Finding cards ************************************************************ ***********************************
@@ -1494,7 +1495,7 @@ public class Collection implements CollectionGetter {
         final int[] currentTask = {1};
         int totalTasks = (getModels().all().size() * 4) + 27; // a few fixes are in all-models loops, the rest are one-offs
         Runnable notifyProgress = () -> fixIntegrityProgress(progressCallback, currentTask[0]++, totalTasks);
-        FunctionalInterfaces.Consumer<FunctionalInterfaces.FunctionThrowable<Runnable, List<String>, JSONException>> executeIntegrityTask =
+        Consumer<FunctionalInterfaces.FunctionThrowable<Runnable, List<String>, JSONException>> executeIntegrityTask =
                 function -> {
                     //DEFECT: notifyProgress will lag if an exception is thrown.
                     try {
@@ -1536,29 +1537,29 @@ public class Collection implements CollectionGetter {
             }
         }
 
-        executeIntegrityTask.consume(this::deleteNotesWithMissingModel);
+        executeIntegrityTask.accept(this::deleteNotesWithMissingModel);
         // for each model
         for (Model m : getModels().all()) {
-            executeIntegrityTask.consume((callback) -> deleteCardsWithInvalidModelOrdinals(callback, m));
-            executeIntegrityTask.consume((callback) -> deleteNotesWithWrongFieldCounts(callback, m));
+            executeIntegrityTask.accept((callback) -> deleteCardsWithInvalidModelOrdinals(callback, m));
+            executeIntegrityTask.accept((callback) -> deleteNotesWithWrongFieldCounts(callback, m));
         }
-        executeIntegrityTask.consume(this::deleteNotesWithMissingCards);
-        executeIntegrityTask.consume(this::deleteCardsWithMissingNotes);
-        executeIntegrityTask.consume(this::removeOriginalDuePropertyWhereInvalid);
-        executeIntegrityTask.consume(this::removeDynamicPropertyFromNonDynamicDecks);
-        executeIntegrityTask.consume(this::removeDeckOptionsFromDynamicDecks);
-        executeIntegrityTask.consume(this::resetInvalidDeckOptions);
-        executeIntegrityTask.consume(this::rebuildTags);
-        executeIntegrityTask.consume(this::updateFieldCache);
-        executeIntegrityTask.consume(this::fixNewCardDuePositionOverflow);
-        executeIntegrityTask.consume(this::resetNewCardInsertionPosition);
-        executeIntegrityTask.consume(this::fixExcessiveReviewDueDates);
+        executeIntegrityTask.accept(this::deleteNotesWithMissingCards);
+        executeIntegrityTask.accept(this::deleteCardsWithMissingNotes);
+        executeIntegrityTask.accept(this::removeOriginalDuePropertyWhereInvalid);
+        executeIntegrityTask.accept(this::removeDynamicPropertyFromNonDynamicDecks);
+        executeIntegrityTask.accept(this::removeDeckOptionsFromDynamicDecks);
+        executeIntegrityTask.accept(this::resetInvalidDeckOptions);
+        executeIntegrityTask.accept(this::rebuildTags);
+        executeIntegrityTask.accept(this::updateFieldCache);
+        executeIntegrityTask.accept(this::fixNewCardDuePositionOverflow);
+        executeIntegrityTask.accept(this::resetNewCardInsertionPosition);
+        executeIntegrityTask.accept(this::fixExcessiveReviewDueDates);
         // v2 sched had a bug that could create decimal intervals
-        executeIntegrityTask.consume(this::fixDecimalCardsData);
-        executeIntegrityTask.consume(this::fixDecimalRevLogData);
-        executeIntegrityTask.consume(this::restoreMissingDatabaseIndices);
-        executeIntegrityTask.consume(this::ensureModelsAreNotEmpty);
-        executeIntegrityTask.consume((progressNotifier) -> this.ensureCardsHaveHomeDeck(progressNotifier, result));
+        executeIntegrityTask.accept(this::fixDecimalCardsData);
+        executeIntegrityTask.accept(this::fixDecimalRevLogData);
+        executeIntegrityTask.accept(this::restoreMissingDatabaseIndices);
+        executeIntegrityTask.accept(this::ensureModelsAreNotEmpty);
+        executeIntegrityTask.accept((progressNotifier) -> this.ensureCardsHaveHomeDeck(progressNotifier, result));
         // and finally, optimize (unable to be done inside transaction).
         try {
             optimize(notifyProgress);
@@ -2131,8 +2132,8 @@ public class Collection implements CollectionGetter {
     /** Check if this collection is valid. */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean validCollection() {
-    	//TODO: more validation code
-    	return getModels().validateModel();
+        //TODO: more validation code
+        return getModels().validateModel();
     }
 
     public JSONObject getConf() {

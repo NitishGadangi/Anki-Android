@@ -60,6 +60,7 @@
     <string name="alert_logging_message">S\'està iniciant la sessió, un moment...</string>
     <string name="invalid_username_password">L\'adreça de correu electrònic o la contrasenya no són vàlides.</string>
     <string name="reset_password">Restableix la contrasenya</string>
+    <string name="lost_mail_instructions">Forgot Email?</string>
     <!-- AndroidManifest.xml -->
     <string name="preferences_title">Preferències</string>
     <string name="deckpreferences_title">Opcions per XXX</string>
@@ -96,6 +97,7 @@
     <string name="sync_media_find">S\'esta cercant els media que han canviat...</string>
     <string name="sync_media_no_changes">No hi ha canvis als arxius dels media.</string>
     <string name="sync_media_success">S\'han sincronitzat correctament els media.</string>
+    <string name="sync_media_partial_updated">Media sync partially completed:\n%1$d media files downloaded.\n%2$d media files uploaded.</string>
     <string name="sync_media_changes_count">%d canvis de multimèdia per carregar</string>
     <string name="sync_media_downloaded_count">%d fitxers descarregats</string>
     <string name="sync_sanity_failed">Després de sincronitzar, la col·lecció ha quedat en un estat inconsistent. Per resoldre-ho, Ankidroid forçarà una sincronització total. Si us plau trieu el costat que preferiu conservar, o anul·leu-ho si ho preferiu sincronitzar més endavant.</string>

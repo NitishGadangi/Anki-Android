@@ -22,16 +22,22 @@ import com.ichi2.anki.DeckPicker
 import com.ichi2.anki.R
 import com.ichi2.anki.analytics.UsageAnalytics
 import com.ichi2.anki.dialogs.HelpDialog.FunctionItem
+import com.ichi2.utils.KotlinCleanup
 import timber.log.Timber
 
 class ImportFileSelectionFragment {
     companion object {
         @JvmStatic
-        fun createInstance(@Suppress("UNUSED_PARAMETER") context: DeckPicker): RecursivePictureMenu? {
+        @KotlinCleanup("convert importItems to java ArrayList")
+        fun createInstance(@Suppress("UNUSED_PARAMETER") context: DeckPicker): RecursivePictureMenu {
             // this needs a deckPicker for now. See use of PICK_APKG_FILE
 
             // This is required for serialization of the lambda
-            val openFilePicker = FunctionItem.ActivityConsumer { a -> openImportFilePicker(a) }
+            val openFilePicker = object : FunctionItem.ActivityConsumer {
+                override fun consume(activity: AnkiActivity) {
+                    openImportFilePicker(activity)
+                }
+            }
 
             val importItems = arrayListOf<RecursivePictureMenu.Item>(
                 FunctionItem(
@@ -47,12 +53,12 @@ class ImportFileSelectionFragment {
                     openFilePicker
                 ),
             )
-            return RecursivePictureMenu.createInstance(importItems, R.string.menu_import)
+            return RecursivePictureMenu.createInstance(ArrayList(importItems), R.string.menu_import)
         }
 
         // needs to be static for serialization
         @JvmStatic
-        private fun openImportFilePicker(activity: AnkiActivity) {
+        fun openImportFilePicker(activity: AnkiActivity) {
             Timber.d("openImportFilePicker() delegating to file picker intent")
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
             intent.addCategory(Intent.CATEGORY_OPENABLE)

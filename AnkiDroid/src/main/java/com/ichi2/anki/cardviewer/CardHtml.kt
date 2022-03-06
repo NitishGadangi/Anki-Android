@@ -16,7 +16,9 @@
 
 package com.ichi2.anki.cardviewer
 
+import android.content.Context
 import com.ichi2.anki.R
+import com.ichi2.anki.TtsParser
 import com.ichi2.libanki.*
 import com.ichi2.libanki.template.MathJax
 import com.ichi2.themes.HtmlColors
@@ -36,9 +38,10 @@ class CardHtml(
     private val side: Side,
     @RustCleanup("Slow function, only used with legacy code")
     private val getAnswerContentWithoutFrontSide_slow: (() -> String),
-    private var questionAv: List<AvTag>? = null,
-    private var answerAv: List<AvTag>? = null,
-    private val usingBackend: Boolean = answerAv != null
+    @RustCleanup("too many variables, combine once we move away from backend")
+    private var questionSound: List<SoundOrVideoTag>? = null,
+    private var answerSound: List<SoundOrVideoTag>? = null,
+    private val usingBackend: Boolean = answerSound != null
 ) {
     fun getSoundTags(sideFor: Side): List<SoundOrVideoTag> {
         if (sideFor == this.side) {
@@ -46,15 +49,15 @@ class CardHtml(
         }
 
         if (sideFor == Side.BACK && side == Side.FRONT) {
-            if (answerAv == null) {
-                answerAv = Sound.extractTagsFromLegacyContent(getAnswerContentWithoutFrontSide_slow())
+            if (answerSound == null) {
+                answerSound = Sound.extractTagsFromLegacyContent(getAnswerContentWithoutFrontSide_slow())
             }
-            return answerAv!!.filterIsInstance(SoundOrVideoTag::class.java)
+            return answerSound!!
         }
 
         // Back wanting front, only possible if questionAv != null
-        if (questionAv != null) {
-            return questionAv!!.filterIsInstance(SoundOrVideoTag::class.java)
+        if (questionSound != null) {
+            return questionSound!!
         }
 
         throw IllegalStateException("Attempted to get the front of the card when viewing back using legacy system")
@@ -64,15 +67,15 @@ class CardHtml(
     private fun getSoundsForCurrentSide(): List<SoundOrVideoTag> {
         // beforeSoundTemplateExpansion refers to the current side
         return if (this.side == Side.FRONT) {
-            if (questionAv == null) {
-                questionAv = Sound.extractTagsFromLegacyContent(beforeSoundTemplateExpansion)
+            if (questionSound == null) {
+                questionSound = Sound.extractTagsFromLegacyContent(beforeSoundTemplateExpansion)
             }
-            questionAv!!.filterIsInstance(SoundOrVideoTag::class.java)
+            questionSound!!
         } else {
-            if (answerAv == null) {
-                answerAv = Sound.extractTagsFromLegacyContent(getAnswerContentWithoutFrontSide_slow())
+            if (answerSound == null) {
+                answerSound = Sound.extractTagsFromLegacyContent(getAnswerContentWithoutFrontSide_slow())
             }
-            return answerAv!!.filterIsInstance(SoundOrVideoTag::class.java)
+            return answerSound!!
         }
     }
 
@@ -128,13 +131,17 @@ class CardHtml(
 
             val nightModeInversion = context.cardAppearance.isNightMode && !context.cardAppearance.hasUserDefinedNightMode(card)
 
-            val questionAv = card.render_output().question_av_tags
-            val answerAv = card.render_output().answer_av_tags
+            val renderOutput = card.render_output()
+            val questionAv = renderOutput.question_av_tags
+            val answerAv = renderOutput.answer_av_tags
+
+            val questionSound = questionAv?.filterIsInstance(SoundOrVideoTag::class.java)
+            val answerSound = answerAv?.filterIsInstance(SoundOrVideoTag::class.java)
 
             // legacy (slow) function to return the answer without the front side
             fun getAnswerWithoutFrontSideLegacy(): String = removeFrontSideAudio(card, card.a())
 
-            return CardHtml(content, card.ord, nightModeInversion, context, side, ::getAnswerWithoutFrontSideLegacy, questionAv, answerAv)
+            return CardHtml(content, card.ord, nightModeInversion, context, side, ::getAnswerWithoutFrontSideLegacy, questionSound, answerSound)
         }
 
         /**
@@ -152,25 +159,18 @@ class CardHtml(
             content = Media.escapeImages(content)
             content = context.filterTypeAnswer(content, side)
             Timber.v("question: '%s'", content)
-            return enrichWithQADiv(content, side)
+            return enrichWithQADiv(content)
         }
 
         /**
          * Adds a div html tag around the contents to have an indication, where answer/question is displayed
          *
          * @param content The content to surround with tags.
-         * @param side whether the class attribute is set to "answer" or "question".
          * @return The enriched content
          */
-        fun enrichWithQADiv(content: String?, side: Side): String {
+        fun enrichWithQADiv(content: String?): String {
             val sb = StringBuilder()
-            sb.append("<div class=")
-            if (side == Side.BACK) {
-                sb.append(CardAppearance.ANSWER_CLASS)
-            } else {
-                sb.append(CardAppearance.QUESTION_CLASS)
-            }
-            sb.append(" id=\"qa\">")
+            sb.append("<div id=\"qa\">")
             sb.append(content)
             sb.append("</div>")
             return sb.toString()
@@ -209,6 +209,19 @@ class CardHtml(
                 }
             }
             return newAnswerContent
+        }
+
+        @JvmStatic
+        fun legacyGetTtsTags(card: Card, cardSide: Sound.SoundSide, context: Context): List<TTSTag>? {
+            val cardSideContent: String = when {
+                Sound.SoundSide.QUESTION == cardSide -> card.q(true)
+                Sound.SoundSide.ANSWER == cardSide -> card.pureAnswer
+                else -> {
+                    Timber.w("Unrecognised cardSide")
+                    return null
+                }
+            }
+            return TtsParser.getTextsToRead(cardSideContent, context.getString(R.string.reviewer_tts_cloze_spoken_replacement))
         }
     }
 }

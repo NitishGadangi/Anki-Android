@@ -36,6 +36,7 @@
     <!-- Main editor popup menu items -->
     <string name="multimedia_editor_popup_image">Přidat obrázek</string>
     <string name="multimedia_editor_popup_audio_clip">Přidat zvukový klip</string>
+    <string name="multimedia_editor_popup_video_clip">Přidat video klip</string>
     <string name="multimedia_editor_popup_audio">Pořídit zvukový záznam</string>
     <string name="multimedia_editor_popup_text">Pokročilý editor</string>
     <string name="multimedia_editor_popup_cloze">Doplňovačka</string>
@@ -89,7 +90,8 @@
     <!-- for buttons -->
     <string name="multimedia_editor_image_field_editing_galery">Galerie</string>
     <string name="multimedia_editor_image_field_editing_photo">Fotoaparát</string>
-    <string name="multimedia_editor_image_field_editing_library">Knihovna</string>
+    <string name="multimedia_editor_import_audio">Zvuk</string>
+    <string name="multimedia_editor_import_video">Video</string>
     <!-- General -->
     <!-- message on the progress dialog for the user to wait, means process -->
     <string name="multimedia_editor_general_downloading">Stahování</string>
@@ -104,7 +106,7 @@
     <string name="multimedia_editor_progress_wait_title">Počkejte</string>
     <!-- not a good message, when an unexpected error happens -->
     <string name="multimedia_editor_something_wrong">Něco se pokazilo</string>
-    <string name="multimedia_editor_svg_preview">SVGs are not available for preview</string>
+    <string name="multimedia_editor_svg_preview">Náhled pro SVG není dostupný</string>
     <string name="multimedia_editor_png_paste_error">Chyba při převodu obrázku ve schránce na png: %s</string>
     <string name="multimedia_editor_attach_mm_content" comment="used for screen readers. Not visible to the user">Připojit multimediální obsah k poli %1$s</string>
     <string name="multimedia_editor_attach_media">Připojit multimédia</string>
@@ -124,4 +126,5 @@
     <string name="save_dialog_content">Aktuální velikost obrázku je %s MB. Výchozí limit velikosti obrázku je 1 MB. Chcete jej oříznout?</string>
     <string name="select_image_failed">"Výběr obrázku selhal, zkuste to prosím znovu"</string>
     <string name="activity_result_unexpected">Aplikace vrátila neočekávanou hodnotu. Možná budete muset použít jinou aplikaci</string>
+    <string name="audio_recording_field_list" comment="Displays a list of the field data in the note editor while audio recording is taking place">Obsah pole</string>
 </resources>

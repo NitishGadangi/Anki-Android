@@ -116,7 +116,7 @@
     <string name="saving_model">Salvando tipo de nota</string>
     <string name="save">Salvar</string>
     <string name="close">Fechar</string>
-    <string name="select">Selecione</string>
+    <string name="select">Selecionar</string>
     <string name="saving_changes">Salvando alterações&#8230;</string>
     <string name="reordering_cards">Reordenando cards...</string>
     <string name="field_remapping">%1$s (de \'%2$s\')</string>
@@ -137,6 +137,7 @@
     <string name="card_editor_reset_card">Redefinir progresso</string>
     <string name="card_editor_reschedule_card" comment="Action to reschedule a card">Reagendar</string>
     <string name="card_editor_preview_card" comment="Button offering to preview some card(s)">Pré-visualizar</string>
+    <string name="preview_progress_bar_text" comment="What card we are on out of how many in card previewer progress bar">%1$d de %2$d</string>
     <string name="error_insufficient_memory">Operação impossível devido a memória insuficiente no dispositivo</string>
     <string name="rename" comment="Confirm that the renaming action should be processed.">Renomear</string>
     <string name="default_conf_delete_error">O grupo de opções padrão não pode ser removido</string>
@@ -161,7 +162,7 @@
     <string name="import_log_failed_unzip">Falha ao descompactar apkg: %s</string>
     <string name="import_log_failed_copy_to">Falha ao copiar apkg para %s</string>
     <string name="import_log_failed_validate">falha na validação do apkg</string>
-    <string name="import_log_insufficient_space">Não há espaço suficiente para descompactar o pacote. Necessário %1$d, disponível %2$d</string>
+    <string name="import_log_insufficient_space_error">Não há espaço suficiente para importar o pacote.\nNecessário - %1$s \nDisponível - %2$s.\n\nTendo problemas? Tente liberar espaço no seu telefone, se possível. Alternativamente, a sincronização usa menos espaço do que a importação. Você pode tentar importar o pacote com um dispositivo com mais espaço (por exemplo, Anki Desktop) e, em seguida, sincronizá-lo com este dispositivo.</string>
     <string name="import_log_file_cache_cleared">Erro ao importar arquivo, provavelmente um cache foi limpo durante o processamento.\nPor favor, tente novamente</string>
     <string name="import_succeeded_but_check_database">Importação de dados bem-sucedida, mas a limpeza pós importação falhou. Execute a verificação do banco de dados mais tarde. Causa: %s</string>
     <string name="import_error_unhandled_request">Não foi possível completar a importação</string>
@@ -175,7 +176,7 @@
     <string name="import_replacing">Substituindo coleção&#8230;</string>
     <string name="import_interrupted">Importação interrompida: AnkiDroid foi fechado</string>
     <string name="export_include_schedule">Incluir agendamento</string>
-    <string name="export_include_media">Incluir a média</string>
+    <string name="export_include_media">Incluir mídia</string>
     <string name="confirm_apkg_export">Exportar a coleção como arquivo Anki (.apkg)?</string>
     <string name="confirm_apkg_export_deck">Exportar \"%s\" como arquivo apkg?</string>
     <string name="export_in_progress">Exportando arquivo Anki (.apkg)&#8230;</string>
@@ -187,10 +188,12 @@
     <string name="export_save_apkg_unsuccessful">Arquivo Anki (.apkg) não pode ser salvo</string>
     <string name="export_successful">Arquivo \"%s\" foi exportado. Deseja enviá-lo com um outro app?</string>
     <string name="export_email_subject">AnkiDroid cards exportados: %s</string>
-    <string name="export_email_text_new"><![CDATA[        Oi!
+    <string name="export_email_text"><![CDATA[        Olá!
         <br/><br/>
-        Este é um baralho de flashcards Anki enviado do <a href="%1$s">AnkiDroid</a>.
-        Tente abri-lo usando uma das <a href="%2$s">distribuições Anki</a> disponíveis e desfrute de um aprendizado fácil e eficiente!
+        Esse é um baralho de flashcards do Anki, enviado do AnkiDroid[1].
+        Tente abrir usando uma das versões disponíveis do Anki[2] e aproveite aprender de forma simples e eficiente!<br/><br/>
+        [1] %1$s<br/>
+        [2] %2$s
         ]]></string>
     <string name="export_unsuccessful">Erro ao exportar arquivo apkg</string>
     <string name="study_options" comment="Name for a preference category in Filtered deck (aka Cram deck, aka Custom study) options">Opções</string>
@@ -207,7 +210,6 @@
     <string name="sched_has_buried">Alguns cards relacionados ou Ocultados foram adiados.</string>
     <string name="tag_editor_add_feedback">Toque \"%2$s\" para confirmar a adição de \"%1$s\"</string>
     <string name="tag_editor_add_feedback_existing">Tag existente \"%1$s\" selecionada</string>
-    <string name="lookup_hint">Após copiar o texto, toque em qualquer lugar sobre o flashcard para mostrar o ícone de pesquisa</string>
     <!-- Time spans -->
     <plurals name="time_span_seconds">
         <item quantity="one">%s segundo</item>
@@ -267,6 +269,9 @@
     <string name="choose_an_image">Escolha uma imagem</string>
     <!-- Card Template Browser Appearance -->
     <string name="restore_default">Restaurar Padrões</string>
+    <string name="cloze_sample_text">Esse é um {{%1$s::exemplo}} ocultado.</string>
+    <string name="basic_answer_sample_text_user" comment="has a typo, so that user sees a highlighted difference in basic answer model     ">ezemplo</string>
+    <string name="basic_answer_sample_text">um exemplo</string>
     <string name="reviewer_tts_cloze_spoken_replacement">Vazio</string>
     <!-- in options menu & Navigation Drawer -->
     <string name="ankidroid_turn_on_fullscreen_nav_drawer">Por favor ative a tela cheia para usar \"Mostrar Opções de Navegação\" usando JavaScript.</string>
@@ -310,7 +315,7 @@
     <string name="about_ankidroid_error_copy_debug_info">Erro ao copiar informações de debug para a área de transferência.</string>
     <!-- Card Viewer -->
     <string name="card_viewer_could_not_find_image">Erro de Conteúdo do Card: Falha ao carregar ‘%s\'</string>
-    <string name="card_viewer_media_relative_protocol">Erro de Conteúdo do Card: Atualização de Mídia necessária</string>
+    <string name="card_viewer_media_relative_protocol">Erro de conteúdo do card: Atualização de mídia necessária</string>
     <string name="cannot_load_http_resource">Http não está disponível no momento</string>
     <!-- Deck Picker -->
     <string name="deck_picker_failed_deck_load">Falha ao carregar o baralho ‘%s\'</string>
@@ -318,16 +323,17 @@
     <string name="ankidroid_init_failed_webview_title">Erro Fatal</string>
     <string name="ankidroid_init_failed_webview">AnkiDroid depende do System WebView que não está disponível. Isso pode acontecer se o sistema está instalando atualizações. Por favor, tente novamente em alguns minutos.\n\n%s</string>
     <!-- A Menu item to change the Font Size (currently in the Note Editor) -->
-    <string name="menu_font_size">Tamanho da Fonte</string>
-    <string name="menu_show_toolbar" comment="Checkable item stating whether the note editor toolbar should be shown">Mostrar Barra de Funções</string>
+    <string name="menu_font_size">Tamanho da fonte</string>
+    <string name="menu_show_toolbar" comment="Checkable item stating whether the note editor toolbar should be shown">Mostrar barra de ferramentas</string>
     <string name="format_insert_bold">Formatar em Negrito</string>
     <string name="format_insert_italic">Formatar em Itálico</string>
     <string name="format_insert_underline">Formatar como Sublinhado</string>
     <string name="insert_horizontal_line">Inserir Tachado</string>
     <string name="insert_heading">Inserir título</string>
-    <string name="format_font_size">Alterar Tamanho da Fonte</string>
+    <string name="format_font_size">Alterar tamanho da fonte</string>
     <string name="insert_mathjax">Inserir equação MathJax</string>
     <string name="insert_cloze">Ocultar</string>
+    <string name="note_editor_toolbar_icon">Texto do botão</string>
     <string name="before_text">HTML antes da seleção</string>
     <string name="after_text">HTML depois da seleção</string>
     <string name="add_toolbar_item">Criar Item na Barra de Funções</string>
@@ -339,7 +345,7 @@
     <string name="create_shortcut_failed" comment="home screen == launcher">Sua tela de início não permite que AnkiDroid adicione atalhos</string>
     <string name="create_shortcut_error">Erro ao adicionar atalho: %s</string>
     <string name="note_editor_capitalize" comment="This is for a switch with a checkbox - on: enabled">Iniciar frases em letra maíuscula</string>
-    <string name="menu_scroll_toolbar" comment="Checkbox stating whether note editor toolbar is scrollable or stacked. Checked: Scroll">Scroll toolbar</string>
+    <string name="menu_scroll_toolbar" comment="Checkbox stating whether note editor toolbar is scrollable or stacked. Checked: Scroll">Rolar a barra de funções</string>
     <!-- Symbols used as Button text in IncrementNumberRangePreference -->
     <string name="plus_sign" comment="Label for increment button in IncrementerNumberRangePreference">+</string>
     <string name="minus_sign" comment="Label for decrement button in IncrementerNumberRangePreference">-</string>
@@ -367,11 +373,25 @@
     <string name="import_mapped_to_tags">Movido para Tags</string>
     <string name="import_mapped_to_nothing">Ignorado</string>
     <!-- Reviewer actions -->
-    <string name="buried_card">Buried card</string>
-    <string name="buried_note">Buried note</string>
-    <string name="deleted_note">Deleted note</string>
-    <string name="suspended_card">Suspended card</string>
-    <string name="suspended_note">Suspended note</string>
+    <string name="buried_card">Cartão enterrado</string>
+    <string name="buried_note">Nota enterrada</string>
+    <string name="deleted_note">Nota excluída</string>
+    <string name="suspended_card">Cartão suspenso</string>
+    <string name="suspended_note">Nota suspensa</string>
     <!--  Note Editor Toggle Sticky  -->
-    <string name="note_editor_toggle_sticky">Make field %s sticky</string>
+    <string name="note_editor_toggle_sticky">Fixar o campo %s</string>
+    <!-- Scoped Storage Migration -->
+    <string name="scoped_storage_title">Migração do armazenamento</string>
+    <string name="scoped_storage_initial_message">O AnkiDroid deve mover seus dados para cumprir as novas regras de privacidade do Android
+\n\nSe você remover o AnkiDroid antes da migração, seus dados serão perdidos
+\n\nPor favor execute a migração o quanto antes</string>
+    <string name="scoped_storage_terms_message">A migração ocorrerá em segundo plano. Você não poderá fazer a sincronização durante a migração\n\nTempo estimado: %s</string>
+    <string name="scoped_storage_term_1">Fiz backup dos meus dados</string>
+    <string name="scoped_storage_term_1_ankiweb">Fiz a sincronização com o AnkiWeb recentemente</string>
+    <string name="scoped_storage_term_2">Não removerei o aplicativo enquanto os dados estiverem sendo movidos</string>
+    <string name="scoped_storage_select_all_terms">Por favor aceite todos os itens para continuar</string>
+    <string name="scoped_storage_learn_more">Saiba mais</string>
+    <string name="scoped_storage_postpone">Adiar</string>
+    <string name="scoped_storage_migrate">Migrar</string>
+    <string name="search_card_js_api_no_results">Search returned no results</string>
 </resources>

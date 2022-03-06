@@ -22,6 +22,7 @@ import android.content.SharedPreferences
 import android.os.Looper
 import androidx.annotation.CheckResult
 import androidx.annotation.NonNull
+import androidx.core.content.edit
 import androidx.fragment.app.DialogFragment
 import androidx.sqlite.db.SupportSQLiteOpenHelper
 import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
@@ -55,7 +56,6 @@ import org.robolectric.android.controller.ActivityController
 import org.robolectric.shadows.ShadowDialog
 import org.robolectric.shadows.ShadowLog
 import timber.log.Timber
-import java.util.*
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
@@ -80,6 +80,9 @@ open class RobolectricTest : CollectionGetter {
 
     @Before
     open fun setUp() {
+        // resolved issues with the collection being reused if useInMemoryDatabase is false
+        CollectionHelper.getInstance().setColForTests(null)
+
         if (mTaskScheduler.shouldRunInForeground()) {
             runTasksInForeground()
         } else {
@@ -250,7 +253,7 @@ open class RobolectricTest : CollectionGetter {
         }
     }
 
-    protected val targetContext: Context
+    val targetContext: Context
         get() {
             return try {
                 ApplicationProvider.getApplicationContext()
@@ -263,6 +266,10 @@ open class RobolectricTest : CollectionGetter {
             }
         }
 
+    /**
+     * Returns an instance of [SharedPreferences] using the test context
+     * @see [editPreferences] for editing
+     */
     protected fun getPreferences(): SharedPreferences {
         return AnkiDroidApp.getSharedPrefs(targetContext)
     }
@@ -427,6 +434,7 @@ open class RobolectricTest : CollectionGetter {
         advanceRobolectricLooper()
         if (!completed[0]) { throw IllegalStateException(String.format("Task %s didn't finish in %d ms", task.javaClass, timeoutMs)) }
     }
+
     /**
      * Call to assume that <code>actual</code> satisfies the condition specified by <code>matcher</code>.
      * If not, the test halts and is ignored.
@@ -502,4 +510,14 @@ open class RobolectricTest : CollectionGetter {
             advanceRobolectricLooperWithSleep()
             return card
         }
+
+    /**
+     * Allows editing of preferences, followed by a call to [apply][SharedPreferences.Editor.apply]:
+     *
+     * ```
+     * editPreferences { putString("key", value) }
+     * ```
+     */
+    fun editPreferences(action: SharedPreferences.Editor.() -> Unit) =
+        getPreferences().edit(action = action)
 }

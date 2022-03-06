@@ -36,6 +36,7 @@
     <!-- Main editor popup menu items -->
     <string name="multimedia_editor_popup_image">Додати зображення</string>
     <string name="multimedia_editor_popup_audio_clip">Додати запис звуку</string>
+    <string name="multimedia_editor_popup_video_clip">Add video clip</string>
     <string name="multimedia_editor_popup_audio">Записати звук</string>
     <string name="multimedia_editor_popup_text">Розширений редактор</string>
     <string name="multimedia_editor_popup_cloze">Завдання з пропусками</string>
@@ -89,7 +90,8 @@
     <!-- for buttons -->
     <string name="multimedia_editor_image_field_editing_galery">Галерея</string>
     <string name="multimedia_editor_image_field_editing_photo">Камера</string>
-    <string name="multimedia_editor_image_field_editing_library">Бібліотека</string>
+    <string name="multimedia_editor_import_audio">Audio</string>
+    <string name="multimedia_editor_import_video">Video</string>
     <!-- General -->
     <!-- message on the progress dialog for the user to wait, means process -->
     <string name="multimedia_editor_general_downloading">Завантаження</string>
@@ -104,7 +106,7 @@
     <string name="multimedia_editor_progress_wait_title">Зачекайте</string>
     <!-- not a good message, when an unexpected error happens -->
     <string name="multimedia_editor_something_wrong">Щось пішло не так</string>
-    <string name="multimedia_editor_svg_preview">SVGs are not available for preview</string>
+    <string name="multimedia_editor_svg_preview">svg формат недоступний для передперегляду</string>
     <string name="multimedia_editor_png_paste_error">Помилка перетворення зображення з буферу обміну в png: %s</string>
     <string name="multimedia_editor_attach_mm_content" comment="used for screen readers. Not visible to the user">Прикріпити мультимедійний вміст до %1$s поля</string>
     <string name="multimedia_editor_attach_media">Прикріпити медіа</string>
@@ -124,4 +126,5 @@
     <string name="save_dialog_content">Поточний розмір зображення %sМБ. За звмовчуванням розмір зображення обмежено до 1 МБ. Ви бажаєте обробити його?</string>
     <string name="select_image_failed">"Не вдалося обрати зображення. Будь ласка, спробуйте ще"</string>
     <string name="activity_result_unexpected">Додаток повернув неочікуване значення. Можливо, потрібне використання іншого додатку</string>
+    <string name="audio_recording_field_list" comment="Displays a list of the field data in the note editor while audio recording is taking place">Вміст поля</string>
 </resources>

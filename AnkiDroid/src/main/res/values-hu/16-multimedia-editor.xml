@@ -36,6 +36,7 @@
     <!-- Main editor popup menu items -->
     <string name="multimedia_editor_popup_image">Kép hozzáadása</string>
     <string name="multimedia_editor_popup_audio_clip">Hank klip hozzáadása</string>
+    <string name="multimedia_editor_popup_video_clip">Add video clip</string>
     <string name="multimedia_editor_popup_audio">Hang rögzítése</string>
     <string name="multimedia_editor_popup_text">Speciális szerkesztő</string>
     <string name="multimedia_editor_popup_cloze">Kitöltés</string>
@@ -89,7 +90,8 @@
     <!-- for buttons -->
     <string name="multimedia_editor_image_field_editing_galery">Galéria</string>
     <string name="multimedia_editor_image_field_editing_photo">Kamera</string>
-    <string name="multimedia_editor_image_field_editing_library">Könyvtár</string>
+    <string name="multimedia_editor_import_audio">Audio</string>
+    <string name="multimedia_editor_import_video">Video</string>
     <!-- General -->
     <!-- message on the progress dialog for the user to wait, means process -->
     <string name="multimedia_editor_general_downloading">Letöltés</string>
@@ -124,4 +126,5 @@
     <string name="save_dialog_content">A kép mérete %s MB. Az alap kép méretének limitje 1MB. Meg akarod vágni?</string>
     <string name="select_image_failed">"Képválasztás sikertelen, Próbáld újra"</string>
     <string name="activity_result_unexpected">Az alkalmazás egy váratlan értéket dobott vissza. Lehet, hogy egy másik alkalmazást kell használni</string>
+    <string name="audio_recording_field_list" comment="Displays a list of the field data in the note editor while audio recording is taking place">Field Contents</string>
 </resources>

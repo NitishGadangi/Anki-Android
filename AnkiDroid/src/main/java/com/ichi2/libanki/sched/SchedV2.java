@@ -978,7 +978,7 @@ public class SchedV2 extends AbstractSched {
             return 0;
         }
         lim = Math.min(lim, mReportLimit);
-    	return mCol.getDb().queryScalar("SELECT count() FROM (SELECT 1 FROM cards WHERE did = ? AND queue = " + Consts.QUEUE_TYPE_NEW + " LIMIT ?)",
+        return mCol.getDb().queryScalar("SELECT count() FROM (SELECT 1 FROM cards WHERE did = ? AND queue = " + Consts.QUEUE_TYPE_NEW + " LIMIT ?)",
                                         did, lim);
     }
 
@@ -1191,11 +1191,11 @@ public class SchedV2 extends AbstractSched {
     // Overriden
     protected void _answerLrnCard(@NonNull Card card, @Consts.BUTTON_TYPE int ease) {
         JSONObject conf = _lrnConf(card);
-        @Consts.CARD_TYPE int type;
+        @Consts.REVLOG_TYPE int type;
         if (card.getType() == Consts.CARD_TYPE_REV || card.getType() == Consts.CARD_TYPE_RELEARNING) {
-            type = Consts.CARD_TYPE_REV;
+            type = Consts.REVLOG_RELRN;
         } else {
-            type = Consts.CARD_TYPE_NEW;
+            type = Consts.REVLOG_LRN;
         }
 
         // lrnCount was decremented once when card was fetched

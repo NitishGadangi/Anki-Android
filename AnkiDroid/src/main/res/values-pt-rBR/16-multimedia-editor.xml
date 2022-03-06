@@ -36,6 +36,7 @@
     <!-- Main editor popup menu items -->
     <string name="multimedia_editor_popup_image">Adicionar imagem</string>
     <string name="multimedia_editor_popup_audio_clip">Adicionar clipe de áudio</string>
+    <string name="multimedia_editor_popup_video_clip">Adicionar vídeo</string>
     <string name="multimedia_editor_popup_audio">Gravar áudio</string>
     <string name="multimedia_editor_popup_text">Editor avançado</string>
     <string name="multimedia_editor_popup_cloze">Ocultar</string>
@@ -89,7 +90,8 @@
     <!-- for buttons -->
     <string name="multimedia_editor_image_field_editing_galery">Galeria</string>
     <string name="multimedia_editor_image_field_editing_photo">Câmera</string>
-    <string name="multimedia_editor_image_field_editing_library">Biblioteca</string>
+    <string name="multimedia_editor_import_audio">Áudio</string>
+    <string name="multimedia_editor_import_video">Vídeo</string>
     <!-- General -->
     <!-- message on the progress dialog for the user to wait, means process -->
     <string name="multimedia_editor_general_downloading">Transferindo</string>
@@ -104,7 +106,7 @@
     <string name="multimedia_editor_progress_wait_title">Aguarde</string>
     <!-- not a good message, when an unexpected error happens -->
     <string name="multimedia_editor_something_wrong">Algo deu errado</string>
-    <string name="multimedia_editor_svg_preview">SVGs are not available for preview</string>
+    <string name="multimedia_editor_svg_preview">SVGs não estão disponíveis para pré-visualização</string>
     <string name="multimedia_editor_png_paste_error">Erro ao converter imagem da área de transferência para png: %s</string>
     <string name="multimedia_editor_attach_mm_content" comment="used for screen readers. Not visible to the user">Anexar conteúdo multimídia ao campo %1$s</string>
     <string name="multimedia_editor_attach_media">Anexar mídia</string>
@@ -124,4 +126,5 @@
     <string name="save_dialog_content">O tamanho atual da imagem é de %sMB. O tamanho padrão da imagem é de 1MB. Você deseja recortá-la?</string>
     <string name="select_image_failed">"A seleção de imagem falhou. Por favor, tente novamente."</string>
     <string name="activity_result_unexpected">O aplicativo retornou um valor inesperado. Você pode precisar usar um app diferente</string>
+    <string name="audio_recording_field_list" comment="Displays a list of the field data in the note editor while audio recording is taking place">Conteúdos do campo</string>
 </resources>

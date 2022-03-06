@@ -137,6 +137,7 @@
     <string name="card_editor_reset_card">İlerlemeyi sıfırla</string>
     <string name="card_editor_reschedule_card" comment="Action to reschedule a card">Zamanını değiştir</string>
     <string name="card_editor_preview_card" comment="Button offering to preview some card(s)">Önizle</string>
+    <string name="preview_progress_bar_text" comment="What card we are on out of how many in card previewer progress bar">%1$d \'den %2$d</string>
     <string name="error_insufficient_memory">Cihazda yetersiz bellek olması nedeniyle işlem gerçekleştirilemiyor</string>
     <string name="rename" comment="Confirm that the renaming action should be processed.">Adını değiştir</string>
     <string name="default_conf_delete_error">Varsayılan seçenekler grubu kaldırılamaz</string>
@@ -161,7 +162,7 @@
     <string name="import_log_failed_unzip">Apkg zipten çıkarılamadı: %s</string>
     <string name="import_log_failed_copy_to">apkg\'yi %s\'e kopyalama başarısız</string>
     <string name="import_log_failed_validate">apkg onaylama başarısız</string>
-    <string name="import_log_insufficient_space">Paketi zipten çıkarmak için yeterli alan yok. %1$d gerekti, %2$d mevcut</string>
+    <string name="import_log_insufficient_space_error">Paketi içe aktarmak için yeterli alan yok.\nGerekli - %1$s \nMevcut - %2$s.\n\nSorun mu yaşıyorsunuz? Mümkünse telefonunuzda yer açmaya çalışın. Alternatif olarak, senkronizasyon, içe aktarmadan daha az alan kullanır. Paketi daha fazla alana sahip bir cihazla (örneğin Anki Desktop) içe aktarmayı deneyebilir ve ardından bu cihazla senkronize edebilirsiniz.</string>
     <string name="import_log_file_cache_cleared">Dosya aktarımında hata, muhtemelen işlem esnasında önbellek temizliği.\nLütfen yeniden deneyin.</string>
     <string name="import_succeeded_but_check_database">Veri aktarımı başarılı ama aktarım sonrası temizlik başarısız oldu. Daha sonra veritabanı kontrolünü çalıştırın. Temel sebep: %s</string>
     <string name="import_error_unhandled_request">Aktarım isteği işlenemedi</string>
@@ -186,11 +187,13 @@
     <string name="export_save_apkg_successful">Anki paketi başarıyla kaydedildi</string>
     <string name="export_save_apkg_unsuccessful">Anki paketi kaydı başarısız oldu</string>
     <string name="export_successful">Dosya \"%s\" dışarı çıkartıldı. Başka bir uygulama ile göndermek istiyor musunuz?</string>
-    <string name="export_email_subject">AnkiDroid hafızakartlarına çıkartıldı: %s</string>
-    <string name="export_email_text_new"><![CDATA[        Hi!
+    <string name="export_email_subject">AnkiDroid\'den aktarılan bilgi kartları: %s</string>
+    <string name="export_email_text"><![CDATA[        Selam!
         <br/><br/>
-        This is an Anki flashcards deck sent from <a href="%1$s">AnkiDroid</a>.
-        Try to open it using one of the available <a href="%2$s">Anki distributions</a> and enjoy easy and efficient learning!
+        Bu, AnkiDroid\'den[1] gönderilmiş bir Anki bilgi kartı destesi.
+        Mevcut Anki dağıtımlarından[2] biriyle açmayı deneyin ve kolay ve verimli öğrenmenin tadını çıkarın!<br/><br/>
+        [1] %1$s<br/>
+        [2] %2$s
         ]]></string>
     <string name="export_unsuccessful">Apkg dosyasını kaydederken hata</string>
     <string name="study_options" comment="Name for a preference category in Filtered deck (aka Cram deck, aka Custom study) options">Seçenekler</string>
@@ -207,7 +210,6 @@
     <string name="sched_has_buried">Bazı ilgili veya gizli kartlar sonraki bir seansa kadar geciktirildi.</string>
     <string name="tag_editor_add_feedback">\"%1$s\" eklemek için buna dokunun: \"%2$s\"</string>
     <string name="tag_editor_add_feedback_existing">Varolan bir etiketi seçtiniz: \"%1$s\"</string>
-    <string name="lookup_hint">Metni kopyaladıktan sonra, arama simgesini göstermek için bilgi kartının üzerine dokunun</string>
     <!-- Time spans -->
     <plurals name="time_span_seconds">
         <item quantity="one">%s saniye</item>
@@ -267,6 +269,9 @@
     <string name="choose_an_image">Bir resim seç</string>
     <!-- Card Template Browser Appearance -->
     <string name="restore_default">Varsayılana Dön</string>
+    <string name="cloze_sample_text">Bu bir {{%1$s::sample}} gizleme işlemidir.</string>
+    <string name="basic_answer_sample_text_user" comment="has a typo, so that user sees a highlighted difference in basic answer model     ">exomple</string>
+    <string name="basic_answer_sample_text">Bir örnek:</string>
     <string name="reviewer_tts_cloze_spoken_replacement">Boş</string>
     <!-- in options menu & Navigation Drawer -->
     <string name="ankidroid_turn_on_fullscreen_nav_drawer">Navigasyon Çekmecesini Gösteri JavaScript\'le kullanmak için lütfen tam ekranı açın.</string>
@@ -328,6 +333,7 @@
     <string name="format_font_size">Yazı Tipi Boyutunu Değiştir</string>
     <string name="insert_mathjax">MathJax denklemi ekle</string>
     <string name="insert_cloze">Boşluk doldurma ekle</string>
+    <string name="note_editor_toolbar_icon">Düğme yazısı</string>
     <string name="before_text">Seçimden önce HTML</string>
     <string name="after_text">Seçimden sonra HTML</string>
     <string name="add_toolbar_item">Araç çubuğu öğesi yarat</string>
@@ -339,7 +345,7 @@
     <string name="create_shortcut_failed" comment="home screen == launcher">Ana ekranın, kısayol ekleyebilmesi için AnkiDroid\'e izin vermiyor</string>
     <string name="create_shortcut_error">Kısayolu eklerken hata: %s</string>
     <string name="note_editor_capitalize" comment="This is for a switch with a checkbox - on: enabled">Cümlelerin baş harflerini büyült</string>
-    <string name="menu_scroll_toolbar" comment="Checkbox stating whether note editor toolbar is scrollable or stacked. Checked: Scroll">Scroll toolbar</string>
+    <string name="menu_scroll_toolbar" comment="Checkbox stating whether note editor toolbar is scrollable or stacked. Checked: Scroll">Araç çubuğunu kaydır</string>
     <!-- Symbols used as Button text in IncrementNumberRangePreference -->
     <string name="plus_sign" comment="Label for increment button in IncrementerNumberRangePreference">+</string>
     <string name="minus_sign" comment="Label for decrement button in IncrementerNumberRangePreference">-</string>
@@ -363,15 +369,29 @@
     <string name="search_using_deck_name">Deste ismini kullanarak ara</string>
     <string name="home">Ana sayfa</string>
     <!-- Importing -->
-    <string name="import_mapped_to_field">Mapped to %s</string>
-    <string name="import_mapped_to_tags">Mapped to Tags</string>
-    <string name="import_mapped_to_nothing">Ignored</string>
+    <string name="import_mapped_to_field">%s ile eşlendi</string>
+    <string name="import_mapped_to_tags">etiketler ile eşlendi</string>
+    <string name="import_mapped_to_nothing">Yok sayıldı</string>
     <!-- Reviewer actions -->
-    <string name="buried_card">Buried card</string>
-    <string name="buried_note">Buried note</string>
-    <string name="deleted_note">Deleted note</string>
-    <string name="suspended_card">Suspended card</string>
-    <string name="suspended_note">Suspended note</string>
+    <string name="buried_card">Gömülmüş kart</string>
+    <string name="buried_note">Gömülmüş not</string>
+    <string name="deleted_note">Silinmiş not</string>
+    <string name="suspended_card">Askıya alınmış kart</string>
+    <string name="suspended_note">Askıya alınmış not</string>
     <!--  Note Editor Toggle Sticky  -->
-    <string name="note_editor_toggle_sticky">Make field %s sticky</string>
+    <string name="note_editor_toggle_sticky">%s alanını yapışkan yap</string>
+    <!-- Scoped Storage Migration -->
+    <string name="scoped_storage_title">Depolama geçişi</string>
+    <string name="scoped_storage_initial_message">AnkiDroid, Android\'in yeni gizlilik kurallarını karşılamak için verilerini taşımalı
+\n\nAnkiDroid\'i taşıma işleminden önce kaldırırsanız verileriniz kaybolur
+\n\nLütfen taşıma işlemini mümkün olan en kısa sürede gerçekleştirin</string>
+    <string name="scoped_storage_terms_message">Taşıma arka planda gerçekleşecek. Taşıma sırasında senkronizasyon yapamayacaksınız\n\nTahmini süre: %s</string>
+    <string name="scoped_storage_term_1">Verilerimi yedekledim</string>
+    <string name="scoped_storage_term_1_ankiweb">Az önce AkiWeb ile senkronizasyon yaptım</string>
+    <string name="scoped_storage_term_2">Veriler taşınırken uygulamayı kaldırmayacağım</string>
+    <string name="scoped_storage_select_all_terms">Devam etmek için lütfen tüm öğeleri kabul edin</string>
+    <string name="scoped_storage_learn_more">Daha fazlasını öğren</string>
+    <string name="scoped_storage_postpone">Ertele</string>
+    <string name="scoped_storage_migrate">Taşı</string>
+    <string name="search_card_js_api_no_results">Search returned no results</string>
 </resources>

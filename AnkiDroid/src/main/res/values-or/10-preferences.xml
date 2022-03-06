@@ -55,7 +55,7 @@
     <string name="pref_cat_gestures" maxLength="41">ଅଙ୍ଗଭଙ୍ଗୀ</string>
     <string name="pref_cat_gestures_summ">ବଟନ୍ ବଦଳରେ ଟ୍ୟାପ୍ ଏବଂ ସ୍ୱାଇପ୍ ବ୍ୟବହାର କରନ୍ତୁ</string>
     <string name="pref_cat_actions" maxLength="41">କାର୍ଯ୍ୟକଳାପ</string>
-    <string name="pref_cat_controls" maxLength="41">ନିୟନ୍ତ୍ରଣଗୁଡ଼ିକ</string>
+    <string name="pref_cat_controls" maxLength="41">ନିୟନ୍ତ୍ରଣଗୁଡ଼ିକ</string>
     <string name="pref_cat_controls_summ">କୀବୋର୍ଡ୍ ଏବଂ ଅନ୍ୟାନ୍ୟ ଡିଭାଇସଗୁଡ଼ିକୁ ବିନ୍ୟାସ କରନ୍ତୁ</string>
     <string name="pref_cat_advanced" maxLength="41">ବିକଶିତ</string>
     <string name="pref_cat_advanced_summ">ଅନୁକୂଲନ ଏବଂ ପରୀକ୍ଷାମୂଳକ ବୈଶିଷ୍ଟ୍ୟଗୁଡ଼ିକ</string>
@@ -68,9 +68,8 @@
     <string name="whiteboard_stroke_width" maxLength="41">ଷ୍ଟ୍ରୋକ ଓସାର</string>
     <string name="use_input_tag" maxLength="41">ପତ୍ରରେ ଉତ୍ତର ଟାଇପ୍ କରନ୍ତୁ</string>
     <string name="use_input_tag_summ">ଉତ୍ତର ଟାଇପ୍ କରିବାକୁ ପତ୍ର ଭିତରେ ଏକ ପାଠ୍ୟ ଇନପୁଟ୍ ବାକ୍ସ ବ୍ୟବହାର କରନ୍ତୁ</string>
-    <string name="dictionary" maxLength="41">ଦୃଷ୍ଟିପାତ ଅଭିଧାନ</string>
     <string name="reset_languages" maxLength="41">ଭାଷା reset କରନ୍ତୁ</string>
-    <string name="reset_languages_summ">ସମସ୍ତ ଡେକ୍ ପାଇଁ ଭାଷା ସ୍ଵତ୍ଵପର୍ଣ (ପାଠ୍ୟ ରୁ କଥନ ଏବଂ ଅଭିଧାନ ପାଇଁ) ପୁନଃସେଟ୍ କରନ୍ତୁ</string>
+    <string name="reset_languages_summ">ସମସ୍ତ ତାସଖଣ୍ଡ ପାଇଁ ଭାଷା ସ୍ଵତ୍ଵପର୍ଣ (ପାଠ୍ୟ ରୁ କଥନ ଏବଂ ଅଭିଧାନ ପାଇଁ) ପୁନଃସେଟ୍ କରନ୍ତୁ</string>
     <string name="reset_languages_question">ସମସ୍ତ ଭାଷା ସ୍ୱତ୍ୱପୁର୍ଣ ପୁନଃସେଟ କରନ୍ତୁ ?</string>
     <string name="reset_confirmation">ସମସ୍ତ ସ୍ଥିତି ପୁନଃସେଟ୍ କରାହେଲା</string>
     <string name="card_zoom" maxLength="41">ପତ୍ର ଜୁମ୍</string>
@@ -78,7 +77,7 @@
     <string name="button_size" maxLength="41">ଉତ୍ତର ବଟନ ଆକାର</string>
     <string name="card_browser_font_size" maxLength="41">ପତ୍ର ବ୍ରାଉଜର୍ ଫଣ୍ଟ ସ୍କେଲିଂ</string>
     <string name="card_browser_hide_media" maxLength="41">ପତ୍ର ବ୍ରାଉଜରରେ ଫାଇଲନାମ ଗୁଡ଼ିକୁ ଦର୍ଶାନ୍ତୁ</string>
-    <string name="card_browser_hide_media_summary">ପତ୍ର ବ୍ରାଉଜରର ପ୍ରଶ୍ନ/ଉତ୍ତର କ୍ଷେତ୍ରରେ ମିଡ଼ିଆ ଫାଇଲ୍ ନାମ ଦର୍ଶାନ୍ତୁ</string>
+    <string name="card_browser_hide_media_summary">ପତ୍ର ବ୍ରାଉଜରର ପ୍ରଶ୍ନ/ଉତ୍ତର କ୍ଷେତ୍ରରେ ମିଡ଼ିଆ ଫାଇଲ୍ ନାମ ଦର୍ଶାନ୍ତୁ</string>
     <string name="col_path" maxLength="41">AnkiDroid directory</string>
     <string name="fullscreen_review" maxLength="41">ପୂର୍ଣ୍ଣସ୍କ୍ରିନ୍ ମୋଡ୍</string>
     <string name="full_screen_off">ବନ୍ଦ</string>
@@ -89,36 +88,33 @@
     <string-array name="answer_buttons_position_labels">
         <item>ଶୀର୍ଷ</item>
         <item>ତଳ</item>
+        <item>କିଛି ନୁହେଁ</item>
     </string-array>
     <string name="gestures" maxLength="41">ଅଙ୍ଗଭଙ୍ଗୀ ସକ୍ଷମ କରନ୍ତୁ</string>
     <string name="gestures_summ">ପତ୍ରଗୁଡ଼ିକର ଉତ୍ତର ଏବଂ ସମ୍ପାଦନ କରିବା ଭଳି କାର୍ଯ୍ୟରେ ଅଙ୍ଗଭଙ୍ଗୀ ନ୍ୟସ୍ତ କରନ୍ତୁ</string>
-    <string name="gestures_allow_links" maxLength="41">ଲିଙ୍କଗୁଡ଼ିକରେ ସ୍ପର୍ଶ ଅଙ୍ଗଭଙ୍ଗୀକୁ ଅଣଦେଖା କରନ୍ତୁ</string>
-    <string name="gestures_allow_links_summary">ଯଦି ଏକ ଲିଙ୍କ୍/ଇଙ୍ଗିତ ଦବାଯାଏ ତେବେ ସ୍ପର୍ଶ ଅଙ୍ଗଭଙ୍ଗୀ ପ୍ରକ୍ରିୟାକରଣ ହେବ ନାହିଁ।</string>
     <string name="gestures_corner_touch" maxLength="41">୯-ଅଙ୍କ ସ୍ପର୍ଶ</string>
     <string name="gestures_corner_touch_summary">ସ୍କ୍ରିନ୍ କୋଣରେ ସ୍ପର୍ଶ ଅଙ୍ଗଭଙ୍ଗୀକୁ ଅନୁମତି ଦିଅନ୍ତୁ</string>
     <string name="gestures_full_screen_nav_drawer" maxLength="41">ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନ୍ ନେଭିଗେସନ୍ ଡ୍ରୟର୍</string>
     <string name="gestures_fullscreen_nav_drawer_summary">ସ୍କ୍ରିନର ଯେକୌଣସି ସ୍ଥାନରୁ ଡାହାଣକୁ ସ୍ୱାଇପ୍ କରିବା ମାତ୍ରେ ନେଭିଗେସନ୍ ଡ୍ରୟର୍ ଖୋଲନ୍ତୁ</string>
-    <string name="gestures_swipe_up" maxLength="41">ଉପରକୁ ସ୍ୱାଇପ୍</string>
-    <string name="gestures_swipe_down" maxLength="41">ତଳକୁ ସ୍ୱାଇପ୍</string>
-    <string name="gestures_swipe_left" maxLength="41">ବାମକୁ ସ୍ୱାଇପ୍</string>
-    <string name="gestures_swipe_right" maxLength="41">ଡାହାଣକୁ ସ୍ୱାଇପ୍</string>
-    <string name="gestures_double_tap" maxLength="41">ଦୁଇଥର ସ୍ପର୍ଶ</string>
-    <string name="gestures_long_tap" maxLength="41">ଲମ୍ବା ଟ୍ୟାପ୍</string>
-    <string name="gestures_tap_top" maxLength="41">ଶୀର୍ଷକୁ ସ୍ପର୍ଶ</string>
-    <string name="gestures_tap_left" maxLength="41">ବାମକୁ ସ୍ପର୍ଶ</string>
-    <string name="gestures_tap_right" maxLength="41">ଡାହାଣକୁ ସ୍ପର୍ଶ</string>
-    <string name="gestures_tap_bottom" maxLength="41">ତଳକୁ ସ୍ପର୍ଶ</string>
-    <string name="gestures_corner_tap_top_left" maxLength="41">ଉପର ବାମକୁ ସ୍ପର୍ଶ</string>
-    <string name="gestures_corner_tap_top_center">ଉପର ମଝିକୁ ସ୍ପର୍ଶ</string>
-    <string name="gestures_corner_tap_top_right" maxLength="41">ଉପର ଡାହାଣକୁ ସ୍ପର୍ଶ</string>
-    <string name="gestures_corner_tap_middle_left">ମଝି ବାମକୁ ସ୍ପର୍ଶ</string>
-    <string name="gestures_corner_tap_middle_center" maxLength="41">ମଝି କେନ୍ଦ୍ରକୁ ସ୍ପର୍ଶ</string>
-    <string name="gestures_corner_tap_middle_right">ମଝି ଡାହାଣକୁ ସ୍ପର୍ଶ</string>
-    <string name="gestures_corner_tap_bottom_left" maxLength="41">ତଳ ବାମକୁ ସ୍ପର୍ଶ</string>
-    <string name="gestures_corner_tap_bottom_center">ତଳ ମଝିକୁ ସ୍ପର୍ଶ</string>
-    <string name="gestures_corner_tap_bottom_right" maxLength="41">ତଳ ଡାହାଣକୁ ସ୍ପର୍ଶ</string>
-    <string name="gestures_volume_up" maxLength="41">ଧ୍ୱନିତିବ୍ରତା ବୃଦ୍ଧି</string>
-    <string name="gestures_volume_down" maxLength="41">ଧ୍ୱନିତିବ୍ରତା ହ୍ରାସ</string>
+    <string name="gestures_swipe_up" maxLength="41">ଉପରକୁ ସ୍ଵାଇପ୍ କଲେ</string>
+    <string name="gestures_swipe_down" maxLength="41">ତଳକୁ ସ୍ଵାଇପ୍ କଲେ</string>
+    <string name="gestures_swipe_left" maxLength="41">ବାମକୁ ସ୍ଵାଇପ୍ କଲେ</string>
+    <string name="gestures_swipe_right" maxLength="41">ଡାହାଣକୁ ସ୍ଵାଇପ୍ କଲେ</string>
+    <string name="gestures_double_tap" maxLength="41">ଦୁଇଥର ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_long_tap" maxLength="41">ଦୀର୍ଘ ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_tap_top" maxLength="41">ଶୀର୍ଷକୁ ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_tap_left" maxLength="41">ବାମକୁ ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_tap_right" maxLength="41">ଡାହାଣକୁ ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_tap_bottom" maxLength="41">ତଳକୁ ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_corner_tap_top_left" maxLength="41">ଉପର ବାମକୁ ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_corner_tap_top_center">ଉପର ମଝିକୁ ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_corner_tap_top_right" maxLength="41">ଉପର ଡାହାଣକୁ ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_corner_tap_middle_left">ମଝି ବାମକୁ ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_corner_tap_middle_center" maxLength="41">ମଝି କେନ୍ଦ୍ରକୁ ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_corner_tap_middle_right">ମଝି ଡାହାଣକୁ ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_corner_tap_bottom_left" maxLength="41">ତଳ ବାମକୁ ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_corner_tap_bottom_center">ତଳ ମଝିକୁ ସ୍ପର୍ଶ କଲେ</string>
+    <string name="gestures_corner_tap_bottom_right" maxLength="41">ତଳ ଡାହାଣକୁ ସ୍ପର୍ଶ କଲେ</string>
     <string name="more_scrolling_buttons" maxLength="41">eReader</string>
     <string name="more_scrolling_buttons_summ">ସ୍କ୍ରୋଲ୍ ପାଇଁ kanji/katakana, emoji/kao-moji ବଟନ୍ ଗୁଡ଼ିକୁ ମଧ୍ୟ ବ୍ୟବହାର କରନ୍ତୁ</string>
     <string name="card_browser_enable_external_context_menu">‘%s’ ମେନୁ</string>
@@ -128,8 +124,8 @@
     <string name="swipe_sensitivity" maxLength="41">ସ୍ୱାଇପ୍ ସମ୍ବେଦନଶୀଳତା</string>
     <string name="tts" maxLength="41">ପାଠ୍ୟ ରୁ କଥନ</string>
     <string name="tts_summ">ଯଦି କୌଣସି ଧ୍ୱନି ଫାଇଲ୍ ଅନ୍ତର୍ଭୂକ୍ତ ହୁଏ ନାହିଁ ତେବେ ଏହା ପ୍ରଶ୍ନ ଏବଂ ଉତ୍ତର ପଢ଼େ</string>
-    <string name="sync_fetch_missing_media" maxLength="41">ସିଙ୍କରେ ମିଡ଼ିଆ ଆଣ</string>
-    <string name="sync_fetch_missing_media_summ">ସିଙ୍କ୍ କରିବା ସମୟରେ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ନିଖୋଜ ମିଡ଼ିଆ ଆଣ</string>
+    <string name="sync_fetch_missing_media" maxLength="41">ସିଙ୍କରେ ମିଡ଼ିଆ ଆଣିବା</string>
+    <string name="sync_fetch_missing_media_summ">ସିଙ୍କ୍ କରିବା ସମୟରେ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ନିଖୋଜ ମିଡ଼ିଆ ଆଣ</string>
     <string name="sync_account" maxLength="41">AnkiWeb ଖାତା</string>
     <string name="sync_account_summ_logged_out">ଲଗ୍ ଇନ୍‌ ହୋଇନାହି</string>
     <string name="sync_account_summ_logged_in" comment="The summary for the account setting when logged in. Parameter is the username (email)">%s</string>
@@ -143,7 +139,7 @@
     <string name="override_font" maxLength="41">ଡିଫଲ୍ଟ ଫଣ୍ଟ ପ୍ରୟୋଗତା</string>
     <string name="language" maxLength="41">ଭାଷା</string>
     <string name="language_system">ସିଷ୍ଟମ୍ ଭାଷା</string>
-    <string name="notification_pref" maxLength="41">ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ</string>
+    <string name="notification_pref" maxLength="41">ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ</string>
     <string name="notification_pref_title" maxLength="41">କେବେ ସୂଚିତ କରାଯିବ</string>
     <string name="never_notify">କଦାପି ସୂଚିତ କରନାହିଁ</string>
     <string name="notify_when_pending">ବିଚାରାଧୀନ ବାର୍ତ୍ତା ଉପଲବ୍ଧ ଥିଲେ</string>
@@ -152,7 +148,7 @@
     <string name="notification_minimum_cards_due_blink" maxLength="41">LED ସୂଚକ</string>
     <string name="timeout_answer_text" maxLength="41">ସ୍ୱୟଂଚାଳିତ ଉତ୍ତର ପ୍ରଦର୍ଶନ</string>
     <string name="timeout_answer" maxLength="41">ସମୟ-ସମାପ୍ତ ଉତ୍ତର</string>
-    <string name="timeout_answer_summ">ଉପଭୋକ୍ତା ଇନପୁଟ୍ ବିନା ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଉତ୍ତର ଦେଖାନ୍ତୁ। ବିଳମ୍ବ, ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଖୋଲାଯାଇଥିବା ଅଡ଼ିଓ ଫାଇଲଗୁଡ଼ିକ ପାଇଁ ସମୟ ଅନ୍ତର୍ଭୁକ୍ତ କରେ</string>
+    <string name="timeout_answer_summ">ଉପଭୋକ୍ତା ଇନପୁଟ୍ ବିନା ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଉତ୍ତର ଦେଖାନ୍ତୁ। ବିଳମ୍ବ, ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଖୋଲାଯାଇଥିବା ଅଡ଼ିଓ ଫାଇଲଗୁଡ଼ିକ ପାଇଁ ସମୟ ଅନ୍ତର୍ଭୁକ୍ତ କରେ</string>
     <string name="timeout_answer_seconds" maxLength="41">ଉତ୍ତର ଦେଖାଇବା ସମୟ</string>
     <string name="timeout_answer_seconds_summ" comment="The time to wait (in seconds) in the reviewer before automatically showing the next question or answer">XXX s</string>
     <string name="timeout_question_seconds" maxLength="41">ପରବର୍ତ୍ତୀ ପ୍ରଶ୍ନ ଦେଖାଇବା ସମୟ</string>
@@ -165,27 +161,27 @@
     <!--See: multimedia_editor_popup_cloze. We can\'t use format strings as this is auto-generated-->
     <string name="disable_extended_text_ui_summ">ଲ୍ୟାଣ୍ଡସ୍କେପ୍ ମୋଡ୍ ରେ \'କ୍ଲୋଜ ବିଲୋପ\' ପ୍ରସଙ୍ଗ ମେନୁକୁ ଅନୁମତି ଦିଏ</string>
     <string name="vertical_centering" maxLength="41">କେନ୍ଦ୍ର ଶ୍ରେଣୀବଦ୍ଧତା</string>
-    <string name="vertical_centering_summ">ପତ୍ରଗୁଡ଼ିକର ବିଷୟବସ୍ତୁକୁ ଭୂଲମ୍ବ ଭାବରେ କେନ୍ଦ୍ରିତ କରନ୍ତୁ</string>
+    <string name="vertical_centering_summ">ପତ୍ରଗୁଡ଼ିକର ବିଷୟବସ୍ତୁକୁ ଭୂଲମ୍ବ ଭାବରେ କେନ୍ଦ୍ରିତ କରନ୍ତୁ</string>
     <string name="pref_backup_max" maxLength="41">ବ୍ୟାକଅପ୍ ର ସର୍ବାଧିକ ସଂଖ୍ୟା</string>
     <string name="pref_double_tap_time_interval" maxLength="41">ଡବଲ୍ ଟ୍ୟାପ୍ ସମୟ ଅନ୍ତରାଳ (ମିଲିସେକେଣ୍ଡ)</string>
     <string name="pref_double_tap_time_interval_summary">ଯଦି ଏହି ସମୟ ଅତିବାହିତ ହୋଇନାହିଁ ତେବେ ଉତ୍ତର ବଟନର ଦ୍ୱିତୀୟ ଟ୍ୟାପ୍ ଅଣଦେଖା କରାଯିବ। ଏହା ଆକସ୍ମିକ ଡବଲ୍ ଟ୍ୟାପ୍ ପ୍ରତିରୋଧ କରେ</string>
     <string name="show_estimates" maxLength="41">ବଟନ୍ ସମୟ ଦେଖାନ୍ତୁ</string>
     <string name="show_estimates_summ">ଉତ୍ତର ବଟନ୍ ଗୁଡିକରେ ପରବର୍ତ୍ତୀ ସମୀକ୍ଷା ସମୟ ଦେଖାନ୍ତୁ</string>
     <string name="show_large_answer_buttons" maxLength="41">ବଡ଼ ଉତ୍ତର ବଟନ୍ ଦେଖାନ୍ତୁ</string>
-    <string name="show_large_answer_buttons_summ">୨ଟି ଧାଡ଼ିରେ ଉତ୍ତର ବଟନ୍ ଦେଖାନ୍ତୁ</string>
+    <string name="show_large_answer_buttons_summ">୨ଟି ଧାଡ଼ିରେ ଉତ୍ତର ବଟନ୍ ଦେଖାନ୍ତୁ</string>
     <string name="show_top_bar" maxLength="41">ଶୀର୍ଷ ବାର୍ ଦେଖାନ୍ତୁ</string>
     <string name="show_top_bar_summ">ଶୀର୍ଷ ବାର୍ ରେ ପତ୍ର ଗଣନା, ପତାକା ଏବଂ ଚିହ୍ନ ଦେଖାନ୍ତୁ</string>
     <string name="show_progress" maxLength="41">ଅବଶିଷ୍ଟ ଦେଖାନ୍ତୁ</string>
     <string name="show_progress_summ">ବଳକା ପତ୍ରସଂଖ୍ୟା ଦେଖାନ୍ତୁ</string>
     <string name="show_eta" maxLength="41">ETA ଦେଖାନ୍ତୁ</string>
     <string name="show_eta_summ">ବଳକା ସମୟ ଦେଖାନ୍ତୁ</string>
-    <string name="use_current" maxLength="41">ନୂଆ ପତ୍ରଗୁଡ଼ିକ ପାଇଁ ତାସଖଣ୍ଡ</string>
-    <string name="new_spread" maxLength="41">ନୂଆ ପତ୍ରର ଅବସ୍ଥାନ</string>
+    <string name="use_current" maxLength="41">ନୂଆ ପତ୍ରଗୁଡ଼ିକ ପାଇଁ ତାସଖଣ୍ଡ</string>
+    <string name="new_spread" maxLength="41">ନୂଆ ପତ୍ରର ପୋଜିସନ୍</string>
     <string name="learn_cutoff" maxLength="41">ଆଗୁଆ ଶିଖିବା ସମୟସୀମା</string>
     <string name="time_limit" maxLength="41">ଟାଇମ୍ ବକ୍ସ ସମୟ ସୀମା</string>
     <string name="time_limit_summ">XXX ମିନିଟ୍</string>
     <string name="new_timezone" maxLength="41">ନୂତନ ସମୟମଣ୍ଡଳ ପରିଚାଳନା</string>
-    <string name="day_offset_with_description" maxLength="41">ପରବର୍ତ୍ତୀ ଦିନର ଆରମ୍ଭ (0 ଅର୍ଥ ମଧ୍ୟରାତ୍ରି, 23 ହେଉଛି 11 PM)</string>
+    <string name="day_offset_with_description" maxLength="41">ପରବର୍ତ୍ତୀ ଦିନର ଆରମ୍ଭ</string>
     <string name="day_offset_summ">ମଧ୍ୟରାତ୍ରିରୁ XXX ଘଣ୍ଟା ପରେ</string>
     <string name="xlabel_dayoffset_seekbar" maxLength="41">ମଧ୍ୟରାତ୍ରି</string>
     <string name="ylabel_dayoffset_seekbar" maxLength="41">11PM</string>
@@ -198,25 +194,25 @@
     <string name="convert_fen_text" maxLength="41">ଚେସ୍ ଅଙ୍କନ ସମର୍ଥନ </string>
     <string name="convert_fen_text_summ">Forsyth–Edwards ଅଙ୍କନରୁ ଚେସବୋର୍ଡ ଅଙ୍କନ କର। ଅଙ୍କନ ନିଶ୍ଚିତ ଭାବରେ [fen][/fen] ଟ୍ୟାଗରେ ଆବଦ୍ଧ ହେବା ଆବଶ୍ୟକ।</string>
     <string name="enable_api_title" maxLength="41">AnkiDroid API ସକ୍ଷମ କରନ୍ତୁ</string>
-    <string name="enable_api_summary">ଅନ୍ୟ ଆପ୍ସକୁ AnkiDroid ସହିତ ସଂଯୋଗ କରିବାକୁ ଦିଅ ଏବଂ ତୁମର ହସ୍ତକ୍ଷେପ ବିନା ତଥ୍ୟ ପଢ଼ିବା/ଲେଖିବାକୁ ଦିଅ</string>
+    <string name="enable_api_summary">ଅନ୍ୟ ଆପସ୍ କୁ AnkiDroid ସହିତ ସଂଯୋଗ କରି ଆପଣଙ୍କ ହସ୍ତକ୍ଷେପ ବିନା ତଥ୍ୟ ପଢ଼ିବା/ଲେଖିବାକୁ ଦିଅନ୍ତୁ</string>
     <string name="custom_buttons" maxLength="41">ଆପ୍ ବାର୍ ବଟନ୍</string>
-    <string name="custom_buttons_summary">ଆପ୍ ବାର୍ ରେ କେଉଁ କ୍ରିୟା ଦେଖାଯାଏ ଇଚ୍ଛାରୂପଣ କରନ୍ତୁ</string>
+    <string name="custom_buttons_summary">ଆପ୍ ବାର୍ ରେ କେଉଁ କ୍ରିୟା ଦେଖାଯାଏ କଷ୍ଟୋମାଇଜ୍ କରନ୍ତୁ</string>
     <string name="custom_buttons_setting_always_show">ସର୍ବଦା ଦେଖାନ୍ତୁ</string>
     <string name="custom_buttons_setting_if_room">ଜାଗା ଥିଲେ ଦେଖାନ୍ତୁ</string>
     <string name="custom_buttons_setting_menu_only">କେବଳ ମେନୁ</string>
     <string name="reset_custom_buttons" maxLength="41">ଡିଫଲ୍ଟକୁ ପୁନଃସେଟ୍ କରନ୍ତୁ</string>
     <string name="thirdparty_apps_title" maxLength="41">ତୃତୀୟ-ପକ୍ଷ API ଆପ୍ ସମୂହ</string>
-    <string name="thirdparty_apps_summary">ଆପ୍ଲିକେସନ୍ ଗୁଡ଼ିକର ଏକ ତାଲିକା ଦେଖନ୍ତୁ ଯାହାକି AnkiDroid API ଯେପରିକି ଅଭିଧାନ,ଉପଯୋଗିତା ବ୍ୟବହାର କରେ</string>
+    <string name="thirdparty_apps_summary">ଆପ୍ଲିକେସନଗୁଡ଼ିକର ଏକ ତାଲିକା ଦେଖନ୍ତୁ ଯାହା AnkiDroid API ଯେପରିକି ଅଭିଧାନ, ଉପଯୋଗୀତା ର ବ୍ୟବହାର କରନ୍ତି।</string>
     <string name="html_javascript_debugging" maxLength="41">HTML / Javascript ତ୍ରୁଟି ନିବାରଣ</string>
-    <string name="html_javascript_debugging_summ">ସୁଦୂର ୱେବଭ୍ୟୁ ସଂଯୋଗଗୁଡ଼ିକୁ ସକ୍ଷମ କରନ୍ତୁ, ଏବଂ AnkiDroid ଡିରେକ୍ଟୋରୀରେ ପତ୍ର HTML ସଂରକ୍ଷଣ କରନ୍ତୁ</string>
+    <string name="html_javascript_debugging_summ">ସୁଦୂର WebView ସଂଯୋଗଗୁଡ଼ିକ ସକ୍ଷମ କରନ୍ତୁ, ଏବଂ AnkiDroid ଡିରେକ୍ଟୋରୀରେ ପତ୍ର HTML ସଂରକ୍ଷଣ କରନ୍ତୁ</string>
     <!-- Paste clipboard image as png option -->
-    <string name="paste_as_png" maxLength="41">କ୍ଲିପବୋର୍ଡ ପ୍ରତିଛବିଗୁଡ଼ିକୁ PNG ଭାବରେ ଲେପନ</string>
-    <string name="paste_as_png_summary">ଡିଫଲ୍ଟ ଭାବରେ Anki ଡିସ୍କ ସ୍ପେସ୍ ସଞ୍ଚୟ କରିବାକୁ JPG ଫାଇଲ୍ ଭାବରେ କ୍ଲିପବୋର୍ଡରେ ପ୍ରତିଛବିଗୁଡ଼ିକୁ ପେଷ୍ଟ କରେ। ଏହା ପରିବର୍ତ୍ତେ PNG ପ୍ରତିଛବି ଭାବରେ ପେଷ୍ଟ କରିବାକୁ ଆପଣ ଏହି ବିକଳ୍ପକୁ ବ୍ୟବହାର କରିପାରିବେ।</string>
+    <string name="paste_as_png" maxLength="41">କ୍ଲିପବୋର୍ଡ ପ୍ରତିଛବିଗୁଡ଼ିକୁ PNG ଭାବରେ ଲେପନ</string>
+    <string name="paste_as_png_summary">ଡିଫଲ୍ଟ ଭାବରେ Anki ଡିସ୍କ ସ୍ପେସ୍ ସଞ୍ଚୟ କରିବାକୁ JPG ଫାଇଲ୍ ଭାବରେ କ୍ଲିପବୋର୍ଡରେ ପ୍ରତିଛବିଗୁଡ଼ିକୁ ପେଷ୍ଟ କରେ। ଏହା ପରିବର୍ତ୍ତେ PNG ପ୍ରତିଛବି ଭାବରେ ପେଷ୍ଟ କରିବାକୁ ଆପଣ ଏହି ବିକଳ୍ପକୁ ବ୍ୟବହାର କରିପାରିବେ।</string>
     <string name="exit_via_double_tap_back" maxLength="41">ଫେରିବା/ପ୍ରସ୍ଥାନ କରିବାକୁ ଦୁଇଥର ବ୍ୟାକ୍ ଦବାଅ</string>
-    <string name="exit_via_double_tap_back_summ">ହଠାତ୍ ସମୀକ୍ଷକ କିମ୍ୱା ଆପ୍ଲିକେସନ୍ ଛାଡ଼ିବା ଏଡ଼ାଇବାକୁ</string>
+    <string name="exit_via_double_tap_back_summ">ହଠାତ୍ ସମୀକ୍ଷକ କିମ୍ୱା ଆପ୍ଲିକେସନ୍ ଛାଡ଼ିବା ଏଡ଼ାଇବାକୁ</string>
     <!-- Allow all files in media imports -->
-    <string name="media_import_allow_all_files" maxLength="41">ମିଡ଼ିଆ ଆମଦାନୀରେ ସବୁ ଫାଇଲକୁ ଅନୁମତି ଦିଅନ୍ତୁ</string>
-    <string name="media_import_allow_all_files_summ">ଯଦି ଆଣ୍ଡ୍ରଏଡ୍ ଏକ ମିଡ଼ିଆ ଫାଇଲ୍ ଚିହ୍ନି ପାରେ ନାହିଁ</string>
+    <string name="media_import_allow_all_files" maxLength="41">ମିଡ଼ିଆ ଆମଦାନୀରେ ସବୁ ଫାଇଲକୁ ଅନୁମତି ଦିଅନ୍ତୁ</string>
+    <string name="media_import_allow_all_files_summ">ଯଦି ଆଣ୍ଡ୍ରଏଡ୍ ଏକ ମିଡ଼ିଆ ଫାଇଲ୍ ଚିହ୍ନି ପାରେ ନାହିଁ</string>
     <!-- Advanced statistics settings -->
     <string name="advanced_statistics_title" maxLength="41">ଉନ୍ନତ ପରିସଂଖ୍ୟାନ</string>
     <string name="enable_advanced_statistics_title" maxLength="41">ଉନ୍ନତ ପରିସଂଖ୍ୟାନ ସକ୍ଷମ କରନ୍ତୁ</string>
@@ -230,8 +226,8 @@
     <string name="custom_sync_server_enable_summary">ଯଦି ଆପଣ ମାଲିକାନା AnkiWeb ସେବା ବ୍ୟବହାର କରିବାକୁ ଚାହୁଁନାହାଁନ୍ତି ତେବେ ଆପଣ ଏଠାରେ ଏକ ବିକଳ୍ପ ସର୍ଭର ନିର୍ଦ୍ଦିଷ୍ଟ କରିପାରିବେ</string>
     <string name="custom_sync_server_base_url_title" maxLength="41">ସିଙ୍କ୍ url</string>
     <string name="custom_sync_server_base_url_invalid">ସିଙ୍କ୍ url ଅବୈଧ ଅଟେ</string>
-    <string name="custom_sync_server_media_url_title" maxLength="41">ମିଡ଼ିଆ ସିଙ୍କ୍ url</string>
-    <string name="custom_sync_server_media_url_invalid">ମିଡ଼ିଆ ସିଙ୍କ୍ url ଅବୈଧ ଅଟେ</string>
+    <string name="custom_sync_server_media_url_title" maxLength="41">ମିଡ଼ିଆ ସିଙ୍କ୍ url</string>
+    <string name="custom_sync_server_media_url_invalid">ମିଡ଼ିଆ ସିଙ୍କ୍ url ଅବୈଧ ଅଟେ</string>
     <!-- Key Bindings -->
     <string name="controls_main_category" maxLength="41">କମାଣ୍ଡ୍ ମ୍ୟାପିଂ</string>
     <!-- studyoptions -->
@@ -244,11 +240,11 @@
         <item quantity="one">%1$s\n%2$dଟିଏ ତାସଖଣ୍ଡ ଏହି ଗୋଷ୍ଠୀକୁ ବ୍ୟବହାର କରେ</item>
         <item quantity="other">%1$s\n%2$dଟି  ତାସଖଣ୍ଡ ଏହି ଗୋଷ୍ଠୀକୁ ବ୍ୟବହାର କରନ୍ତି</item>
     </plurals>
-    <string name="deck_conf_new_cards" maxLength="41">ନୂଆ ପତ୍ରଗୁଡ଼ିକ </string>
+    <string name="deck_conf_new_cards" maxLength="41">ନୂଆ ପତ୍ର</string>
     <string name="deck_conf_rev_cards" maxLength="41" comment="Name of the deck options submenu for configuring reviews of due cards.">ସମୀକ୍ଷା</string>
-    <string name="deck_conf_lps_cards" maxLength="41" comment="Label of the submenu stating how lapses cards are treated.">ତ୍ରୁଟିସଂଖ୍ୟା</string>
+    <string name="deck_conf_lps_cards" maxLength="41" comment="Label of the submenu stating how lapses cards are treated.">ଲାପ୍ସ ସଂଖ୍ୟା</string>
     <string name="deck_conf_general" maxLength="41">ସାଧାରଣ </string>
-    <string name="deck_conf_reminders" maxLength="41">ସ୍ମାରକଗୁଡ଼ିକ</string>
+    <string name="deck_conf_reminders" maxLength="41">ସ୍ମାରକ</string>
     <string name="deck_conf_steps" maxLength="41">ପାହୁଣ୍ଡ (ମିନିଟ୍ ରେ)</string>
     <string name="deck_conf_order" maxLength="41">କ୍ରମ</string>
     <string name="deck_conf_new_cards_day" maxLength="41">ନୂତନ ପତ୍ର/ଦିନ</string>
@@ -257,10 +253,10 @@
     <string name="deck_conf_easy_ivl" maxLength="41">ସହଜ ଅନ୍ତରାଳ</string>
     <string name="deck_conf_start_ease" maxLength="41">ପ୍ରାରମ୍ଭିକ ସହଜତା</string>
     <string name="deck_conf_max_rev" maxLength="41">ସର୍ବାଧିକ ସମୀକ୍ଷା/ଦିନ</string>
-    <string name="deck_conf_new_bury" maxLength="41">ସମ୍ପୃକ୍ତ ନୂତନ ପତ୍ରଗୁଡ଼ିକୁ ସ୍ଥଗିତ କରନ୍ତୁ</string>
-    <string name="deck_conf_new_bury_summ">ସମ୍ପୃକ୍ତ ନୂତନ ପତ୍ରଗୁଡ଼ିକୁ ତା\' ବାସିଦିନ ପର୍ଯ୍ୟନ୍ତ ସ୍ଥଗିତ କରି ଦିଆଯାଏ</string>
-    <string name="deck_conf_rev_bury" maxLength="41">ସମ୍ପୃକ୍ତ ସମୀକ୍ଷାଗୁଡ଼ିକୁ ସ୍ଥଗିତ କରନ୍ତୁ</string>
-    <string name="deck_conf_rev_bury_summ">ସମ୍ପୃକ୍ତ ସମୀକ୍ଷାଗୁଡ଼ିକୁ ତା\' ବାସିଦିନ ପର୍ଯ୍ୟନ୍ତ ସ୍ଥଗିତ କରି ଦିଆଯାଏ</string>
+    <string name="deck_conf_new_bury" maxLength="41">ସମ୍ପୃକ୍ତ ନୂତନ ପତ୍ରଗୁଡ଼ିକୁ ସ୍ଥଗିତ କରନ୍ତୁ</string>
+    <string name="deck_conf_new_bury_summ">ସମ୍ପୃକ୍ତ ନୂତନ ପତ୍ରଗୁଡ଼ିକୁ ତା\' ବାସିଦିନ ପର୍ଯ୍ୟନ୍ତ ସ୍ଥଗିତ କରି ଦିଆଯାଏ</string>
+    <string name="deck_conf_rev_bury" maxLength="41">ସମ୍ପୃକ୍ତ ସମୀକ୍ଷାଗୁଡ଼ିକୁ ସ୍ଥଗିତ କରନ୍ତୁ</string>
+    <string name="deck_conf_rev_bury_summ">ସମ୍ପୃକ୍ତ ସମୀକ୍ଷାଗୁଡ଼ିକୁ ତା\' ବାସିଦିନ ପର୍ଯ୍ୟନ୍ତ ସ୍ଥଗିତ କରି ଦିଆଯାଏ</string>
     <string name="deck_conf_use_general_timeout_settings" maxLength="41">ସାଧାରଣ ସେଟିଂସ୍ ବ୍ୟବହାର କରନ୍ତୁ</string>
     <string name="deck_conf_use_general_timeout_settings_summ">ଏହି ଗୋଷ୍ଠୀର ସେଟିଂସ୍ ବ୍ୟବହାର କରିବା ପରିବର୍ତ୍ତେ ସାଧାରଣ \'ସ୍ୱୟଂଚାଳିତ ଉତ୍ତର ପ୍ରଦର୍ଶନ\' ସେଟିଂସ୍ ବ୍ୟବହାର କରନ୍ତୁ।</string>
     <string name="deck_conf_easy_bonus" maxLength="41">ସହଜ ଅଧିଲାଭ</string>
@@ -270,21 +266,21 @@
     <string name="deck_conf_new_lps_ivl" maxLength="41">ନୂତନ ଅନ୍ତରାଳ</string>
     <string name="deck_conf_min_ivl" maxLength="41">ସର୍ବନିମ୍ନ ଅନ୍ତରାଳ</string>
     <string name="deck_conf_leech_thres" maxLength="41">ଜୋକ (leech) ଦୁଆରସୀମା</string>
-    <string name="deck_conf_fails">XXX (ଟି) ତ୍ରୁଟି</string>
+    <string name="deck_conf_fails">XXX (ଟି) ଲାପ୍ସ</string>
     <string name="deck_conf_leech_action" maxLength="41">ଜୋକ (leech) କାର୍ଯ୍ୟ</string>
     <string name="deck_conf_max_time" maxLength="41">ସର୍ବାଧିକ ଉତ୍ତର ସମୟ</string>
     <string name="deck_conf_seconds">XXX ସେକେଣ୍ଡ</string>
     <string name="deck_conf_timer" maxLength="41">ଉତ୍ତର ଟାଇମର୍ ଦେଖାନ୍ତୁ</string>
-    <string name="deck_conf_autoplay" maxLength="41">ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଅଡ଼ିଓ ଚଲାନ୍ତୁ</string>
+    <string name="deck_conf_autoplay" maxLength="41">ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଅଡ଼ିଓ ଚଲାନ୍ତୁ</string>
     <string name="deck_conf_replayq" maxLength="41">ପ୍ରଶ୍ନର ପୁନରାବୃତ୍ତି କରନ୍ତୁ</string>
-    <string name="deck_conf_replayq_summ">ଉତ୍ତର ଦେଖାଯିବା ବେଳେ, ଉଭୟ ପ୍ରଶ୍ନ ଏବଂ ଉତ୍ତର ଅଡ଼ିଓ ପୁନଃଚାଳନ କରନ୍ତୁ</string>
+    <string name="deck_conf_replayq_summ">ଉତ୍ତର ଦେଖାଯିବା ବେଳେ, ଉଭୟ ପ୍ରଶ୍ନ ଏବଂ ଉତ୍ତର ଅଡ଼ିଓ ପୁନଃଚାଳନ କରନ୍ତୁ</string>
     <string name="deck_conf_manage" maxLength="41">ଗୋଷ୍ଠୀ ପରିଚାଳନା</string>
-    <string name="deck_conf_manage_summ">ବିକଳ୍ପ ଗୋଷ୍ଠୀ ଯୋଡନ୍ତୁ ଏବଂ ପରିବର୍ତ୍ତନ କରନ୍ତୁ</string>
+    <string name="deck_conf_manage_summ">ବିକଳ୍ପ ଗୋଷ୍ଠୀ ଯୋଡ଼ିବା ଏବଂ ପରିବର୍ତ୍ତନ କରିବା</string>
     <string name="deck_conf_current_group" maxLength="41">ସାମ୍ପ୍ରତିକ ଗୋଷ୍ଠୀ</string>
     <string name="deck_conf_rename" maxLength="41" comment="Menu entry to rename a deck">ନାମ ବଦଳାନ୍ତୁ</string>
     <string name="deck_conf_reset" maxLength="41">ଡିଫଲ୍ଟଗୁଡିକ ପୁନରୁଦ୍ଧାର କରନ୍ତୁ</string>
-    <string name="deck_conf_reset_message">ଡିଫଲ୍ଟ ମୂଲ୍ୟଗୁଡିଗୁଡ଼ିଙ୍କକୁ ସାମ୍ପ୍ରତିକ ବିକଳ୍ପ ଗୋଷ୍ଠୀର ପୁନରୁଦ୍ଧାର କରନ୍ତୁ?</string>
-    <string name="deck_conf_add" maxLength="41" comment="Adding a new deck option group">ଯୋଡ଼ନ୍ତୁ</string>
+    <string name="deck_conf_reset_message">ସାମ୍ପ୍ରତିକ ବିକଳ୍ପ ଗୋଷ୍ଠୀ କୁ ଡିଫଲ୍ଟ ମୂଲ୍ୟଗୁଡ଼ିକୁ ପୁନରୁଦ୍ଧାର କରିବେ କି?</string>
+    <string name="deck_conf_add" maxLength="41" comment="Adding a new deck option group">ଯୋଡ଼ନ୍ତୁ</string>
     <string name="deck_conf_add_summ">ସାମ୍ପ୍ରତିକ ବିକଳ୍ପ ଗୋଷ୍ଠୀର ଏକ କପି ସୃଷ୍ଟି କରନ୍ତୁ</string>
     <string name="deck_conf_remove_message">ସାମ୍ପ୍ରତିକ ବିକଳ୍ପ ଗୋଷ୍ଠୀ ଅପସାରଣ କରିବେ କି?</string>
     <string name="deck_conf_set_subdecks" maxLength="41">ସମସ୍ତ ତାସଖଣ୍ଡ ପାଇଁ ସେଟ କରନ୍ତୁ </string>
@@ -297,14 +293,14 @@
     <string name="deck_conf_cram_filter" maxLength="41">ଶୋଧକ</string>
     <string name="deck_conf_cram_search" maxLength="41">ସନ୍ଧାନ</string>
     <string name="deck_conf_cram_limit" maxLength="41">ଏତିକିରେ ସୀମିତ କର</string>
-    <string name="deck_conf_cram_order" maxLength="41">ପାତ୍ରଙ୍କୁ ଏହି ଭାବରେ ଚୟନ କରାଯାଏ </string>
+    <string name="deck_conf_cram_order" maxLength="41">ଏହି ଆଧାରରେ ପତ୍ରଗୁଡ଼ିକ ଚୟନ କରାଯାଏ</string>
     <string name="deck_conf_cram_reschedule" maxLength="41" comment="Title of the box labelled by deck_conf_cram_reschedule_summ">ପୁନର୍ନିର୍ଦ୍ଧାରଣ</string>
     <string name="deck_conf_cram_reschedule_summ">ଏହି ତାସଖଣ୍ଡରେ ମୋର ଉତ୍ତର ଉପରେ ଆଧାର କରି ପତ୍ର ପୁନର୍ନିର୍ଦ୍ଧାରଣ କରନ୍ତୁ</string>
     <string name="deck_conf_cram_filter_2_check">ଦ୍ୱିତୀୟ ଶୋଧକ ସକ୍ଷମ କରନ୍ତୁ</string>
     <string name="deck_conf_cram_steps" maxLength="41">କଷ୍ଟମ୍ ପାହୁଣ୍ଡ (ମିନିଟ୍ ରେ)</string>
     <string name="deck_conf_cram_steps_summ" maxLength="41">କଷ୍ଟମ୍ ପାହୁଣ୍ଡ ନିର୍ଦ୍ଧାରଣ କରନ୍ତୁ</string>
     <string name="deck_conf_reminders_enabled" maxLength="41">ଏହି ତାସଖଣ୍ଡ-ଗୋଷ୍ଠୀର ତାସଖଣ୍ଡ ପାଇଁ ସ୍ମାରକ ବିଜ୍ଞପ୍ତିକୁ ସକ୍ଷମ କରନ୍ତୁ</string>
-    <string name="deck_conf_reminders_time" maxLength="41">ରେ ମନେ ପକାନ୍ତୁ</string>
+    <string name="deck_conf_reminders_time" maxLength="41">…ରେ ମନେ ପକାନ୍ତୁ</string>
     <!-- analytics options -->
     <string name="analytics_dialog_title">AnkiDroid କୁ ଉନ୍ନତ କରିବାରେ ସାହାଯ୍ୟ କରନ୍ତୁ!</string>
     <string name="analytics_title" maxLength="41">ବୈଶିଷ୍ଟ୍ୟ ବ୍ୟବହାର ଅଂଶୀଦାର କରନ୍ତୁ</string>
@@ -312,13 +308,13 @@
     <string name="note_editor_replace_newlines" maxLength="41">HTML ସହିତ ନୂତନ ଲାଇନ୍ ବଦଳାନ୍ତୁ</string>
     <string name="note_editor_replace_newlines_summ">ନୋଟ୍ ସମ୍ପାଦକରେ, କାର୍ଡ ସମ୍ପାଦନ କରିବା ସମୟରେ &lt;br&gt; କୁ ନୂତନ ଲାଇନରେ ରୂପାନ୍ତର କରନ୍ତୁ।</string>
     <string name="no_code_formatting" maxLength="41">ସରଳ ଟାଇପ୍ ହୋଇଥିବା ଉତ୍ତର ଫର୍ମାଟିଂ</string>
-    <string name="no_code_formatting_summ">ଟାଇପ୍ ହୋଇଥିବା ଉତ୍ତର ଫଳାଫଳଗୁଡ଼ିକରେ ଦେଖାଯାଉଥିବା ‘􏿾’ ଠିକ୍ କରେ</string>
+    <string name="no_code_formatting_summ">ଟାଇପ୍ ହୋଇଥିବା ଉତ୍ତର ଫଳାଫଳଗୁଡ଼ିକରେ ଦେଖାଯାଉଥିବା ‘􏿾’ ଠିକ୍ କରେ</string>
     <string name="type_in_answer_focus" maxLength="41">‘ଉତ୍ତର ଟାଇପ୍ କର’ ଉପରେ ଧ୍ୟାନ ଦିଅନ୍ତୁ</string>
     <string name="type_in_answer_focus_summ">ସମୀକ୍ଷକଙ୍କ ମଧ୍ୟରେ ‘ଉତ୍ତର ଟାଇପ୍ କର’ କ୍ଷେତ୍ରକୁ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଧ୍ୟାନ ଦିଅନ୍ତୁ</string>
     <!-- Open Changelog-->
     <string name="open_changelog">ପରିବର୍ତ୍ତନ ଲଗ୍ ଖୋଲନ୍ତୁ</string>
-    <string name="binding_add_gesture">ଅଙ୍ଗଭଙ୍ଗୀ ଯୋଡ଼ନ୍ତୁ</string>
-    <string name="binding_add_key">Key ଯୋଡ଼ନ୍ତୁ</string>
+    <string name="binding_add_gesture">ଅଙ୍ଗଭଙ୍ଗୀ ଯୋଡ଼ନ୍ତୁ</string>
+    <string name="binding_add_key">Key ଯୋଡ଼ନ୍ତୁ</string>
     <string name="key_picker_default_press_key">ଏକ key ଦବାନ୍ତୁ</string>
     <!-- Select card side -->
     <string name="card_side_selection_title">କାର୍ଡ୍ ପାର୍ଶ୍ୱ ଚୟନ କରନ୍ତୁ</string>

@@ -145,6 +145,7 @@
     <string name="card_editor_reset_card">إعادة تعيين التقدم</string>
     <string name="card_editor_reschedule_card" comment="Action to reschedule a card">إعادة الجدولة</string>
     <string name="card_editor_preview_card" comment="Button offering to preview some card(s)">معاينة</string>
+    <string name="preview_progress_bar_text" comment="What card we are on out of how many in card previewer progress bar">%1$d من %2$d</string>
     <string name="error_insufficient_memory">العملية غير ممكنة نظرًا للذاكرة غير الكافية في جهازك</string>
     <string name="rename" comment="Confirm that the renaming action should be processed.">إعادة التسمية</string>
     <string name="default_conf_delete_error">لا يمكن إزالة مجموعة الخيارات الافتراضية</string>
@@ -173,7 +174,7 @@
     <string name="import_log_failed_unzip">فشل فك ضغط ملف apkg: %s</string>
     <string name="import_log_failed_copy_to">فشل نسخ ملف apkg إلى %s</string>
     <string name="import_log_failed_validate">فشل التحقق من صحة ملف apkg</string>
-    <string name="import_log_insufficient_space">لا توجد مساحة كافية لفك ضغط الحزمة. تحتاج %1$d، لكن المتوفر %2$d</string>
+    <string name="import_log_insufficient_space_error">لا توجد مساحة كافية لاستيراد الحزمة.\nالمتطلب - %1$s \nالمتوفر - %2$s.\n\nهل تواجه مشكلة؟ جرب تفريغ مساحة في هاتفك إن أمكن. كحل بديل، تستخدم المزامنة مساحة أقل من الاستيراد، لذلك يمكنك تجربة استيراد الحزمة في جهاز فيه مساحة أكثر (على نسخة أنكي للكمبيوتر مثلًا) ثم المزامنة لهذا الجهاز.</string>
     <string name="import_log_file_cache_cleared">حدث خطأ عند استيراد الملف. يحتمل أن يكون بسبب مسح ذاكرة الكاش عند المعالجة.\nحاول مجددًا</string>
     <string name="import_succeeded_but_check_database">نجح استيراد البيانات لكن فشل تنظيف ما بعد الاستيراد. استخدم ميزة فحص قاعدة البيانات لاحقًا. السبب: %s</string>
     <string name="import_error_unhandled_request">تعذرت معالجة طلب الاستيراد</string>
@@ -199,10 +200,12 @@
     <string name="export_save_apkg_unsuccessful">فشل حفظ حزمة أنكي</string>
     <string name="export_successful">تم تصدير الملف \"%s\". هل تريد إرساله بواسطة تطبيق آخر؟</string>
     <string name="export_email_subject">بطاقات مصدّرة من قبل أنكيدرويد: %s</string>
-    <string name="export_email_text_new"><![CDATA[        مرحبًا!
+    <string name="export_email_text"><![CDATA[        Hi!
         <br/><br/>
-        هذه رزمة بطاقات أنكي مرسلة من <a href="%1$s">أنكيدرويد</a>.
-        حاول فتحها باستخدام توزيعة من <a href="%2$s">توزيعات أنكي</a> المتوفرة واستمتع بتعلم سهل وفعال!
+        This is an Anki flashcards deck sent from AnkiDroid[1].
+        Try to open it using one of the available Anki distributions[2] and enjoy easy and efficient learning!<br/><br/>
+        [1] %1$s<br/>
+        [2] %2$s
         ]]></string>
     <string name="export_unsuccessful">حدث خطأ عند تصدير ملف apkg</string>
     <string name="study_options" comment="Name for a preference category in Filtered deck (aka Cram deck, aka Custom study) options">الخيارات</string>
@@ -219,7 +222,6 @@
     <string name="sched_has_buried">تم تأجيل بعض البطاقات المدفونة أو ذات الصلة حتى الغد</string>
     <string name="tag_editor_add_feedback">انقر “%2$s” لتأكيد إضافة “%1$s”</string>
     <string name="tag_editor_add_feedback_existing">تم تحديد الوسم الموجود “%1$s”</string>
-    <string name="lookup_hint">بعد نسخ النص، انقر في أي مكان على البطاقة لعرض أيقونة البحث</string>
     <!-- Time spans -->
     <plurals name="time_span_seconds">
         <item quantity="zero">%s ثانية</item>
@@ -307,6 +309,9 @@
     <string name="choose_an_image">اختيار صورة</string>
     <!-- Card Template Browser Appearance -->
     <string name="restore_default">استعادة الافتراضي</string>
+    <string name="cloze_sample_text">هذا {{%1$s::مثال}} لعبارات ملء الفراغات.</string>
+    <string name="basic_answer_sample_text_user" comment="has a typo, so that user sees a highlighted difference in basic answer model     ">متال</string>
+    <string name="basic_answer_sample_text">مثال</string>
     <string name="reviewer_tts_cloze_spoken_replacement">فارغ</string>
     <!-- in options menu & Navigation Drawer -->
     <string name="ankidroid_turn_on_fullscreen_nav_drawer">الرجاء تفعيل وضع ملء الشاشة لاستخدام ميزة إظهار قائمة التنقل باستخدام جافا سكريبت.</string>
@@ -380,6 +385,7 @@
     <string name="format_font_size">تغيير لون الخط</string>
     <string name="insert_mathjax">إضافة معادلة MathJax</string>
     <string name="insert_cloze">إضافة عبارة ملء فراغات</string>
+    <string name="note_editor_toolbar_icon">Button text</string>
     <string name="before_text">HTML قبل المحدد</string>
     <string name="after_text">HTML بعد المحدد</string>
     <string name="add_toolbar_item">إنشاء عنصر شريط أدوات</string>
@@ -391,7 +397,7 @@
     <string name="create_shortcut_failed" comment="home screen == launcher">لا تسمح شاشتك الرئيسية لأنكيدرويد بإضافة اختصارات</string>
     <string name="create_shortcut_error">حدث خطأ عند إضافة الاختصار: %s</string>
     <string name="note_editor_capitalize" comment="This is for a switch with a checkbox - on: enabled">رسمَلة الجُمَل</string>
-    <string name="menu_scroll_toolbar" comment="Checkbox stating whether note editor toolbar is scrollable or stacked. Checked: Scroll">Scroll toolbar</string>
+    <string name="menu_scroll_toolbar" comment="Checkbox stating whether note editor toolbar is scrollable or stacked. Checked: Scroll">شريط تمرير لشريط الأدوات</string>
     <!-- Symbols used as Button text in IncrementNumberRangePreference -->
     <string name="plus_sign" comment="Label for increment button in IncrementerNumberRangePreference">+</string>
     <string name="minus_sign" comment="Label for decrement button in IncrementerNumberRangePreference">-</string>
@@ -426,4 +432,16 @@
     <string name="suspended_note">ملحوظة معلقة</string>
     <!--  Note Editor Toggle Sticky  -->
     <string name="note_editor_toggle_sticky">تفعيل ثبات النص لـ %s</string>
+    <!-- Scoped Storage Migration -->
+    <string name="scoped_storage_title">نقل التخزين</string>
+    <string name="scoped_storage_initial_message">يجب أن ينقل أنكيدرويد بياناته لكي يمتثل لقوانين خصوصية جديدة في أندرويد\n\nإذا حذفت أنكيدرويد قبل النقل، فستفقد بياناتك\n\nيرجى إجراء النقل بأسرع وقت ممكن</string>
+    <string name="scoped_storage_terms_message">سيجري النقل في الخلفية. لن تكون قادرًا على المزامنة أثناء النقل\n\nالمدة المقدرة: %s</string>
+    <string name="scoped_storage_term_1">أخذت نسخة احتياطية لبياناتي</string>
+    <string name="scoped_storage_term_1_ankiweb">أجريت مزامنة مع أنكي ويب مؤخرًا</string>
+    <string name="scoped_storage_term_2">لن أحذف التطبيق بينما يتم نقل البيانات</string>
+    <string name="scoped_storage_select_all_terms">يرجى قبول كل الشروط قبل الاستكمال</string>
+    <string name="scoped_storage_learn_more">تعلم المزيد</string>
+    <string name="scoped_storage_postpone">تأجيل</string>
+    <string name="scoped_storage_migrate">نقل</string>
+    <string name="search_card_js_api_no_results">Search returned no results</string>
 </resources>

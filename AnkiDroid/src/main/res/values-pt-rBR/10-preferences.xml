@@ -68,7 +68,6 @@
     <string name="whiteboard_stroke_width" maxLength="41">Largura do traço</string>
     <string name="use_input_tag" maxLength="41">Digite a resposta no card</string>
     <string name="use_input_tag_summ">Use um campo no card para digitar a resposta</string>
-    <string name="dictionary" maxLength="41">Dicionário de busca</string>
     <string name="reset_languages" maxLength="41">Redefinir línguas</string>
     <string name="reset_languages_summ">Redefinir as atribuições de linguagem (Texto para fala e dicionários) para todos os baralhos</string>
     <string name="reset_languages_question">Redefinir todas as atribuições de idioma?</string>
@@ -89,11 +88,10 @@
     <string-array name="answer_buttons_position_labels">
         <item>Acima</item>
         <item>Abaixo</item>
+        <item>None</item>
     </string-array>
     <string name="gestures" maxLength="41">Habilitar gestos</string>
     <string name="gestures_summ">Atribuir gestos a ações tais como responder e editar cards.</string>
-    <string name="gestures_allow_links" maxLength="41">Ignorar gestos de toque nos links</string>
-    <string name="gestures_allow_links_summary">Gestos de toque não serão processados se um link/dica for pressionado.</string>
     <string name="gestures_corner_touch" maxLength="41">9 Ações de Toque </string>
     <string name="gestures_corner_touch_summary">Permitir gestos de toque nos cantos da tela</string>
     <string name="gestures_full_screen_nav_drawer" maxLength="41">Painel de navegação em tela cheia</string>
@@ -117,8 +115,6 @@
     <string name="gestures_corner_tap_bottom_left" maxLength="41">Toque Baixo Esquerda</string>
     <string name="gestures_corner_tap_bottom_center">Toque Baixo Centro</string>
     <string name="gestures_corner_tap_bottom_right" maxLength="41">Toque Baixo Direita</string>
-    <string name="gestures_volume_up" maxLength="41">Aumentar Volume</string>
-    <string name="gestures_volume_down" maxLength="41">Diminuir Volume</string>
     <string name="more_scrolling_buttons" maxLength="41">eReader</string>
     <string name="more_scrolling_buttons_summ">Também utilizar botões de kanji/katakana, emoji/kao-moji para rolagem</string>
     <string name="card_browser_enable_external_context_menu">‘%s’ Menu </string>
@@ -151,7 +147,7 @@
     <string name="notification_minimum_cards_due_vibrate" maxLength="41">Vibrar</string>
     <string name="notification_minimum_cards_due_blink" maxLength="41">Luz de piscamento</string>
     <string name="timeout_answer_text" maxLength="41">Exibir resposta automaticamente</string>
-    <string name="timeout_answer" maxLength="41">Timeout answer</string>
+    <string name="timeout_answer" maxLength="41">Resposta de tempo limite</string>
     <string name="timeout_answer_summ">Mostra a resposta automaticamente sem intervenção do usuário. Inclui atraso para reprodução automatica de arquivos de áudio.</string>
     <string name="timeout_answer_seconds" maxLength="41">Tempo para mostrar a resposta</string>
     <string name="timeout_answer_seconds_summ" comment="The time to wait (in seconds) in the reviewer before automatically showing the next question or answer">XXX s</string>
@@ -215,8 +211,8 @@
     <string name="exit_via_double_tap_back" maxLength="41">Duplo toque em voltar para voltar/sair</string>
     <string name="exit_via_double_tap_back_summ">Para evitar saídas acidentais do revisor ou do aplicativo</string>
     <!-- Allow all files in media imports -->
-    <string name="media_import_allow_all_files" maxLength="41">Allow all files in media imports</string>
-    <string name="media_import_allow_all_files_summ">If Android doesn’t recognize a media file</string>
+    <string name="media_import_allow_all_files" maxLength="41">Importar todos os arquivos de mídia</string>
+    <string name="media_import_allow_all_files_summ">Se o Android não reconhecer um arquivo de mídia</string>
     <!-- Advanced statistics settings -->
     <string name="advanced_statistics_title" maxLength="41">Estatísticas avançadas</string>
     <string name="enable_advanced_statistics_title" maxLength="41">Habilitar estatísticas avançadas</string>

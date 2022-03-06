@@ -405,13 +405,13 @@ public class Sched extends SchedV2 {
     @Override
     protected void _answerLrnCard(@NonNull Card card, @Consts.BUTTON_TYPE int ease) {
         JSONObject conf = _lrnConf(card);
-        @Consts.CARD_TYPE int type;
+        @Consts.REVLOG_TYPE int type;
         if (card.isInDynamicDeck() && !card.getWasNew()) {
-            type = Consts.CARD_TYPE_RELEARNING;
+            type = Consts.REVLOG_CRAM;
         } else if (card.getType() == Consts.CARD_TYPE_REV) {
-            type = Consts.CARD_TYPE_REV;
+            type = Consts.REVLOG_RELRN;
         } else {
-            type = Consts.CARD_TYPE_NEW;
+            type = Consts.REVLOG_LRN;
         }
         boolean leaving = false;
         // lrnCount was decremented once when card was fetched
@@ -519,11 +519,11 @@ public class Sched extends SchedV2 {
     @Override
     protected int _startingLeft(@NonNull Card card) {
         JSONObject conf;
-    	if (card.getType() == Consts.CARD_TYPE_REV) {
-    		conf = _lapseConf(card);
-    	} else {
-    		conf = _lrnConf(card);
-    	}
+        if (card.getType() == Consts.CARD_TYPE_REV) {
+            conf = _lapseConf(card);
+        } else {
+            conf = _lrnConf(card);
+        }
         int tot = conf.getJSONArray("delays").length();
         int tod = _leftToday(conf.getJSONArray("delays"), tot);
         return tot + tod * 1000;
@@ -566,7 +566,7 @@ public class Sched extends SchedV2 {
 
     @VisibleForTesting
     public void removeLrn() {
-    	removeLrn(null);
+        removeLrn(null);
     }
 
     /** Remove cards from the learning queues. */
@@ -644,8 +644,8 @@ public class Sched extends SchedV2 {
 
 
     private int _revForDeck(long did, int lim) {
-    	lim = Math.min(lim, mReportLimit);
-    	return mCol.getDb().queryScalar("SELECT count() FROM (SELECT 1 FROM cards WHERE did = ? AND queue = " + Consts.QUEUE_TYPE_REV + " AND due <= ? LIMIT ?)",
+        lim = Math.min(lim, mReportLimit);
+        return mCol.getDb().queryScalar("SELECT count() FROM (SELECT 1 FROM cards WHERE did = ? AND queue = " + Consts.QUEUE_TYPE_REV + " AND due <= ? LIMIT ?)",
                                         did, mToday, lim);
     }
 
@@ -857,7 +857,7 @@ public class Sched extends SchedV2 {
 
     /** Integer interval after interval factor and prev+1 constraints applied */
     private int _constrainedIvl(int ivl, @NonNull JSONObject conf, double prev) {
-    	double newIvl = ivl * conf.optDouble("ivlFct",1.0);
+        double newIvl = ivl * conf.optDouble("ivlFct",1.0);
         return (int) Math.max(newIvl, prev + 1);
     }
 

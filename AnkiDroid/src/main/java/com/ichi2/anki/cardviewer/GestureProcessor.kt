@@ -16,9 +16,13 @@
 package com.ichi2.anki.cardviewer
 
 import android.content.SharedPreferences
+import com.ichi2.anki.cardviewer.ViewerCommand.COMMAND_NOTHING
 import com.ichi2.anki.reviewer.GestureMapper
 
 class GestureProcessor(private val processor: ViewerCommand.CommandProcessor?) {
+    companion object {
+        const val PREF_KEY = "gestures"
+    }
     private var gestureDoubleTap: ViewerCommand? = null
     private var gestureLongclick: ViewerCommand? = null
     private var gestureSwipeUp: ViewerCommand? = null
@@ -45,7 +49,7 @@ class GestureProcessor(private val processor: ViewerCommand.CommandProcessor?) {
         private set
 
     fun init(preferences: SharedPreferences) {
-        isEnabled = preferences.getBoolean("gestures", false)
+        isEnabled = preferences.getBoolean(PREF_KEY, false)
         gestureDoubleTap = Gesture.DOUBLE_TAP.fromPreference(preferences)
         gestureLongclick = Gesture.LONG_TAP.fromPreference(preferences)
         gestureSwipeUp = Gesture.SWIPE_UP.fromPreference(preferences)
@@ -85,7 +89,7 @@ class GestureProcessor(private val processor: ViewerCommand.CommandProcessor?) {
         return execute(gesture)
     }
 
-    private fun execute(gesture: Gesture): Boolean? {
+    private fun execute(gesture: Gesture?): Boolean? {
         val command = mapGestureToCommand(gesture)
         return if (command != null) {
             processor?.executeCommand(command)
@@ -94,7 +98,7 @@ class GestureProcessor(private val processor: ViewerCommand.CommandProcessor?) {
         }
     }
 
-    private fun mapGestureToCommand(gesture: Gesture): ViewerCommand? {
+    private fun mapGestureToCommand(gesture: Gesture?): ViewerCommand? {
         return when (gesture) {
             Gesture.SWIPE_UP -> gestureSwipeUp
             Gesture.SWIPE_DOWN -> gestureSwipeDown
@@ -111,6 +115,7 @@ class GestureProcessor(private val processor: ViewerCommand.CommandProcessor?) {
             Gesture.TAP_BOTTOM_RIGHT -> gestureTapBottomRight
             Gesture.DOUBLE_TAP -> gestureDoubleTap
             Gesture.LONG_TAP -> gestureLongclick
+            else -> COMMAND_NOTHING
         }
     }
 
@@ -124,7 +129,7 @@ class GestureProcessor(private val processor: ViewerCommand.CommandProcessor?) {
             return false
         }
         for (gesture in gestures) {
-            if (mapGestureToCommand(gesture) != ViewerCommand.COMMAND_NOTHING) {
+            if (mapGestureToCommand(gesture) != COMMAND_NOTHING) {
                 return true
             }
         }

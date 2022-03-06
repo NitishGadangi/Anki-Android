@@ -55,8 +55,8 @@
     <string name="pref_cat_gestures" maxLength="41">Жести</string>
     <string name="pref_cat_gestures_summ">Використовувати дотики і проведення пальцем замість кнопок</string>
     <string name="pref_cat_actions" maxLength="41">Дії</string>
-    <string name="pref_cat_controls" maxLength="41">Controls</string>
-    <string name="pref_cat_controls_summ">Configure keyboards and other devices</string>
+    <string name="pref_cat_controls" maxLength="41">Керування</string>
+    <string name="pref_cat_controls_summ">Налаштування клавіатур та інших пристроїв</string>
     <string name="pref_cat_advanced" maxLength="41">Розширені налаштування</string>
     <string name="pref_cat_advanced_summ">Оптимізація та експериментальні функції</string>
     <string name="pref_cat_performance" maxLength="41">Продуктивність</string>
@@ -68,7 +68,6 @@
     <string name="whiteboard_stroke_width" maxLength="41">Ширина штриха</string>
     <string name="use_input_tag" maxLength="41">Введіть відповідь на картці</string>
     <string name="use_input_tag_summ">Додає на картку поле введення для відповіді</string>
-    <string name="dictionary" maxLength="41">Подивитися у словнику</string>
     <string name="reset_languages" maxLength="41">Скинути мови</string>
     <string name="reset_languages_summ">Скинути присвоєння мов (для озвучування текстів і словників) для всіх колод</string>
     <string name="reset_languages_question">Скинути всі мовні налаштування?</string>
@@ -89,11 +88,10 @@
     <string-array name="answer_buttons_position_labels">
         <item>Вгорі</item>
         <item>Внизу</item>
+        <item>None</item>
     </string-array>
     <string name="gestures" maxLength="41">Увімкнути жести</string>
     <string name="gestures_summ">Використовувати жести для таких дій, як відповідь і редагування карток.</string>
-    <string name="gestures_allow_links" maxLength="41">Ігнорувати жести на посиланнях</string>
-    <string name="gestures_allow_links_summary">Жести не враховуватимуться, якщо натиснуто на посилання чи підказку.</string>
     <string name="gestures_corner_touch" maxLength="41">9-точковий дотик</string>
     <string name="gestures_corner_touch_summary">Дозволити сенсорні жести в кутах екрану</string>
     <string name="gestures_full_screen_nav_drawer" maxLength="41">Повноекранна панель навігації</string>
@@ -117,8 +115,6 @@
     <string name="gestures_corner_tap_bottom_left" maxLength="41">Дотик лівого нижнього кута</string>
     <string name="gestures_corner_tap_bottom_center">Дотик знизу по центрі</string>
     <string name="gestures_corner_tap_bottom_right" maxLength="41">Дотик правого нижнього кута</string>
-    <string name="gestures_volume_up" maxLength="41">Кнопка «Гучніше»</string>
-    <string name="gestures_volume_down" maxLength="41">Кнопка «Тихіше»</string>
     <string name="more_scrolling_buttons" maxLength="41">eReader</string>
     <string name="more_scrolling_buttons_summ">Також використовувати клавіші kanji/katakana, emoji/kao-moji для прокручування</string>
     <string name="card_browser_enable_external_context_menu">\'%s\' Меню</string>
@@ -152,7 +148,7 @@
     <string name="notification_minimum_cards_due_vibrate" maxLength="41">Вібрація</string>
     <string name="notification_minimum_cards_due_blink" maxLength="41">Миготіння світлодіоду</string>
     <string name="timeout_answer_text" maxLength="41">Автоматично відображати відповідь</string>
-    <string name="timeout_answer" maxLength="41">Timeout answer</string>
+    <string name="timeout_answer" maxLength="41">Затримка відповіді</string>
     <string name="timeout_answer_summ">Показати відповідь автоматично, без введення даних користувачем. Затримка включає в себе час автоматичного відтворення аудіофайлів.</string>
     <string name="timeout_answer_seconds" maxLength="41">Час показу відповіді</string>
     <string name="timeout_answer_seconds_summ" comment="The time to wait (in seconds) in the reviewer before automatically showing the next question or answer">XXX сек.</string>
@@ -216,8 +212,8 @@
     <string name="exit_via_double_tap_back" maxLength="41">«Назад» двіч для повернення/виходу</string>
     <string name="exit_via_double_tap_back_summ">Для уникнення випадкового виходу до оглядача чи додатку</string>
     <!-- Allow all files in media imports -->
-    <string name="media_import_allow_all_files" maxLength="41">Allow all files in media imports</string>
-    <string name="media_import_allow_all_files_summ">If Android doesn’t recognize a media file</string>
+    <string name="media_import_allow_all_files" maxLength="41">Дозволити всі файли при імпорті медіа</string>
+    <string name="media_import_allow_all_files_summ">Якщо Android не розпізнає медіа-файл</string>
     <!-- Advanced statistics settings -->
     <string name="advanced_statistics_title" maxLength="41">Розширена статистика</string>
     <string name="enable_advanced_statistics_title" maxLength="41">Увімкнути розширену статистику</string>
@@ -234,7 +230,7 @@
     <string name="custom_sync_server_media_url_title" maxLength="41">URL Media-даних</string>
     <string name="custom_sync_server_media_url_invalid">Непрацююче посилання для синхронізації медіа</string>
     <!-- Key Bindings -->
-    <string name="controls_main_category" maxLength="41">Command mapping</string>
+    <string name="controls_main_category" maxLength="41">Прив\'язування команд</string>
     <!-- studyoptions -->
     <string name="deck_conf_group_summ">Зміни опцій групи колоди впливатимуть на кілька колод. Якщо ви бажаєте змінити лише поточну колоду, спочатку додайте нову групу опцій</string>
     <string name="studyoptions_limit_select_tags">Оберіть позначки</string>
@@ -334,6 +330,6 @@
     <string name="display_binding_card_side_answer" comment="When displaying a key bind on a preference this formatter is used if the bind only applies to the answer">В: %s</string>
     <string name="display_binding_card_side_both" comment="When displaying a key bind on a preference this formatter is used if the bind only applies to both the question and the answer">%s</string>
     <!-- Binding Preference -->
-    <string name="binding_remove_binding" comment="The parameter is the name of the key/gesture.     Keys cannot be translated yet.">Remove ‘%s’</string>
-    <string name="bindings_already_bound">Already bound to %s</string>
+    <string name="binding_remove_binding" comment="The parameter is the name of the key/gesture.     Keys cannot be translated yet.">Видалити \'%s\'</string>
+    <string name="bindings_already_bound">Вже прив\'язано до %s</string>
 </resources>

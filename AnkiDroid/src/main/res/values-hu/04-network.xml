@@ -60,6 +60,7 @@
     <string name="alert_logging_message">Bejelentkezés, kérem várjon...</string>
     <string name="invalid_username_password">Érvénytelen e-mail cím vagy jelszót.</string>
     <string name="reset_password">Jelszó visszaállítása</string>
+    <string name="lost_mail_instructions">Forgot Email?</string>
     <!-- AndroidManifest.xml -->
     <string name="preferences_title">Beállítások</string>
     <string name="deckpreferences_title">XXX lehetőségei</string>
@@ -96,6 +97,7 @@
     <string name="sync_media_find">Médiaváltozás keresése&#8230;</string>
     <string name="sync_media_no_changes">Nincs változás a média fájlokban.</string>
     <string name="sync_media_success">Média szinkronizál sikeresen.</string>
+    <string name="sync_media_partial_updated">Media sync partially completed:\n%1$d media files downloaded.\n%2$d media files uploaded.</string>
     <string name="sync_media_changes_count">%d médiaváltozás feltöltése</string>
     <string name="sync_media_downloaded_count">%d médiafájl letöltve</string>
     <string name="sync_sanity_failed">Szinkronizálás után a gyűjtemény hibába ütközött. A probléma megoldásához az AnkiDroid teljes szinkronizálást hajt végre. Kérjük, válaszd ki azt a lapot, amelyet meg szeretnél tartani.</string>

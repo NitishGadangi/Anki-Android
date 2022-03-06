@@ -47,7 +47,7 @@
     <string name="menu_get_shared_decks">Elŝuti publikajn kartarojn</string>
     <string name="connection_error_message">Reta eraro okazis</string>
     <string name="not_logged_in_title">Ensalutu en AnkiWeb</string>
-    <string name="login_create_account_message">Vi devu ensaluti en ekstera liveranto-konto por uzi la samtempigan servon. Via povas krei konton je la venonta etapo.</string>
+    <string name="login_create_account_message">Ensalutu uzante konton de ekstera liveranto por uzi la samtempigan servon. Via povas krei konton je la venonta etapo.</string>
     <!-- MyAccount.java -->
     <string name="username">Retpoŝta adreso</string>
     <string name="password">Pasvorto</string>
@@ -60,6 +60,7 @@
     <string name="alert_logging_message">Ensalutado&#8230;</string>
     <string name="invalid_username_password">Nevalida retpoŝta adreso aŭ pasvorto</string>
     <string name="reset_password">Restarigi pasvorton</string>
+    <string name="lost_mail_instructions">Ĉu vi forgesis la retpoŝtadreson?</string>
     <!-- AndroidManifest.xml -->
     <string name="preferences_title">Agordoj</string>
     <string name="deckpreferences_title">Agordoj por XXX</string>
@@ -96,6 +97,7 @@
     <string name="sync_media_find">Trovado de ŝanĝitaj aŭdvidaĵoj&#8230;</string>
     <string name="sync_media_no_changes">Neniuj ŝanĝoj al aŭdvidaĵaj dosieroj</string>
     <string name="sync_media_success">Aŭdvidaĵoj estas samtempigitaj</string>
+    <string name="sync_media_partial_updated">Media sync partially completed:\n%1$d media files downloaded.\n%2$d media files uploaded.</string>
     <string name="sync_media_changes_count">%d aŭdvidaĵaj ŝanĝoj por alŝuti</string>
     <string name="sync_media_downloaded_count">%d aŭdvidaĵaj dosieroj elŝutitaj</string>
     <string name="sync_sanity_failed">Post samtempigado, la kolekto estis nekonsekvenca stato. Por ripari la problemon, AnkiDroid devigos plenan samtempigadon. Elektu, kiun version vi volas teni.</string>

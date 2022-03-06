@@ -38,7 +38,7 @@
 ~ this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-    <string name="yes">yes</string>
+    <string name="yes">oo</string>
     <!-- Navigation drawer items-->
     <string name="decks">Mga deck</string>
     <string name="card_browser" comment="The usage of card browser inside the app (note the casing)">Browser ng baraha</string>
@@ -92,7 +92,7 @@ Pinagaralang %1$d mga baraha %2$s ngayong araw</item>
     <!-- flashcard_portrait.xml -->
     <string name="type_answer_hint">I-type ang sagot</string>
     <string name="show_answer">Ipakita ang sagot</string>
-    <string name="hide_answer">Hide answer</string>
+    <string name="hide_answer">Itago ang sagot</string>
     <string name="ease_button_again">Ulitin</string>
     <string name="ease_button_hard">Mahirap</string>
     <string name="ease_button_good">Magaling</string>
@@ -130,8 +130,6 @@ Pinagaralang %1$d mga baraha %2$s ngayong araw</item>
     <string name="menu_flag_card_seven">Purple flag</string>
     <string name="menu_edit_tags">Edit tags</string>
     <string name="delete_note_message">Burahin tagala ang paalalang ito at lahat ng baraha nito?\n%s</string>
-    <string name="menu_select">Pumili ng text</string>
-    <string name="menu_lookup">Lookup text</string>
     <string name="menu_search">Hanapin sa %1$s</string>
     <string name="menu_mark_note">Markahan ang paalala</string>
     <string name="menu_unmark_note">Tangalin ang marka ng paalala</string>

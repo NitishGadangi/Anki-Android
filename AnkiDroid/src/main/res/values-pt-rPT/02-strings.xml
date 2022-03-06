@@ -137,6 +137,7 @@
     <string name="card_editor_reset_card">Reiniciar progresso</string>
     <string name="card_editor_reschedule_card" comment="Action to reschedule a card">Reschedule</string>
     <string name="card_editor_preview_card" comment="Button offering to preview some card(s)">Pré-visualizar</string>
+    <string name="preview_progress_bar_text" comment="What card we are on out of how many in card previewer progress bar">%1$d of %2$d</string>
     <string name="error_insufficient_memory">Operação impossível devido a memória insuficiente no seu dispositivo</string>
     <string name="rename" comment="Confirm that the renaming action should be processed.">Renomear</string>
     <string name="default_conf_delete_error">O grupo de opções predefinido não pode ser removido</string>
@@ -161,7 +162,7 @@
     <string name="import_log_failed_unzip">Failed to unzip apkg: %s</string>
     <string name="import_log_failed_copy_to">Failed to copy apkg to %s</string>
     <string name="import_log_failed_validate">apkg failed validation</string>
-    <string name="import_log_insufficient_space">There is not enough space to unzip the package. Needed %1$d, available %2$d</string>
+    <string name="import_log_insufficient_space_error">There is not enough space to import the package.\nNeeded - %1$s \nAvailable - %2$s.\n\nHaving Trouble? Try to free space on your phone if possible. Alternatively, sync uses less space than import. You may try importing the package with a device with more space (for example Anki Desktop) and then sync it to this device.</string>
     <string name="import_log_file_cache_cleared">Error importing file, likely a cache clear during processing.\nPlease try again</string>
     <string name="import_succeeded_but_check_database">Data import succeeded but post-import cleanup failed. Run check database later. Root cause: %s</string>
     <string name="import_error_unhandled_request">Unable to process import request</string>
@@ -187,10 +188,12 @@
     <string name="export_save_apkg_unsuccessful">Save Anki package failed</string>
     <string name="export_successful">O ficheiro “%s” foi exportado. Quer enviá-lo com outra aplicação?</string>
     <string name="export_email_subject">AnkiDroid exportou fichas: %s</string>
-    <string name="export_email_text_new"><![CDATA[        Hi!
+    <string name="export_email_text"><![CDATA[        Hi!
         <br/><br/>
-        This is an Anki flashcards deck sent from <a href="%1$s">AnkiDroid</a>.
-        Try to open it using one of the available <a href="%2$s">Anki distributions</a> and enjoy easy and efficient learning!
+        This is an Anki flashcards deck sent from AnkiDroid[1].
+        Try to open it using one of the available Anki distributions[2] and enjoy easy and efficient learning!<br/><br/>
+        [1] %1$s<br/>
+        [2] %2$s
         ]]></string>
     <string name="export_unsuccessful">Erro ao exportar ficheiro apkg</string>
     <string name="study_options" comment="Name for a preference category in Filtered deck (aka Cram deck, aka Custom study) options">Options</string>
@@ -207,7 +210,6 @@
     <string name="sched_has_buried">Algumas fichas relacionadas ou enterradas foram adiadas para amanhã.</string>
     <string name="tag_editor_add_feedback">Toque em \"%2$s\" para confirmar a adição de \"%1$s\"</string>
     <string name="tag_editor_add_feedback_existing">Etiqueta existente \"%1$s\" selecionada</string>
-    <string name="lookup_hint">Depois de copiar o texto, toque na ficha em qualquer lugar para mostrar o ícone de procura</string>
     <!-- Time spans -->
     <plurals name="time_span_seconds">
         <item quantity="one">%s segundo</item>
@@ -267,6 +269,9 @@
     <string name="choose_an_image">Select image</string>
     <!-- Card Template Browser Appearance -->
     <string name="restore_default">Restore Default</string>
+    <string name="cloze_sample_text">This is a {{%1$s::sample}} cloze deletion.</string>
+    <string name="basic_answer_sample_text_user" comment="has a typo, so that user sees a highlighted difference in basic answer model     ">exomple</string>
+    <string name="basic_answer_sample_text">an example</string>
     <string name="reviewer_tts_cloze_spoken_replacement">Blank</string>
     <!-- in options menu & Navigation Drawer -->
     <string name="ankidroid_turn_on_fullscreen_nav_drawer">Please turn on fullscreen to use Show Navigation Drawer using JavaScript.</string>
@@ -328,6 +333,7 @@
     <string name="format_font_size">Change Font Size</string>
     <string name="insert_mathjax">Insert MathJax Equation</string>
     <string name="insert_cloze">Insert Cloze Deletion</string>
+    <string name="note_editor_toolbar_icon">Button text</string>
     <string name="before_text">HTML Before Selection</string>
     <string name="after_text">HTML After Selection</string>
     <string name="add_toolbar_item">Create Toolbar Item</string>
@@ -374,4 +380,18 @@
     <string name="suspended_note">Suspended note</string>
     <!--  Note Editor Toggle Sticky  -->
     <string name="note_editor_toggle_sticky">Make field %s sticky</string>
+    <!-- Scoped Storage Migration -->
+    <string name="scoped_storage_title">Storage migration</string>
+    <string name="scoped_storage_initial_message">AnkiDroid must move its data to meet new Android privacy rules
+\n\nIf you uninstall AnkiDroid before the migration, your data will be lost
+\n\nPlease perform the migration as soon as possible</string>
+    <string name="scoped_storage_terms_message">Migration will occur in the background. You will be unable to sync while migrating\n\nEstimated duration: %s</string>
+    <string name="scoped_storage_term_1">I have backed up my data</string>
+    <string name="scoped_storage_term_1_ankiweb">I have synced with AnkiWeb recently</string>
+    <string name="scoped_storage_term_2">I will not uninstall the app while data is being moved</string>
+    <string name="scoped_storage_select_all_terms">Please accept all items to continue</string>
+    <string name="scoped_storage_learn_more">Learn More</string>
+    <string name="scoped_storage_postpone">Postpone</string>
+    <string name="scoped_storage_migrate">Migrate</string>
+    <string name="search_card_js_api_no_results">Search returned no results</string>
 </resources>

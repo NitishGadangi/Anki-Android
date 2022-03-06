@@ -22,8 +22,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import androidx.annotation.CheckResult;
-import androidx.annotation.NonNull;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static com.ichi2.libanki.Sound.SoundSide.QUESTION;
@@ -40,70 +38,31 @@ public class ReadTextTest extends RobolectricTest{
         // Investigate: This is fine here, but previously caused test failures.
         // E/SQLiteConnectionPool: Failed to close connection, its fate is now in the hands of the merciful GC: SQLiteConnection
         // java.lang.IllegalStateException: Illegal connection pointer 1163. Current pointers for thread Thread[SDK 29 Main Thread,5,SDK 29] []
-        //	at org.robolectric.shadows.ShadowSQLiteConnection$Connections.getConnection(ShadowSQLiteConnection.java:369)
-        //	at org.robolectric.shadows.ShadowSQLiteConnection$Connections.getStatement(ShadowSQLiteConnection.java:378)
-        //	at org.robolectric.shadows.ShadowSQLiteConnection$Connections.finalizeStmt(ShadowSQLiteConnection.java:491)
-        //	at org.robolectric.shadows.ShadowSQLiteConnection.nativeFinalizeStatement(ShadowSQLiteConnection.java:124)
-        //	at android.database.sqlite.SQLiteConnection.nativeFinalizeStatement(SQLiteConnection.java)
-        //	at android.database.sqlite.SQLiteConnection.finalizePreparedStatement(SQLiteConnection.java:1032)
-        //	at android.database.sqlite.SQLiteConnection.access$100(SQLiteConnection.java:91)
-        //	at android.database.sqlite.SQLiteConnection$PreparedStatementCache.entryRemoved(SQLiteConnection.java:1361)
-        //	at android.database.sqlite.SQLiteConnection$PreparedStatementCache.entryRemoved(SQLiteConnection.java:1350)
-        //	at android.util.LruCache.trimToSize(LruCache.java:222)
-        //	at android.util.LruCache.evictAll(LruCache.java:310)
-        //	at android.database.sqlite.SQLiteConnection.dispose(SQLiteConnection.java:248)
-        //	at android.database.sqlite.SQLiteConnection.close(SQLiteConnection.java:209)
-        //	at android.database.sqlite.SQLiteConnectionPool.closeConnectionAndLogExceptionsLocked(SQLiteConnectionPool.java:610)
-        //	at android.database.sqlite.SQLiteConnectionPool.closeAvailableConnectionsAndLogExceptionsLocked(SQLiteConnectionPool.java:548)
-        //	at android.database.sqlite.SQLiteConnectionPool.dispose(SQLiteConnectionPool.java:253)
-        //	at android.database.sqlite.SQLiteConnectionPool.close(SQLiteConnectionPool.java:232)
-        //	at android.database.sqlite.SQLiteDatabase.dispose(SQLiteDatabase.java:356)
-        //	at android.database.sqlite.SQLiteDatabase.onAllReferencesReleased(SQLiteDatabase.java:333)
-        //	at android.database.sqlite.SQLiteClosable.releaseReference(SQLiteClosable.java:76)
-        //	at android.database.sqlite.SQLiteClosable.close(SQLiteClosable.java:108)
+        //    at org.robolectric.shadows.ShadowSQLiteConnection$Connections.getConnection(ShadowSQLiteConnection.java:369)
+        //    at org.robolectric.shadows.ShadowSQLiteConnection$Connections.getStatement(ShadowSQLiteConnection.java:378)
+        //    at org.robolectric.shadows.ShadowSQLiteConnection$Connections.finalizeStmt(ShadowSQLiteConnection.java:491)
+        //    at org.robolectric.shadows.ShadowSQLiteConnection.nativeFinalizeStatement(ShadowSQLiteConnection.java:124)
+        //    at android.database.sqlite.SQLiteConnection.nativeFinalizeStatement(SQLiteConnection.java)
+        //    at android.database.sqlite.SQLiteConnection.finalizePreparedStatement(SQLiteConnection.java:1032)
+        //    at android.database.sqlite.SQLiteConnection.access$100(SQLiteConnection.java:91)
+        //    at android.database.sqlite.SQLiteConnection$PreparedStatementCache.entryRemoved(SQLiteConnection.java:1361)
+        //    at android.database.sqlite.SQLiteConnection$PreparedStatementCache.entryRemoved(SQLiteConnection.java:1350)
+        //    at android.util.LruCache.trimToSize(LruCache.java:222)
+        //    at android.util.LruCache.evictAll(LruCache.java:310)
+        //    at android.database.sqlite.SQLiteConnection.dispose(SQLiteConnection.java:248)
+        //    at android.database.sqlite.SQLiteConnection.close(SQLiteConnection.java:209)
+        //    at android.database.sqlite.SQLiteConnectionPool.closeConnectionAndLogExceptionsLocked(SQLiteConnectionPool.java:610)
+        //    at android.database.sqlite.SQLiteConnectionPool.closeAvailableConnectionsAndLogExceptionsLocked(SQLiteConnectionPool.java:548)
+        //    at android.database.sqlite.SQLiteConnectionPool.dispose(SQLiteConnectionPool.java:253)
+        //    at android.database.sqlite.SQLiteConnectionPool.close(SQLiteConnectionPool.java:232)
+        //    at android.database.sqlite.SQLiteDatabase.dispose(SQLiteDatabase.java:356)
+        //    at android.database.sqlite.SQLiteDatabase.onAllReferencesReleased(SQLiteDatabase.java:333)
+        //    at android.database.sqlite.SQLiteClosable.releaseReference(SQLiteClosable.java:76)
+        //    at android.database.sqlite.SQLiteClosable.close(SQLiteClosable.java:108)
         ReadText.closeForTests();
         ReadText.initializeTts(getTargetContext(), mock(AbstractFlashcardViewer.ReadTextListener.class));
     }
 
-    @Test
-    public void clozeIsReplacedWithBlank() {
-
-        String content = "<style>.card {\n" +
-                " font-family: arial;\n" +
-                " font-size: 20px;\n" +
-                " text-align: center;\n" +
-                " color: black;\n" +
-                " background-color: white;\n" +
-                "}.cloze {font-weight: bold;color: blue;}</style>This is a <span class=cloze>[...]</span>";
-
-        getValueFromReadSide(content);
-
-        assertThat(ReadText.getTextToSpeak(), is("This is a blank"));
-    }
-
-
-    @Test
-    public void providedExampleClozeReplaces() {
-        String content = "<style>.card {\n" +
-                " font-family: arial;\n" +
-                " font-size: 20px;\n" +
-                " text-align: center;\n" +
-                " color: black;\n" +
-                " background-color: white;\n" +
-                "}.cloze {font-weight: bold;color: blue;}</style>A few lizards are venomous, eg <span class=cloze>[...]</span>. They have grooved teeth and sublingual venom glands.";
-
-        String actual = getValueFromReadSide(content);
-
-        assertThat(actual, is("A few lizards are venomous, eg blank. They have grooved teeth and sublingual venom glands."));
-    }
-
-
-
-    @CheckResult
-    private String getValueFromReadSide(@NonNull String content) {
-        ReadText.readCardSide(QUESTION, content, 1, 1, "blank");
-        return ReadText.getTextToSpeak();
-    }
 
     @Test
     public void SaveValue() {
@@ -127,7 +86,7 @@ public class ReadTextTest extends RobolectricTest{
     @Test
     public void testIsTextToSpeechReleased_differentContext() {
         initializeTextToSpeech(getTargetContext());
-        ReadText.releaseTts(null);
+        ReadText.releaseTts(mock(Context.class));
         assertThat(isTextToSpeechShutdown(), is(false));
     }
 

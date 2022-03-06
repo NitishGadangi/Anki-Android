@@ -318,6 +318,48 @@ public class CollectionTask<Progress, Result> extends BaseAsyncTask<Void, Progre
         }
     }
 
+
+    public static class UpdateMultipleNotes extends TaskDelegate<List<Note>, Computation<?>> {
+        private final List<Note> mNotesToUpdate;
+        private final boolean mShouldUpdateCards;
+
+
+        public UpdateMultipleNotes(List<Note> notesToUpdate) {
+            this(notesToUpdate, false);
+        }
+
+
+        public UpdateMultipleNotes(List<Note> notesToUpdate, boolean shouldUpdateCards) {
+            mNotesToUpdate = notesToUpdate;
+            mShouldUpdateCards = shouldUpdateCards;
+        }
+
+
+        @Override
+        protected Computation<?> task(@NonNull Collection col, @NonNull ProgressSenderAndCancelListener<List<Note>> collectionTask) {
+            Timber.d("doInBackgroundUpdateMultipleNotes");
+
+            try {
+                col.getDb().executeInTransaction(() -> {
+                    for (Note note : mNotesToUpdate) {
+                        note.flush();
+                        if (mShouldUpdateCards) {
+                            for (Card card : note.cards()) {
+                                card.flush();
+                            }
+                        }
+                    }
+                    collectionTask.doProgress(mNotesToUpdate);
+                });
+            } catch (RuntimeException e) {
+                Timber.w(e, "doInBackgroundUpdateMultipleNotes - RuntimeException on updating multiple note");
+                AnkiDroidApp.sendExceptionReport(e, "doInBackgroundUpdateMultipleNotes");
+                return ERR;
+            }
+            return OK;
+        }
+    }
+
     public static class LoadDeck extends TaskDelegate<Void, List<DeckTreeNode>> {
         protected List<DeckTreeNode> task(@NonNull Collection col, @NonNull ProgressSenderAndCancelListener<Void> collectionTask) {
             Timber.d("doInBackgroundLoadDeckCounts");
@@ -1146,11 +1188,9 @@ public class CollectionTask<Progress, Result> extends BaseAsyncTask<Void, Progre
 
             try {
                 CollectionHelper.getInstance().getCol(context);
-                // unload collection and trigger a backup
-                Time time = CollectionHelper.getInstance().getTimeSafe(context);
+                // unload collection
                 CollectionHelper.getInstance().closeCollection(true, "Importing new collection");
                 CollectionHelper.getInstance().lockCollection();
-                BackupManager.performBackupInBackground(colPath, true, time);
             } catch (Exception e) {
                 Timber.w(e);
             }
@@ -1226,13 +1266,13 @@ public class CollectionTask<Progress, Result> extends BaseAsyncTask<Void, Progre
 
 
     public static class ExportApkg extends TaskDelegate<Void, Pair<Boolean, String>> {
-        private final String mApkgPath;
+        private final @NonNull String mApkgPath;
         private final Long mDid;
         private final Boolean mIncludeSched;
         private final Boolean mIncludeMedia;
 
 
-        public ExportApkg(String apkgPath, Long did, Boolean includeSched, Boolean includeMedia) {
+        public ExportApkg(@NonNull String apkgPath, Long did, Boolean includeSched, Boolean includeMedia) {
             this.mApkgPath = apkgPath;
             this.mDid = did;
             this.mIncludeSched = includeSched;

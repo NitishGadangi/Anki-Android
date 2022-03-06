@@ -60,6 +60,7 @@
     <string name="alert_logging_message">लॉग इन कर रहे हैं...</string>
     <string name="invalid_username_password">अमान्य ईमेल पता या पासवर्ड</string>
     <string name="reset_password">पासवर्ड रीसेट करें</string>
+    <string name="lost_mail_instructions">Forgot Email?</string>
     <!-- AndroidManifest.xml -->
     <string name="preferences_title">पसंद</string>
     <string name="deckpreferences_title">XXX के लिए विकल्प</string>
@@ -96,6 +97,7 @@
     <string name="sync_media_find">परिवर्तित मीडिया ढूंढ रहा है.. ।</string>
     <string name="sync_media_no_changes">मीडिया फ़ाइलों में कोई परिवर्तन नहीं</string>
     <string name="sync_media_success">मीडिया सिंक किए गए</string>
+    <string name="sync_media_partial_updated">Media sync partially completed:\n%1$d media files downloaded.\n%2$d media files uploaded.</string>
     <string name="sync_media_changes_count">अपलोड करने के लिए %d मीडिया परिवर्तन</string>
     <string name="sync_media_downloaded_count">%d मीडिया फ़ाइलें डाउनलोड की गई</string>
     <string name="sync_sanity_failed">सिंक्रनाइज़ करने के बाद, संग्रह एक असंगत स्थिति में था । इस समस्या को हल करने के लिए, AnkiDroid पूर्ण सिंक्रनाइज़ेशन को बाध्य करेगा । चुनें जो पक्ष आप रखना चाहते हैं ।</string>

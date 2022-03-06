@@ -60,6 +60,7 @@
     <string name="alert_logging_message">లాగిన్ అవుతోంది&#8230;</string>
     <string name="invalid_username_password">చెల్లని ఇమెయిల్ చిరునామా లేదా పాస్వర్డ్</string>
     <string name="reset_password">పాస్వర్డ్ మార్చండి</string>
+    <string name="lost_mail_instructions">Forgot Email?</string>
     <!-- AndroidManifest.xml -->
     <string name="preferences_title">ప్రాధాన్యతలు</string>
     <string name="deckpreferences_title">XXX కోసం ఎంపికలు</string>
@@ -96,6 +97,7 @@
     <string name="sync_media_find">మార్చిన మీడియాను కనుగొనడం&#8230;</string>
     <string name="sync_media_no_changes">మీడియా ఫైళ్ళకు మార్పులు లేవు</string>
     <string name="sync_media_success">మీడియా సమకాలీకరించబడింది</string>
+    <string name="sync_media_partial_updated">Media sync partially completed:\n%1$d media files downloaded.\n%2$d media files uploaded.</string>
     <string name="sync_media_changes_count">అప్లోడ్ చేయడానికి %d మీడియా మార్పులు</string>
     <string name="sync_media_downloaded_count">%d మీడియా ఫైళ్లు డౌన్లోడేడ్</string>
     <string name="sync_sanity_failed">సమకాలీకరించిన తర్వాత, సేకరణ అస్థిరమైన రాష్ట్రంలో ఉంది. ఈ సమస్యను పరిష్కరించడానికి, AnkiDroid పూర్తి సమకాలీకరణను బలవంతం చేస్తుంది. మీరు ఉంచాలని కోరుకునే వైపు ఎంచుకోండి.</string>

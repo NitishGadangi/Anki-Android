@@ -60,6 +60,7 @@
     <string name="alert_logging_message">Anmeldung wird durchgeführt &#8230;</string>
     <string name="invalid_username_password">E-Mail-Adresse oder Passwort ungültig</string>
     <string name="reset_password">Passwort zurücksetzen</string>
+    <string name="lost_mail_instructions">E-Mail-Adresse vergessen?</string>
     <!-- AndroidManifest.xml -->
     <string name="preferences_title">Einstellungen</string>
     <string name="deckpreferences_title">Optionen für XXX</string>
@@ -96,6 +97,7 @@
     <string name="sync_media_find">Veränderte Medien werden gesucht &#8230;</string>
     <string name="sync_media_no_changes">Keine Mediendateien verändert</string>
     <string name="sync_media_success">Mediendateien synchronisiert</string>
+    <string name="sync_media_partial_updated">Media sync partially completed:\n%1$d media files downloaded.\n%2$d media files uploaded.</string>
     <string name="sync_media_changes_count">%d veränderte Medien hochzuladen</string>
     <string name="sync_media_downloaded_count">%d Mediendateien heruntergeladen</string>
     <string name="sync_sanity_failed">Nach dem Synchronisieren war die Sammlung in einem widersprüchlichen Zustand. Zur Behebung dieses Problems wird AnkiDroid eine Vollsynchronisation erzwingen. Bitte wählen Sie die Seite, die Sie behalten möchten oder brechen Sie ab, um zu einem späteren Zeitpunkt zu synchronisieren.</string>

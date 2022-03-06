@@ -60,6 +60,7 @@
     <string name="alert_logging_message">Logowanie, proszę czekać...</string>
     <string name="invalid_username_password">Nieprawidłowy adres e-mail lub hasło.</string>
     <string name="reset_password">Resetuj hasło</string>
+    <string name="lost_mail_instructions">Zapomniałeś adres e-mail?</string>
     <!-- AndroidManifest.xml -->
     <string name="preferences_title">Ustawienia</string>
     <string name="deckpreferences_title">Opcje dla XXX</string>
@@ -96,6 +97,7 @@
     <string name="sync_media_find">Wyszukiwanie zmienionych mediów...</string>
     <string name="sync_media_no_changes">Brak zmian w plikach mediów.</string>
     <string name="sync_media_success">Media zsynchronizowane.</string>
+    <string name="sync_media_partial_updated">Media sync partially completed:\n%1$d media files downloaded.\n%2$d media files uploaded.</string>
     <string name="sync_media_changes_count">%d zmian mediów do wysłania</string>
     <string name="sync_media_downloaded_count">Pobrane %d plików mediów</string>
     <string name="sync_sanity_failed">Po synchronizacji kolekcja była niespójna. Aby to naprawić AnkiDroid wymusi pełną synchronizację. Wybierz którą wersję chcesz zatrzymać (lokalną czy z serwera) lub anuluj, jeśli chcesz synchronizować później.</string>

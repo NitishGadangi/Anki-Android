@@ -39,7 +39,7 @@
 -->
 <resources>
     <!-- generic strings -->
-    <string name="disabled">Выключено</string>
+    <string name="disabled">Выкл.</string>
     <string name="enabled">Включено</string>
     <!-- preferences.xml categories-->
     <string name="pref_cat_general_summ">Общие настройки</string>
@@ -53,10 +53,10 @@
     <string name="pref_cat_themes" maxLength="41">Темы</string>
     <string name="pref_cat_fonts" maxLength="41">Шрифты</string>
     <string name="pref_cat_gestures" maxLength="41">Жесты</string>
-    <string name="pref_cat_gestures_summ">Использовать касания и смахивание вместо кнопок</string>
+    <string name="pref_cat_gestures_summ">Нажатия и смахивания вместо кнопок</string>
     <string name="pref_cat_actions" maxLength="41">Действия</string>
     <string name="pref_cat_controls" maxLength="41">Управление</string>
-    <string name="pref_cat_controls_summ">Настроить устройства ввода</string>
+    <string name="pref_cat_controls_summ">Настроить клавиатуру и устройства ввода</string>
     <string name="pref_cat_advanced" maxLength="41">Расширенные</string>
     <string name="pref_cat_advanced_summ">Оптимизация и экспериментальные функции</string>
     <string name="pref_cat_performance" maxLength="41">Производительность</string>
@@ -68,7 +68,6 @@
     <string name="whiteboard_stroke_width" maxLength="41">Толщина линии</string>
     <string name="use_input_tag" maxLength="41">Ввод ответа на карточке</string>
     <string name="use_input_tag_summ">Добавляет на карточку поле ввода для ответа</string>
-    <string name="dictionary" maxLength="41">Посмотреть в словаре</string>
     <string name="reset_languages" maxLength="41">Сбросить языки</string>
     <string name="reset_languages_summ">Сбросит сопоставленные всем колодам языки</string>
     <string name="reset_languages_question">Сбросить все языковые соответствия?</string>
@@ -81,7 +80,7 @@
     <string name="card_browser_hide_media_summary">Показывает имена медиафайлов в полях вопросов и ответов в списке карточек</string>
     <string name="col_path" maxLength="41">Папка AnkiDroid</string>
     <string name="fullscreen_review" maxLength="41">Полноэкранный режим</string>
-    <string name="full_screen_off">Выключен</string>
+    <string name="full_screen_off">Выкл.</string>
     <string name="full_screen_system">Скрыть системную панель</string>
     <string name="full_screen_complete">Скрыть системную панель и кнопки ответа</string>
     <string name="full_screen_error_gestures">Включите жесты, чтобы скрыть кнопки</string>
@@ -89,11 +88,10 @@
     <string-array name="answer_buttons_position_labels">
         <item>Сверху</item>
         <item>Снизу</item>
+        <item>None</item>
     </string-array>
     <string name="gestures" maxLength="41">Включить жесты</string>
     <string name="gestures_summ">Назначает жесты действиям вроде ответа и правки</string>
-    <string name="gestures_allow_links" maxLength="41">Игнорировать жесты на ссылках</string>
-    <string name="gestures_allow_links_summary">Жесты не будут учитываться, если нажата ссылка или подсказка.</string>
     <string name="gestures_corner_touch" maxLength="41">9 зон касания</string>
     <string name="gestures_corner_touch_summary">Разрешить сенсорные жесты в углах экрана</string>
     <string name="gestures_full_screen_nav_drawer" maxLength="41">Панель навигации при полном экране</string>
@@ -117,8 +115,6 @@
     <string name="gestures_corner_tap_bottom_left" maxLength="41">Касание внизу в левом углу</string>
     <string name="gestures_corner_tap_bottom_center">Касание внизу по центру</string>
     <string name="gestures_corner_tap_bottom_right" maxLength="41">Касание внизу в правом углу</string>
-    <string name="gestures_volume_up" maxLength="41">Увеличить громкость</string>
-    <string name="gestures_volume_down" maxLength="41">Уменьшить громкость</string>
     <string name="more_scrolling_buttons" maxLength="41">eReader</string>
     <string name="more_scrolling_buttons_summ">Также использовать клавиши kanji/katakana, emoji/kao-moji для прокрутки</string>
     <string name="card_browser_enable_external_context_menu">Пункт «%s» в меню</string>
@@ -157,7 +153,7 @@
     <string name="timeout_answer_seconds_summ" comment="The time to wait (in seconds) in the reviewer before automatically showing the next question or answer">XXX с</string>
     <string name="timeout_question_seconds" maxLength="41">Показать следующий вопрос через</string>
     <string name="select_locale_title">Выберите язык</string>
-    <string name="software_render" maxLength="41">Отключить аппаратную отрисовку карточек</string>
+    <string name="software_render" maxLength="41">Отключить аппаратную отрисовку</string>
     <string name="software_render_summ">Аппаратная отрисовка быстрее, но может вызывать проблемы (особенно на Android 8/8.1). Попробуйте отключить её если при повторении пропадают элементы интерфейса.</string>
     <string name="safe_display" maxLength="41">Статический режим экрана</string>
     <string name="safe_display_summ">Отключает всю анимацию и использует безопасную отрисовку. Может понадобиться для экранов на электронных чернилах</string>
@@ -184,7 +180,7 @@
     <string name="learn_cutoff" maxLength="41">Лимит опережения</string>
     <string name="time_limit" maxLength="41">Лимит учебного блока</string>
     <string name="time_limit_summ">XXX мин.</string>
-    <string name="new_timezone" maxLength="41">Обработка нового часового пояса</string>
+    <string name="new_timezone" maxLength="41">Новая обработка часовых поясов</string>
     <string name="day_offset_with_description" maxLength="41">Начало нового дня</string>
     <string name="day_offset_summ">XXX ч. утра</string>
     <string name="xlabel_dayoffset_seekbar" maxLength="41">Полночь</string>
@@ -215,8 +211,8 @@
     <string name="exit_via_double_tap_back" maxLength="41">Нажмите «Назад» дважды, чтобы выйти</string>
     <string name="exit_via_double_tap_back_summ">Предотвращает случайный выход</string>
     <!-- Allow all files in media imports -->
-    <string name="media_import_allow_all_files" maxLength="41">Разрешить все файлы при импорте медиа</string>
-    <string name="media_import_allow_all_files_summ">Если Android не распознает медиафайл</string>
+    <string name="media_import_allow_all_files" maxLength="41">Разрешить все медиафайлы при импорте</string>
+    <string name="media_import_allow_all_files_summ">Используйте, если Android не распознаёт файлы</string>
     <!-- Advanced statistics settings -->
     <string name="advanced_statistics_title" maxLength="41">Расширенная статистика</string>
     <string name="enable_advanced_statistics_title" maxLength="41">Включить расширенную статистику</string>
@@ -247,54 +243,54 @@
         <item quantity="other">%1$s\n%2$d колод использует эту группу</item>
     </plurals>
     <string name="deck_conf_new_cards" maxLength="41">Новые карточки</string>
-    <string name="deck_conf_rev_cards" maxLength="41" comment="Name of the deck options submenu for configuring reviews of due cards.">Повторения</string>
-    <string name="deck_conf_lps_cards" maxLength="41" comment="Label of the submenu stating how lapses cards are treated.">Ошибки</string>
+    <string name="deck_conf_rev_cards" maxLength="41" comment="Name of the deck options submenu for configuring reviews of due cards.">Повторяемые</string>
+    <string name="deck_conf_lps_cards" maxLength="41" comment="Label of the submenu stating how lapses cards are treated.">Забытые</string>
     <string name="deck_conf_general" maxLength="41">Общие</string>
     <string name="deck_conf_reminders" maxLength="41">Напоминания</string>
     <string name="deck_conf_steps" maxLength="41">Шаги (в минутах)</string>
     <string name="deck_conf_order" maxLength="41">Порядок</string>
     <string name="deck_conf_new_cards_day" maxLength="41">Новых карточек в день</string>
-    <string name="deck_conf_graduating_ivl" maxLength="41">Интервал для «Хорошо»</string>
+    <string name="deck_conf_graduating_ivl" maxLength="41">Интервал перевода</string>
     <string name="deck_conf_days">XXX дней</string>
-    <string name="deck_conf_easy_ivl" maxLength="41">Интервал для «Легко»</string>
+    <string name="deck_conf_easy_ivl" maxLength="41">Интервал лёгких</string>
     <string name="deck_conf_start_ease" maxLength="41">Начальная лёгкость</string>
-    <string name="deck_conf_max_rev" maxLength="41">Максимум повторений в день</string>
-    <string name="deck_conf_new_bury" maxLength="41">Отложить связанные новые карточки</string>
-    <string name="deck_conf_new_bury_summ">Связанные новые карточки отложены на завтра</string>
-    <string name="deck_conf_rev_bury" maxLength="41">Отложить связанные повторения</string>
-    <string name="deck_conf_rev_bury_summ">Связанные повторения отложены до завтра</string>
+    <string name="deck_conf_max_rev" maxLength="41">Максимум повторяемых в день</string>
+    <string name="deck_conf_new_bury" maxLength="41">Откладывать новые связанные</string>
+    <string name="deck_conf_new_bury_summ">Новые связанные откладываются до следующего дня</string>
+    <string name="deck_conf_rev_bury" maxLength="41">Откладывать новые повторяемые</string>
+    <string name="deck_conf_rev_bury_summ">Повторяемые связанные откладываются до следующего дня</string>
     <string name="deck_conf_use_general_timeout_settings" maxLength="41">Использовать общие настройки</string>
     <string name="deck_conf_use_general_timeout_settings_summ">Использовать общие настройки «Автоматически показывать ответ» вместо настроек для этой группы.</string>
-    <string name="deck_conf_easy_bonus" maxLength="41">Множитель для \"Легко\"</string>
+    <string name="deck_conf_easy_bonus" maxLength="41">Множитель для «Легко»</string>
     <string name="deck_conf_hard_factor" maxLength="41">Интервал для «Трудно»</string>
-    <string name="deck_conf_ivl_fct" maxLength="41">Множитель интервалов</string>
+    <string name="deck_conf_ivl_fct" maxLength="41">Модификатор интервала</string>
     <string name="deck_conf_max_ivl" maxLength="41">Максимальный интервал</string>
     <string name="deck_conf_new_lps_ivl" maxLength="41">Новый интервал</string>
     <string name="deck_conf_min_ivl" maxLength="41">Минимальный интервал</string>
-    <string name="deck_conf_leech_thres" maxLength="41">Ошибок для приставучей</string>
+    <string name="deck_conf_leech_thres" maxLength="41">Порог для приставучих</string>
     <string name="deck_conf_fails">XXX ошибок</string>
-    <string name="deck_conf_leech_action" maxLength="41">Что делать с приставучей</string>
+    <string name="deck_conf_leech_action" maxLength="41">Что делать с приставучими</string>
     <string name="deck_conf_max_time" maxLength="41">Максимальное время ответа</string>
     <string name="deck_conf_seconds">XXX секунд</string>
-    <string name="deck_conf_timer" maxLength="41">Показать таймер ответа</string>
+    <string name="deck_conf_timer" maxLength="41">Показывать таймер</string>
     <string name="deck_conf_autoplay" maxLength="41">Воспроизводить звук</string>
     <string name="deck_conf_replayq" maxLength="41">Повторять вопрос</string>
-    <string name="deck_conf_replayq_summ">Воспроизводит вопрос при показе ответа</string>
-    <string name="deck_conf_manage" maxLength="41">Управление конфигурациями</string>
+    <string name="deck_conf_replayq_summ">Воспроизводит вопрос и ответ при показе ответа</string>
+    <string name="deck_conf_manage" maxLength="41">Управление наборами параметров</string>
     <string name="deck_conf_manage_summ">Добавить или изменить набор параметров</string>
-    <string name="deck_conf_current_group" maxLength="41">Текущая конфигурация</string>
+    <string name="deck_conf_current_group" maxLength="41">Текущий набор</string>
     <string name="deck_conf_rename" maxLength="41" comment="Menu entry to rename a deck">Переименовать</string>
-    <string name="deck_conf_reset" maxLength="41">Сбросить настройки</string>
+    <string name="deck_conf_reset" maxLength="41">Сбросить параметры</string>
     <string name="deck_conf_reset_message">Сбросить текущий набор параметров?</string>
     <string name="deck_conf_add" maxLength="41" comment="Adding a new deck option group">Добавить</string>
-    <string name="deck_conf_add_summ">Создать копию текущего набора опций</string>
+    <string name="deck_conf_add_summ">Создать копию текущего набора параметров</string>
     <string name="deck_conf_remove_message">Удалить текущий набор параметров?</string>
     <string name="deck_conf_set_subdecks" maxLength="41">Установить для всех подколод</string>
     <plurals name="deck_conf_set_subdecks_summ">
-        <item quantity="one">%s подколода задействует конфигурацию</item>
-        <item quantity="few">%s подколоды задействуют конфигурацию</item>
-        <item quantity="many">%s подколод задействуют конфигурацию</item>
-        <item quantity="other">%s подколод задействуют конфигурацию</item>
+        <item quantity="one">%s подколода задействует набор</item>
+        <item quantity="few">%s подколоды задействуют набор</item>
+        <item quantity="many">%s подколод задействуют набор</item>
+        <item quantity="other">%s подколод задействуют набор</item>
     </plurals>
     <string name="deck_conf_set_subdecks_message">Установить текущий набор параметров для всех подколод этой колоды?</string>
     <string name="pref_browser_editor_font" maxLength="41">Шрифт в списке и редакторе</string>
@@ -318,7 +314,7 @@
     <string name="no_code_formatting" maxLength="41">Простое форматирование ответа</string>
     <string name="no_code_formatting_summ">Исправляет «􏿾» при вводе ответа</string>
     <string name="type_in_answer_focus" maxLength="41">Переключать на «Ввести ответ»</string>
-    <string name="type_in_answer_focus_summ">При повторении автоматически переходит к полю «Ввести ответ»</string>
+    <string name="type_in_answer_focus_summ">Во время учёбы автоматически переходит к полю «Ввести ответ»</string>
     <!-- Open Changelog-->
     <string name="open_changelog">Показать список изменений</string>
     <string name="binding_add_gesture">Добавить жест</string>

@@ -137,6 +137,7 @@
     <string name="card_editor_reset_card">ಪ್ರಗತಿಯನ್ನು ಮರುಹೊಂದಿಸಿ</string>
     <string name="card_editor_reschedule_card" comment="Action to reschedule a card">ಮರುಹೊಂದಿಸಿ</string>
     <string name="card_editor_preview_card" comment="Button offering to preview some card(s)">ಮುನ್ನೋಟ</string>
+    <string name="preview_progress_bar_text" comment="What card we are on out of how many in card previewer progress bar">%1$d of %2$d</string>
     <string name="error_insufficient_memory">ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಸಾಕಷ್ಟು ಮೆಮೊರಿ ಇಲ್ಲದಿರುವುದರಿಂದ ಕಾರ್ಯಾಚರಣೆ ಸಾಧ್ಯವಿಲ್ಲ</string>
     <string name="rename" comment="Confirm that the renaming action should be processed.">ಮರುಹೆಸರಿಸಿ</string>
     <string name="default_conf_delete_error">ಡೀಫಾಲ್ಟ್ ಆಯ್ಕೆಗಳ ಗುಂಪನ್ನು ತೆಗೆದುಹಾಕಲಾಗುವುದಿಲ್ಲ</string>
@@ -161,7 +162,7 @@
     <string name="import_log_failed_unzip">Apkg ಅನ್ನು ಅನ್ಜಿಪ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ:%s</string>
     <string name="import_log_failed_copy_to">%s ಗೆ apkg ಅನ್ನು ನಕಲಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
     <string name="import_log_failed_validate">apkg ಮೌಲ್ಯಮಾಪನ ವಿಫಲವಾಗಿದೆ</string>
-    <string name="import_log_insufficient_space">ಪ್ಯಾಕೇಜ್ ಅನ್ನು ಅನ್ಜಿಪ್ ಮಾಡಲು ಸಾಕಷ್ಟು ಸ್ಥಳವಿಲ್ಲ. %1$d ಅಗತ್ಯವಿದೆ,%2$d ಲಭ್ಯವಿದೆ</string>
+    <string name="import_log_insufficient_space_error">There is not enough space to import the package.\nNeeded - %1$s \nAvailable - %2$s.\n\nHaving Trouble? Try to free space on your phone if possible. Alternatively, sync uses less space than import. You may try importing the package with a device with more space (for example Anki Desktop) and then sync it to this device.</string>
     <string name="import_log_file_cache_cleared">ಫೈಲ್ ಆಮದು ಮಾಡುವಲ್ಲಿ ದೋಷ, ಪ್ರಕ್ರಿಯೆಗೊಳಿಸುವಾಗ ಸಂಗ್ರಹ ಸ್ಪಷ್ಟವಾಗಿದೆ. \n ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>
     <string name="import_succeeded_but_check_database">ಡೇಟಾ ಆಮದು ಯಶಸ್ವಿಯಾಗಿದೆ ಆದರೆ ಆಮದು ನಂತರದ ಸ್ವಚ್ clean ಗೊಳಿಸುವಿಕೆ ವಿಫಲವಾಗಿದೆ. ನಂತರ ಡೇಟಾಬೇಸ್ ಪರಿಶೀಲಿಸಿ. ಮೂಲ ಕಾರಣ: %s</string>
     <string name="import_error_unhandled_request">ಆಮದು ವಿನಂತಿಯನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
@@ -187,10 +188,12 @@
     <string name="export_save_apkg_unsuccessful">ಉಳಿಸಿ ಅಂಕಿ ಪ್ಯಾಕೇಜ್ ವಿಫಲವಾಗಿದೆ</string>
     <string name="export_successful">“%s” ಫೈಲ್ ಅನ್ನು ರಫ್ತು ಮಾಡಲಾಗಿದೆ. ನೀವು ಅದನ್ನು ಇನ್ನೊಂದು ಅಪ್ಲಿಕೇಶನ್‌ನೊಂದಿಗೆ ಕಳುಹಿಸಲು ಬಯಸುವಿರಾ?</string>
     <string name="export_email_subject">ಆಂಕಿಡ್ರಾಯ್ಡ್ ರಫ್ತು ಮಾಡಿದ ಫ್ಲ್ಯಾಷ್‌ಕಾರ್ಡ್‌ಗಳು:%s</string>
-    <string name="export_email_text_new"><![CDATA[        Hi!
+    <string name="export_email_text"><![CDATA[        Hi!
         <br/><br/>
-        This is an Anki flashcards deck sent from <a href="%1$s">AnkiDroid</a>.
-        Try to open it using one of the available <a href="%2$s">Anki distributions</a> and enjoy easy and efficient learning!
+        This is an Anki flashcards deck sent from AnkiDroid[1].
+        Try to open it using one of the available Anki distributions[2] and enjoy easy and efficient learning!<br/><br/>
+        [1] %1$s<br/>
+        [2] %2$s
         ]]></string>
     <string name="export_unsuccessful">ಎಪಿಕೆಜಿ ಫೈಲ್ ರಫ್ತು ಮಾಡುವಲ್ಲಿ ದೋಷ</string>
     <string name="study_options" comment="Name for a preference category in Filtered deck (aka Cram deck, aka Custom study) options">ಆಯ್ಕೆಗಳು</string>
@@ -207,7 +210,6 @@
     <string name="sched_has_buried">ಕೆಲವು ಸಂಬಂಧಿತ ಅಥವಾ ಸಮಾಧಿ ಮಾಡಿದ ಕಾರ್ಡ್‌ಗಳು ನಾಳೆಯವರೆಗೆ ವಿಳಂಬವಾಗಿದ್ದವು</string>
     <string name="tag_editor_add_feedback">“%1$s” ಸೇರಿಸುವುದನ್ನು ಖಚಿತಪಡಿಸಲು “%2$s” ಸ್ಪರ್ಶಿಸಿ</string>
     <string name="tag_editor_add_feedback_existing">ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಟ್ಯಾಗ್ “%1$s” ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</string>
-    <string name="lookup_hint">ಪಠ್ಯವನ್ನು ನಕಲಿಸಿದ ನಂತರ, ಹುಡುಕಾಟ ಐಕಾನ್ ತೋರಿಸಲು ಫ್ಲ್ಯಾಷ್‌ಕಾರ್ಡ್‌ನಲ್ಲಿ ಎಲ್ಲಿಯಾದರೂ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
     <!-- Time spans -->
     <plurals name="time_span_seconds">
         <item quantity="one">%s ಸೆಕೆಂಡು</item>
@@ -267,6 +269,9 @@
     <string name="choose_an_image">ಚಿತ್ರವನ್ನು ಆರಿಸಿ</string>
     <!-- Card Template Browser Appearance -->
     <string name="restore_default">ಡೀಫಾಲ್ಟ್ ಅನ್ನು ಮರುಸ್ಥಾಪಿಸಿ</string>
+    <string name="cloze_sample_text">This is a {{%1$s::sample}} cloze deletion.</string>
+    <string name="basic_answer_sample_text_user" comment="has a typo, so that user sees a highlighted difference in basic answer model     ">exomple</string>
+    <string name="basic_answer_sample_text">an example</string>
     <string name="reviewer_tts_cloze_spoken_replacement">ಖಾಲಿ</string>
     <!-- in options menu & Navigation Drawer -->
     <string name="ankidroid_turn_on_fullscreen_nav_drawer">ಜಾವಾಸ್ಕ್ರಿಪ್ಟ್ ಬಳಸಿ ಶೋ ನ್ಯಾವಿಗೇಷನ್ ಡ್ರಾಯರ್ ಅನ್ನು ಬಳಸಲು ದಯವಿಟ್ಟು ಪೂರ್ಣಪರದೆ ಆನ್ ಮಾಡಿ</string>
@@ -328,6 +333,7 @@
     <string name="format_font_size">ಫಾಂಟ್ ಗಾತ್ರವನ್ನು ಬದಲಾಯಿಸಿ</string>
     <string name="insert_mathjax">ಮ್ಯಾಥ್‌ಜಾಕ್ಸ್ ಸಮೀಕರಣವನ್ನು ಸೇರಿಸಿ</string>
     <string name="insert_cloze">ಕ್ಲೋಜ್ ಅಳಿಸುವಿಕೆಯನ್ನು ಸೇರಿಸಿ</string>
+    <string name="note_editor_toolbar_icon">Button text</string>
     <string name="before_text">ಆಯ್ಕೆಗೆ ಮೊದಲು HTML</string>
     <string name="after_text">ಆಯ್ಕೆಯ ನಂತರ HTML</string>
     <string name="add_toolbar_item">ಟೂಲ್‌ಬಾರ್ ಐಟಂ ರಚಿಸಿ</string>
@@ -374,4 +380,18 @@
     <string name="suspended_note">Suspended note</string>
     <!--  Note Editor Toggle Sticky  -->
     <string name="note_editor_toggle_sticky">Make field %s sticky</string>
+    <!-- Scoped Storage Migration -->
+    <string name="scoped_storage_title">Storage migration</string>
+    <string name="scoped_storage_initial_message">AnkiDroid must move its data to meet new Android privacy rules
+\n\nIf you uninstall AnkiDroid before the migration, your data will be lost
+\n\nPlease perform the migration as soon as possible</string>
+    <string name="scoped_storage_terms_message">Migration will occur in the background. You will be unable to sync while migrating\n\nEstimated duration: %s</string>
+    <string name="scoped_storage_term_1">I have backed up my data</string>
+    <string name="scoped_storage_term_1_ankiweb">I have synced with AnkiWeb recently</string>
+    <string name="scoped_storage_term_2">I will not uninstall the app while data is being moved</string>
+    <string name="scoped_storage_select_all_terms">Please accept all items to continue</string>
+    <string name="scoped_storage_learn_more">Learn More</string>
+    <string name="scoped_storage_postpone">Postpone</string>
+    <string name="scoped_storage_migrate">Migrate</string>
+    <string name="search_card_js_api_no_results">Search returned no results</string>
 </resources>

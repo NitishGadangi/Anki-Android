@@ -60,6 +60,7 @@
     <string name="alert_logging_message">Iniciando sesión&#8230;</string>
     <string name="invalid_username_password">Enderezo de correo ou contrasinal non válidos</string>
     <string name="reset_password">Restablecer contrasinal</string>
+    <string name="lost_mail_instructions">Forgot Email?</string>
     <!-- AndroidManifest.xml -->
     <string name="preferences_title">Preferencias</string>
     <string name="deckpreferences_title">Opcións para XXX</string>
@@ -96,6 +97,7 @@
     <string name="sync_media_find">Buscando medios modificados&#8230;</string>
     <string name="sync_media_no_changes">Sen cambios nos ficheiros de medios</string>
     <string name="sync_media_success">Medios sincronizados</string>
+    <string name="sync_media_partial_updated">Media sync partially completed:\n%1$d media files downloaded.\n%2$d media files uploaded.</string>
     <string name="sync_media_changes_count">%d cambios nos medios para subir</string>
     <string name="sync_media_downloaded_count">%d ficheiros de medios para descargar</string>
     <string name="sync_sanity_failed">Despois de sincronizar, a colección quedou nun estado inconsistente. Para arranxar o problema, AnkiDroid realizará unha sincronización completa. Escolle que lado desexas manter ou cancela se prefires sincronizar máis tarde.</string>

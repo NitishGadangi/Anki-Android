@@ -137,6 +137,7 @@
     <string name="card_editor_reset_card">Remettre les compteurs à 0</string>
     <string name="card_editor_reschedule_card" comment="Action to reschedule a card">Replanifier</string>
     <string name="card_editor_preview_card" comment="Button offering to preview some card(s)">Aperçu</string>
+    <string name="preview_progress_bar_text" comment="What card we are on out of how many in card previewer progress bar">%1$d sur %2$d</string>
     <string name="error_insufficient_memory">L’opération n’a pas pu être accomplie car votre appareil manque de mémoire disponible</string>
     <string name="rename" comment="Confirm that the renaming action should be processed.">Renommer</string>
     <string name="default_conf_delete_error">Le groupe d’option par défaut ne peut pas être supprimé</string>
@@ -161,7 +162,7 @@
     <string name="import_log_failed_unzip">Échec de la décompression de l\'apkg: %s</string>
     <string name="import_log_failed_copy_to">Échec de la copie de l\'apkg vers %s</string>
     <string name="import_log_failed_validate">Validation de l\'apkg a échoué</string>
-    <string name="import_log_insufficient_space">Il n\'y a pas assez d\'espace pour décompresser le fichier. %1$d requis, disponible %2$d</string>
+    <string name="import_log_insufficient_space_error">Il n\'y a pas assez d\'espace pour importer le paquet.\nEspace nécessaire - %1$s \nEspace disponible - %2$s.\n\nVous avez du mal ? Si possible essayez de libérer de l\'espace sur votre appareil. Sinon, la synchronisation utilise moins d\'espace que l\'importation. Vous pouvez essayer d\'importer le paquet sur un appareil qui plus d\'espace (par exemple Anki Desktop) et ensuite synchronisez le à cet appareil.</string>
     <string name="import_log_file_cache_cleared">Erreur lors de l\'importation du fichier, il est probable que le cache soit effacé pendant le traitement.\nVeuillez réessayer</string>
     <string name="import_succeeded_but_check_database">L\'importation de données a réussi, mais le nettoyage après l\'importation a échoué. Exécutez la vérification de la base de données plus tard. Cause racine : %s</string>
     <string name="import_error_unhandled_request">Impossible de traiter la demande d\'importation</string>
@@ -187,10 +188,12 @@
     <string name="export_save_apkg_unsuccessful">Échec de la sauvegarde du fichier Anki</string>
     <string name="export_successful">Le fichier « %s » a été exporté. Voulez-vous le partager à l\'aide d\'une autre app ?</string>
     <string name="export_email_subject">AnkiDroid a exporté %s cartes mémoire</string>
-    <string name="export_email_text_new"><![CDATA[        Bonjour !
+    <string name="export_email_text"><![CDATA[        Hi!
         <br/><br/>
-        Ceci est un paquet de cartes Anki envoyé depuis <a href="%1$s">AnkiDroid</a>.
-        Essayez de l\'ouvrir en utilisant l\'une des <a href="%2$s">distributions Anki disponibles</a> et profitez d\'un apprentissage facile et efficace !
+        This is an Anki flashcards deck sent from AnkiDroid[1].
+        Try to open it using one of the available Anki distributions[2] and enjoy easy and efficient learning!<br/><br/>
+        [1] %1$s<br/>
+        [2] %2$s
         ]]></string>
     <string name="export_unsuccessful">Erreur lors de l\'exportation du fichier apkg</string>
     <string name="study_options" comment="Name for a preference category in Filtered deck (aka Cram deck, aka Custom study) options">Options</string>
@@ -207,7 +210,6 @@
     <string name="sched_has_buried">Certaines cartes enterrées ou différées ont été reportées à une prochaine séance.</string>
     <string name="tag_editor_add_feedback">Appuyez sur « %2$s » pour confirmer l\'addition de « %1$s »</string>
     <string name="tag_editor_add_feedback_existing">Étiquette existante «%1$s» sélectionnée</string>
-    <string name="lookup_hint">Après avoir copié le texte, appuyez n’importe où sur la carte pour afficher l’icône de recherche</string>
     <!-- Time spans -->
     <plurals name="time_span_seconds">
         <item quantity="one">%s seconde</item>
@@ -267,6 +269,9 @@
     <string name="choose_an_image">Choisir une image</string>
     <!-- Card Template Browser Appearance -->
     <string name="restore_default">Rétablir par défaut</string>
+    <string name="cloze_sample_text">Ceci est un {{%1$s::sample}} de suppression des trous</string>
+    <string name="basic_answer_sample_text_user" comment="has a typo, so that user sees a highlighted difference in basic answer model     ">exomple</string>
+    <string name="basic_answer_sample_text">un exemple</string>
     <string name="reviewer_tts_cloze_spoken_replacement">Vide</string>
     <!-- in options menu & Navigation Drawer -->
     <string name="ankidroid_turn_on_fullscreen_nav_drawer">Veuillez activer le plein écran pour utiliser Afficher le tiroir de navigation en utilisant JavaScript.</string>
@@ -328,6 +333,7 @@
     <string name="format_font_size">Changer la taille de la police</string>
     <string name="insert_mathjax">Insérer une équation MathJax</string>
     <string name="insert_cloze">Insérer un texte à trous</string>
+    <string name="note_editor_toolbar_icon">Button text</string>
     <string name="before_text">HTML avant sélection</string>
     <string name="after_text">HTML après sélection</string>
     <string name="add_toolbar_item">Créer un élément de la barre d\'outils</string>
@@ -339,7 +345,7 @@
     <string name="create_shortcut_failed" comment="home screen == launcher">Votre écran d\'accueil ne permet pas à AnkiDroid d\'ajouter des raccourcis</string>
     <string name="create_shortcut_error">Erreur lors de l\'ajout du raccourci : %s</string>
     <string name="note_editor_capitalize" comment="This is for a switch with a checkbox - on: enabled">Mettre en majuscules les phrases</string>
-    <string name="menu_scroll_toolbar" comment="Checkbox stating whether note editor toolbar is scrollable or stacked. Checked: Scroll">Scroll toolbar</string>
+    <string name="menu_scroll_toolbar" comment="Checkbox stating whether note editor toolbar is scrollable or stacked. Checked: Scroll">Barre d\'outils à défilement</string>
     <!-- Symbols used as Button text in IncrementNumberRangePreference -->
     <string name="plus_sign" comment="Label for increment button in IncrementerNumberRangePreference">+</string>
     <string name="minus_sign" comment="Label for decrement button in IncrementerNumberRangePreference">-</string>
@@ -374,4 +380,16 @@
     <string name="suspended_note">Note suspendue</string>
     <!--  Note Editor Toggle Sticky  -->
     <string name="note_editor_toggle_sticky">Rendre le champ %s collant</string>
+    <!-- Scoped Storage Migration -->
+    <string name="scoped_storage_title">Transfert du stockage</string>
+    <string name="scoped_storage_initial_message">AnkiDroid doit dépacer ses données pour être conforme aux nouvelles règles de confidentialité d\'Android\n\nSi vous désinstallez AnkiDroid avant le transfert, vos données seront perdu\n\nVeuillez réaliser le transfert de vos données dès que possible</string>
+    <string name="scoped_storage_terms_message">Le transfert va se dérouler en arrière-plan. Vous ne pourrez pas vous synchronisez pendant ce temps\n\nTemps estimé : %s</string>
+    <string name="scoped_storage_term_1">J\'ai fait une sauvegarde de mes données</string>
+    <string name="scoped_storage_term_1_ankiweb">J\'ai récemment synchronisé avec AnkiWeb </string>
+    <string name="scoped_storage_term_2">Je ne vais pas désinstaller l\'application pendant le transfert des données</string>
+    <string name="scoped_storage_select_all_terms">Veuillez accepter tous les éléments pour continuer</string>
+    <string name="scoped_storage_learn_more">En savoir plus</string>
+    <string name="scoped_storage_postpone">Reporter</string>
+    <string name="scoped_storage_migrate">Transférer</string>
+    <string name="search_card_js_api_no_results">Search returned no results</string>
 </resources>

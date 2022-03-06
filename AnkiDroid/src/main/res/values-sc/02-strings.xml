@@ -139,6 +139,7 @@
     <string name="card_editor_reset_card">Reseta su progressu</string>
     <string name="card_editor_reschedule_card" comment="Action to reschedule a card">Torra a pranificare</string>
     <string name="card_editor_preview_card" comment="Button offering to preview some card(s)">Antiprima</string>
+    <string name="preview_progress_bar_text" comment="What card we are on out of how many in card previewer progress bar">%1$d de %2$d</string>
     <string name="error_insufficient_memory">S\'operatzione no est possìbile pro neghe de sa memòria chi non bastat in su dispositivu tuo</string>
     <string name="rename" comment="Confirm that the renaming action should be processed.">Muda de nùmene</string>
     <string name="default_conf_delete_error">Su grupu de optziones predefinidu non si podet bogare</string>
@@ -163,7 +164,7 @@
     <string name="import_log_failed_unzip">Ispachetamentu de s\'apkg fallidu: %s</string>
     <string name="import_log_failed_copy_to">Còpia de s\'apkg in %s fallida</string>
     <string name="import_log_failed_validate">validatzione de s\'apkg fallida</string>
-    <string name="import_log_insufficient_space">Non b\'at logu bastante pro ispachetare su pachete zip. B\'at bisòngiu de %1$d, e tenes %2$d a disponimentu</string>
+    <string name="import_log_insufficient_space_error">Non b\'est memòria lìbera bastante pro importare su pachete.\nNetzessàrios - %1$s \nA disponimentu - %2$s.\n\nTenes problemas? Pro a liberare memòria in su telèfonu tuo, si podes. In alternativa, sa sincronizatzione impreat prus pagu memòria de s\'importatzione. Dias pòdere proare a importare su pachete cun unu dispositivu cun prus memòria lìbera (a esèmpiu Anki Desktop) e a pustis a lu sincronizare cun custu dispositivu.</string>
     <string name="import_log_file_cache_cleared">Faddina in s\'importatzione de su documentu, probabilmente un\'isboidamentu de sa memòria temporànea durante s\'elaboratzione.\n
                               Torra a proare</string>
     <string name="import_succeeded_but_check_database">S\'importatzione de sos datos est andada bene ma s\'innetadura a pustis de s\'elaboratzione est fallida. Prus a tardu faghe una verìfica de sa base de datos. Càusa de raighina: %s</string>
@@ -195,10 +196,12 @@
     <string name="export_save_apkg_unsuccessful">Sarvamentu de su pachete de Anki fallidu</string>
     <string name="export_successful">Su documentu “%s” est istadu esportadu. Lu cheres imbiare cun un\'àtera aplicatzione?</string>
     <string name="export_email_subject">Cartas mnemònicas esportadas dae AnkiDroid: %s</string>
-    <string name="export_email_text_new"><![CDATA[        Salude!
+    <string name="export_email_text"><![CDATA[        Hi!
         <br/><br/>
-        Custu est unu matzu de cartas mnemònicas de Anki imbiadu dae <a href="%1$s">AnkiDroid</a>.
-        Proa a l\'abèrrere impreende una de sas <a href="%2$s">distributziones de Anki</a> a disponimentu e gosa·ti un\'imparòngiu fàtzile e efitziente!
+        This is an Anki flashcards deck sent from AnkiDroid[1].
+        Try to open it using one of the available Anki distributions[2] and enjoy easy and efficient learning!<br/><br/>
+        [1] %1$s<br/>
+        [2] %2$s
         ]]></string>
     <string name="export_unsuccessful">Faddina in s\'esportatzione de su documentu apkg</string>
     <string name="study_options" comment="Name for a preference category in Filtered deck (aka Cram deck, aka Custom study) options">Optziones</string>
@@ -215,7 +218,6 @@
     <string name="sched_has_buried">Unas cantas cartas curreladas o interradas sunt istadas rimbiadas a cras</string>
     <string name="tag_editor_add_feedback">Toca “%2$s” pro cunfirmare s\'annanta de “%1$s”</string>
     <string name="tag_editor_add_feedback_existing">Eticheta chi esistit “%1$s” seletzionada</string>
-    <string name="lookup_hint">A pustis de àere copiadu su testu toca in cale si siat tretu de sa carta pro ammustrare s\'icona de chirca</string>
     <!-- Time spans -->
     <plurals name="time_span_seconds">
         <item quantity="one">%s segundu</item>
@@ -275,6 +277,9 @@
     <string name="choose_an_image">Issèbera un\'immàgine</string>
     <!-- Card Template Browser Appearance -->
     <string name="restore_default">Torra a sos valores predefinidos</string>
+    <string name="cloze_sample_text">Custu est un\'iscantzellamentu cloze {{%1$s::sample}}.</string>
+    <string name="basic_answer_sample_text_user" comment="has a typo, so that user sees a highlighted difference in basic answer model     ">esòmpiu</string>
+    <string name="basic_answer_sample_text">un\'esèmpiu</string>
     <string name="reviewer_tts_cloze_spoken_replacement">Bòidu</string>
     <!-- in options menu & Navigation Drawer -->
     <string name="ankidroid_turn_on_fullscreen_nav_drawer">Allughe s\'ischermu intreu pro impreare Ammustra sa barra de navigatzione impreende JavaScript.</string>
@@ -336,6 +341,7 @@
     <string name="format_font_size">Muda sa mannària de sos caràteres</string>
     <string name="insert_mathjax">Inserta un\'ecuatzione MathJax</string>
     <string name="insert_cloze">Inserta un\'iscantzellamentu cloze</string>
+    <string name="note_editor_toolbar_icon">Button text</string>
     <string name="before_text">HTML in antis de s\'ischerta</string>
     <string name="after_text">HTML a pustis de s\'ischerta</string>
     <string name="add_toolbar_item">Crea un\'elementu de sa barra de trastes</string>
@@ -349,7 +355,7 @@
     <string name="create_shortcut_failed" comment="home screen == launcher">S\'ischermada printzipale tua non permitet a AnkiDroid de annànghere incurtzadas</string>
     <string name="create_shortcut_error">Errore annanghende s\'incurtzada: %s</string>
     <string name="note_editor_capitalize" comment="This is for a switch with a checkbox - on: enabled">Pone in majùsculu sas fràsias</string>
-    <string name="menu_scroll_toolbar" comment="Checkbox stating whether note editor toolbar is scrollable or stacked. Checked: Scroll">Scroll toolbar</string>
+    <string name="menu_scroll_toolbar" comment="Checkbox stating whether note editor toolbar is scrollable or stacked. Checked: Scroll">Barra de iscurrimentu</string>
     <!-- Symbols used as Button text in IncrementNumberRangePreference -->
     <string name="plus_sign" comment="Label for increment button in IncrementerNumberRangePreference">+</string>
     <string name="minus_sign" comment="Label for decrement button in IncrementerNumberRangePreference">-</string>
@@ -377,11 +383,25 @@
     <string name="import_mapped_to_tags">Classificadu in sas etichetas</string>
     <string name="import_mapped_to_nothing">Ignoradu</string>
     <!-- Reviewer actions -->
-    <string name="buried_card">Buried card</string>
-    <string name="buried_note">Buried note</string>
-    <string name="deleted_note">Deleted note</string>
-    <string name="suspended_card">Suspended card</string>
-    <string name="suspended_note">Suspended note</string>
+    <string name="buried_card">Carta interrada</string>
+    <string name="buried_note">Nota interrada</string>
+    <string name="deleted_note">Nota iscantzellada</string>
+    <string name="suspended_card">Carta suspesa</string>
+    <string name="suspended_note">Nota suspesa</string>
     <!--  Note Editor Toggle Sticky  -->
-    <string name="note_editor_toggle_sticky">Make field %s sticky</string>
+    <string name="note_editor_toggle_sticky">Fissa su campu %s</string>
+    <!-- Scoped Storage Migration -->
+    <string name="scoped_storage_title">Tràmuda de sos datos</string>
+    <string name="scoped_storage_initial_message">AnkiDroid depet mòvere sos datos suos pro rispetare sas règulas de riservadesa noas de Android
+\n\nSi as a disinstallare AnkiDroid in antis de su tramudòngiu sos datos tuos s\'ant a pèrdere
+\n\nPro praghere faghe su tramudòngiu su prus in presse chi podes</string>
+    <string name="scoped_storage_terms_message">Su tramudòngiu s\'at a fàghere in s\'isfundu. In su mentres no as a pòdere fàghere sincronizatziones\n\nDurada carculada: %s</string>
+    <string name="scoped_storage_term_1">Apo fatu una còpia de seguresa de sos datos meos</string>
+    <string name="scoped_storage_term_1_ankiweb">Apo fatu dae pagu una sicronizatzione cun AnkiWeb</string>
+    <string name="scoped_storage_term_2">No apo a disinstallare s\'aplicatzione durante su tramudòngiu de sos datos</string>
+    <string name="scoped_storage_select_all_terms">Atzeta totu sos elementos pro sighire</string>
+    <string name="scoped_storage_learn_more">Àteras informatziones</string>
+    <string name="scoped_storage_postpone">Postìtzipa</string>
+    <string name="scoped_storage_migrate">Tràmuda</string>
+    <string name="search_card_js_api_no_results">Search returned no results</string>
 </resources>

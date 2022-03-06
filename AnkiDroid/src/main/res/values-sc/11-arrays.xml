@@ -100,7 +100,6 @@
     <string name="gesture_answer_green">Risposta racumandada (birde)</string>
     <string name="gesture_answer_better_recommended">Risposta mègius de su chi est racumandadu</string>
     <string name="gesture_tag_note">Nota de eticheta</string>
-    <string name="gesture_lookup">Verìfica s\'espressione</string>
     <string name="gesture_play">Riprodui unu mèdiu</string>
     <string name="gesture_abort_learning">Firma s\'imparòngiu</string>
     <string name="gesture_flag_red">Allughe/istuda sa bandera ruja</string>
@@ -117,6 +116,6 @@
     <string name="gesture_toggle_whiteboard">Allughe/istuda sa lavagna</string>
     <string name="record_voice">Registra sa boghe</string>
     <string name="replay_voice">Riprodui sa boghe</string>
-    <string name="automatic_answer_option_2">Hard (Good if unavailable)</string>
-    <string name="automatic_answer_option_4">Easy (Good if unavailable)</string>
+    <string name="automatic_answer_option_2">Difìtzile (\"Bonu\" si no a disponimentu)</string>
+    <string name="automatic_answer_option_4">Fàtzile (\"Bonu\" si no a disponimentu)</string>
 </resources>

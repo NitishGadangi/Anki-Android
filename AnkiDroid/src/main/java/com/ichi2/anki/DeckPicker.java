@@ -104,6 +104,7 @@ import com.ichi2.anki.dialogs.customstudy.CustomStudyDialogFactory;
 import com.ichi2.anki.exception.ConfirmModSchemaException;
 import com.ichi2.anki.export.ActivityExportingDelegate;
 import com.ichi2.anki.receiver.SdCardReceiver;
+import com.ichi2.anki.servicelayer.DeckService;
 import com.ichi2.anki.servicelayer.SchedulerService;
 import com.ichi2.anki.servicelayer.UndoService;
 import com.ichi2.anki.stats.AnkiStatsTaskHandler;
@@ -142,7 +143,6 @@ import com.ichi2.utils.JSONException;
 
 import java.io.File;
 import java.util.List;
-import java.util.TreeMap;
 
 import kotlin.Unit;
 import timber.log.Timber;
@@ -211,8 +211,6 @@ public class DeckPicker extends NavigationDrawerActivity implements
 
     private BroadcastReceiver mUnmountReceiver = null;
 
-    private long mContextMenuDid;
-
     private EditText mDialogEditText;
 
     private DeckPickerFloatingActionMenu mFloatingActionMenu;
@@ -253,6 +251,7 @@ public class DeckPicker extends NavigationDrawerActivity implements
     private SearchView mToolbarSearchView;
 
     private CustomStudyDialogFactory mCustomStudyDialogFactory;
+    private DeckPickerContextMenu.Factory mContextMenuFactory;
 
     // ----------------------------------------------------------------------------
     // LISTENERS
@@ -312,8 +311,7 @@ public class DeckPicker extends NavigationDrawerActivity implements
         public boolean onLongClick(View v) {
             long deckId = (long) v.getTag();
             Timber.i("DeckPicker:: Long tapped on deck with id %d", deckId);
-            mContextMenuDid = deckId;
-            showDialogFragment(DeckPickerContextMenu.newInstance(deckId));
+            showDialogFragment(mContextMenuFactory.newDeckPickerContextMenu(deckId));
             return true;
         }
     };
@@ -418,6 +416,7 @@ public class DeckPicker extends NavigationDrawerActivity implements
         mExportingDelegate = new ActivityExportingDelegate(this, this::getCol);
 
         mCustomStudyDialogFactory = new CustomStudyDialogFactory(this::getCol, this).attachToActivity(this);
+        mContextMenuFactory = new DeckPickerContextMenu.Factory(this::getCol).attachToActivity(this);
 
         //we need to restore here, as we need it before super.onCreate() is called.
         restoreWelcomeMessage(savedInstanceState);
@@ -461,8 +460,9 @@ public class DeckPicker extends NavigationDrawerActivity implements
         dividerDecorator.setDrawable(divider);
         mRecyclerView.addItemDecoration(dividerDecorator);
 
-        //Add background to Deckpicker activity
-        View view = mFragmented ? findViewById(R.id.deckpicker_view) : findViewById(R.id.root_layout);
+        // Add background to Deckpicker activity
+        View view = mFragmented ? findViewById(R.id.deckpicker_xl_view) : findViewById(R.id.root_layout);
+
         boolean hasDeckPickerBackground = false;
         try {
             hasDeckPickerBackground = applyDeckPickerBackground(view);
@@ -894,7 +894,6 @@ public class DeckPicker extends NavigationDrawerActivity implements
     @Override
     public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putLong("mContextMenuDid", mContextMenuDid);
         savedInstanceState.putBoolean("mClosedWelcomeMessage", mClosedWelcomeMessage);
         savedInstanceState.putBoolean("mIsFABOpen", mFloatingActionMenu.isFABOpen());
     }
@@ -903,8 +902,7 @@ public class DeckPicker extends NavigationDrawerActivity implements
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        mContextMenuDid = savedInstanceState.getLong("mContextMenuDid");
-        mFloatingActionMenu.setIsFABOpen(savedInstanceState.getBoolean("mIsFABOpen"));
+        mFloatingActionMenu.setFABOpen(savedInstanceState.getBoolean("mIsFABOpen"));
     }
 
 
@@ -1326,7 +1324,7 @@ public class DeckPicker extends NavigationDrawerActivity implements
 
 
     @Override
-    public void showMediaCheckDialog(int id, List<List<String>> checkList) {
+    public void showMediaCheckDialog(int id, List<? extends List<String>> checkList) {
         showAsyncDialogFragment(MediaCheckDialog.newInstance(id, checkList));
     }
 
@@ -1371,11 +1369,11 @@ public class DeckPicker extends NavigationDrawerActivity implements
                     NotificationChannels.Channel.SYNC);
         } else {
             if (syncMessage == null || syncMessage.length() == 0) {
-                if (messageResource == R.string.youre_offline && !Connection.getAllowSyncOnNoConnection()) {
+                if (messageResource == R.string.youre_offline && !Connection.getAllowLoginSyncOnNoConnection()) {
                     //#6396 - Add a temporary "Try Anyway" button until we sort out `isOnline`
                     View root = this.findViewById(R.id.root_layout);
                     UIUtils.showSnackbar(this, messageResource, false, R.string.sync_even_if_offline, (v) -> {
-                        Connection.setAllowSyncOnNoConnection(true);
+                        Connection.setAllowLoginSyncOnNoConnection(true);
                         sync();
                     }, null);
                 } else {
@@ -1390,6 +1388,9 @@ public class DeckPicker extends NavigationDrawerActivity implements
 
     public void showImportDialog(int id, String message) {
         Timber.d("showImportDialog() delegating to ImportDialog");
+        if (message == null) {
+            message = "";
+        }
         AsyncDialogFragment newFragment = ImportDialog.newInstance(id, message);
         showAsyncDialogFragment(newFragment);
     }
@@ -2324,41 +2325,37 @@ public class DeckPicker extends NavigationDrawerActivity implements
 
 
     // Callback to show study options for currently selected deck
-    public void showContextMenuDeckOptions() {
+    public void showContextMenuDeckOptions(long did) {
         // open deck options
-        if (getCol().getDecks().isDyn(mContextMenuDid)) {
+        if (getCol().getDecks().isDyn(did)) {
             // open cram options if filtered deck
             Intent i = new Intent(DeckPicker.this, FilteredDeckOptions.class);
-            i.putExtra("did", mContextMenuDid);
+            i.putExtra("did", did);
             startActivityWithAnimation(i, FADE);
         } else {
             // otherwise open regular options
             Intent i = new Intent(DeckPicker.this, DeckOptions.class);
-            i.putExtra("did", mContextMenuDid);
+            i.putExtra("did", did);
             startActivityWithAnimation(i, FADE);
         }
     }
 
 
-    // Callback to show export dialog for currently selected deck
-    public void showContextMenuExportDialog() {
-        exportDeck(mContextMenuDid);
-    }
     public void exportDeck(long did) {
         String msg = getResources().getString(R.string.confirm_apkg_export_deck, getCol().getDecks().get(did).getString("name"));
         mExportingDelegate.showExportDialog(msg, did);
     }
 
-    public void createIcon(Context context) {
+    public void createIcon(Context context, long did) {
         // This code should not be reachable with lower versions
-        ShortcutInfoCompat shortcut = new ShortcutInfoCompat.Builder(this, Long.toString(mContextMenuDid))
+        ShortcutInfoCompat shortcut = new ShortcutInfoCompat.Builder(this, Long.toString(did))
                 .setIntent(new Intent(context, Reviewer.class)
                         .setAction(Intent.ACTION_VIEW)
-                        .putExtra("deckId", mContextMenuDid)
+                        .putExtra("deckId", did)
                 )
                 .setIcon(IconCompat.createWithResource(context, R.mipmap.ic_launcher))
-                .setShortLabel(Decks.basename(getCol().getDecks().name(mContextMenuDid)))
-                .setLongLabel(getCol().getDecks().name(mContextMenuDid))
+                .setShortLabel(Decks.basename(getCol().getDecks().name(did)))
+                .setLongLabel(getCol().getDecks().name(did))
                 .build();
 
         try {
@@ -2378,13 +2375,7 @@ public class DeckPicker extends NavigationDrawerActivity implements
         }
     }
 
-    // Callback to show dialog to rename the current deck
-    public void renameDeckDialog() {
-        renameDeckDialog(mContextMenuDid);
-    }
-
     public void renameDeckDialog(final long did) {
-        final Resources res = getResources();
         final String currentName = getCol().getDecks().name(did);
         CreateDeckDialog createDeckDialog = new CreateDeckDialog(DeckPicker.this, R.string.rename_deck, CreateDeckDialog.DeckDialogType.RENAME_DECK, null);
         createDeckDialog.setDeckName(currentName);
@@ -2399,12 +2390,6 @@ public class DeckPicker extends NavigationDrawerActivity implements
         createDeckDialog.showDialog();
     }
 
-
-    // Callback to show confirm deck deletion dialog before deleting currently selected deck
-    public void confirmDeckDeletion() {
-        confirmDeckDeletion(mContextMenuDid);
-    }
-
     public void confirmDeckDeletion(long did) {
         Resources res = getResources();
         if (!colIsOpen()) {
@@ -2416,18 +2401,10 @@ public class DeckPicker extends NavigationDrawerActivity implements
             return;
         }
         // Get the number of cards contained in this deck and its subdecks
-        TreeMap<String, Long> children = getCol().getDecks().children(did);
-        long[] dids = new long[children.size() + 1];
-        dids[0] = did;
-        int i = 1;
-        for (Long l : children.values()) {
-            dids[i++] = l;
-        }
-        String ids = Utils.ids2str(dids);
-        int cnt = getCol().getDb().queryScalar(
-                "select count() from cards where did in " + ids + " or odid in " + ids);
-        // Delete empty decks without warning
-        if (cnt == 0) {
+        int cnt = DeckService.countCardsInDeckTree(getCol(), did);
+        boolean isDyn = getCol().getDecks().isDyn(did);
+        // Delete empty decks without warning. Filtered decks save filters in the deck data, so require confirmation.
+        if (cnt == 0 && !isDyn) {
             deleteDeck(did);
             dismissAllDialogFragments();
             return;
@@ -2435,20 +2412,20 @@ public class DeckPicker extends NavigationDrawerActivity implements
         // Otherwise we show a warning and require confirmation
         String msg;
         String deckName = "'" + getCol().getDecks().name(did) + "'";
-        boolean isDyn = getCol().getDecks().isDyn(did);
         if (isDyn) {
             msg = res.getString(R.string.delete_cram_deck_message, deckName);
         } else {
             msg = res.getQuantityString(R.plurals.delete_deck_message, cnt, deckName, cnt);
         }
-        showDialogFragment(DeckPickerConfirmDeleteDeckDialog.newInstance(msg));
+        showDialogFragment(DeckPickerConfirmDeleteDeckDialog.newInstance(msg, did));
     }
 
 
-    // Callback to delete currently selected deck
-    public void deleteContextMenuDeck() {
-        deleteDeck(mContextMenuDid);
-    }
+    /**
+     * Deletes the provided deck, child decks. and all cards inside.
+     * Use {@link #confirmDeckDeletion(long)} for a confirmation dialog
+     * @param did the deck to delete
+     */
     public void deleteDeck(final long did) {
         TaskManager.launchCollectionTask(new CollectionTask.DeleteDeck(did), deleteDeckListener(did));
     }
@@ -2529,13 +2506,13 @@ public class DeckPicker extends NavigationDrawerActivity implements
     }
 
 
-    public void rebuildFiltered() {
-        getCol().getDecks().select(mContextMenuDid);
+    public void rebuildFiltered(long did) {
+        getCol().getDecks().select(did);
         TaskManager.launchCollectionTask(new CollectionTask.RebuildCram(), simpleProgressListener());
     }
 
-    public void emptyFiltered() {
-        getCol().getDecks().select(mContextMenuDid);
+    public void emptyFiltered(long did) {
+        getCol().getDecks().select(did);
         TaskManager.launchCollectionTask(new CollectionTask.EmptyCram(), simpleProgressListener());
     }
 
@@ -2664,13 +2641,7 @@ public class DeckPicker extends NavigationDrawerActivity implements
         }
     }
 
-
-    public void createSubdeckDialog() {
-        createSubDeckDialog(mContextMenuDid);
-    }
-
-
-    private void createSubDeckDialog(long did) {
+    public void createSubDeckDialog(long did) {
         CreateDeckDialog createDeckDialog = new CreateDeckDialog(DeckPicker.this, R.string.create_subdeck, CreateDeckDialog.DeckDialogType.SUB_DECK, did);
         createDeckDialog.setOnNewDeckCreated((i) -> {
             // a deck was created

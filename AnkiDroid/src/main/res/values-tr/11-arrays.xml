@@ -100,7 +100,6 @@
     <string name="gesture_answer_green">Önerilen cevabı (yeşil) ver</string>
     <string name="gesture_answer_better_recommended">Önerilenden daha iyi cevap ver</string>
     <string name="gesture_tag_note">Notu etiketlendir</string>
-    <string name="gesture_lookup">İfadeyi kontrol et</string>
     <string name="gesture_play">Medyayı oynat</string>
     <string name="gesture_abort_learning">Öğrenmeyi durdur</string>
     <string name="gesture_flag_red">Kırmızı bayrağı etkinleştir</string>
@@ -117,6 +116,6 @@
     <string name="gesture_toggle_whiteboard">Yazı tahtasını etkinleştir</string>
     <string name="record_voice">Ses kaydet</string>
     <string name="replay_voice">Sesi tekrar oynat</string>
-    <string name="automatic_answer_option_2">Hard (Good if unavailable)</string>
-    <string name="automatic_answer_option_4">Easy (Good if unavailable)</string>
+    <string name="automatic_answer_option_2">Zor (mevcut değilse iyi)</string>
+    <string name="automatic_answer_option_4">Kolay (Müsait değilse iyi)</string>
 </resources>

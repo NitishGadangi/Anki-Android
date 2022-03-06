@@ -51,6 +51,7 @@ import com.ichi2.anki.services.NotificationService;
 import com.ichi2.compat.CompatHelper;
 import com.ichi2.utils.AdaptionUtil;
 import com.ichi2.utils.ExceptionUtil;
+import com.ichi2.utils.KotlinCleanup;
 import com.ichi2.utils.LanguageUtil;
 import com.ichi2.anki.analytics.UsageAnalytics;
 import com.ichi2.utils.Permissions;
@@ -70,12 +71,22 @@ import org.acra.config.ToastConfigurationBuilder;
 import org.acra.sender.HttpSender;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import androidx.webkit.WebViewCompat;
+import leakcanary.AppWatcher;
+import leakcanary.DefaultOnHeapAnalyzedListener;
+import leakcanary.LeakCanary;
+import shark.AndroidMetadataExtractor;
+import shark.AndroidObjectInspectors;
+import shark.AndroidReferenceMatchers;
+import shark.KeyedWeakReferenceFinder;
+import shark.ReferenceMatcher;
 import timber.log.Timber;
 import static timber.log.Timber.DebugTree;
 
@@ -285,6 +296,7 @@ public class AnkiDroidApp extends Application {
             }
         }
         sInstance = this;
+
         // Get preferences
         SharedPreferences preferences = getSharedPrefs(this);
 
@@ -293,11 +305,23 @@ public class AnkiDroidApp extends Application {
         if (BuildConfig.DEBUG) {
             // Enable verbose error logging and do method tracing to put the Class name as log tag
             Timber.plant(new DebugTree());
-
             setDebugACRAConfig(preferences);
+
+            List<ReferenceMatcher> referenceMatchers = new ArrayList<>();
+            // Add known memory leaks to 'referenceMatchers'
+            matchKnownMemoryLeaks(referenceMatchers);
+
+            // AppWatcher manual install if not already installed
+            if (!AppWatcher.INSTANCE.isInstalled()) {
+                AppWatcher.INSTANCE.manualInstall(this);
+            }
+
+            // Show 'Leaks' app launcher. It has been removed by default via constants.xml.
+            LeakCanary.INSTANCE.showLeakDisplayActivityLauncherIcon(true);
         } else {
             Timber.plant(new ProductionCrashReportingTree());
             setProductionACRAConfig(preferences);
+            disableLeakCanary();
         }
         Timber.tag(TAG);
 
@@ -329,8 +353,8 @@ public class AnkiDroidApp extends Application {
             UIUtils.showThemedToast(this.getApplicationContext(), getString(R.string.user_is_a_robot), false);
         }
 
-        // make default HTML / JS debugging true for debug build
-        if (BuildConfig.DEBUG) {
+        // make default HTML / JS debugging true for debug build and disable for unit/android tests
+        if (BuildConfig.DEBUG && !AdaptionUtil.isRunningAsUnitTest()) {
             preferences.edit().putBoolean("html_javascript_debugging", true).apply();
         }
         
@@ -573,7 +597,7 @@ public class AnkiDroidApp extends Application {
                 toastBuilder.setResText(R.string.feedback_auto_toast_text);
             } else if (value.equals(FEEDBACK_REPORT_ASK)) {
                 dialogBuilder.setEnabled(true);
-                toastBuilder.setResText(R.string.feedback_manual_toast_text);
+                toastBuilder.setResText(R.string.feedback_for_manual_toast_text);
             }
             setAcraConfigBuilder(builder);
         }
@@ -748,4 +772,49 @@ public class AnkiDroidApp extends Application {
         return webViewInfo;
     }
 
+    /**
+     * Matching known library leaks or leaks which have been already reported previously.
+     */
+    @KotlinCleanup("Only pass referenceMatchers to copy() method after conversion to Kotlin")
+    private void matchKnownMemoryLeaks(List<ReferenceMatcher> knownLeaks) {
+        List<ReferenceMatcher> referenceMatchers = AndroidReferenceMatchers.Companion.getAppDefaults();
+        referenceMatchers.addAll(knownLeaks);
+
+        // Passing default values will not be required after migration to Kotlin.
+        LeakCanary.setConfig(LeakCanary.getConfig().copy(
+                true,
+                false,
+                5,
+                referenceMatchers,
+                AndroidObjectInspectors.Companion.getAppDefaults(),
+                DefaultOnHeapAnalyzedListener.Companion.create(),
+                AndroidMetadataExtractor.INSTANCE,
+                true,
+                7,
+                false,
+                KeyedWeakReferenceFinder.INSTANCE,
+                false
+        ));
+    }
+
+    /**
+     * Disable LeakCanary
+     */
+    @KotlinCleanup("Only pass relevant arguments to copy() method after conversion to Kotlin")
+    private void disableLeakCanary() {
+        LeakCanary.setConfig(LeakCanary.getConfig().copy(
+                false,
+                false,
+                0,
+                AndroidReferenceMatchers.Companion.getAppDefaults(),
+                AndroidObjectInspectors.Companion.getAppDefaults(),
+                DefaultOnHeapAnalyzedListener.Companion.create(),
+                AndroidMetadataExtractor.INSTANCE,
+                false,
+                0,
+                false,
+                KeyedWeakReferenceFinder.INSTANCE,
+                false
+        ));
+    }
 }
